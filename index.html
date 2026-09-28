@@ -4543,6 +4543,11 @@ function renderExtractedEdital(data){
       <div class="extract-section-title">Etapas</div>
       <div class="extract-item"><div class="extract-chips">${stagesHtml}</div></div>
 
+      <div class="extract-section-title">Cronograma identificado</div>
+      <div class="extract-timeline">
+        ${(data.timeline || []).map(item => '<div class="timeline-row"><span>' + escapeHTML(item[0]) + '</span><strong>' + escapeHTML(item[1]) + '</strong></div>').join("") || '<div class="extract-muted">Nenhum cronograma identificado</div>'}
+      </div>
+
       <div class="extract-warning">
         O ZONA só preenche automaticamente o que conseguiu identificar com segurança. Revise os campos antes de confirmar.
       </div>
