@@ -84,7 +84,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       <div class="field"><label>Senha</label><input class="input" id="loginPass" type="password" autocomplete="current-password" required></div>
       <button class="btn btn-primary btn-full" type="submit">ENTRAR NO ZONA HUB</button>
     </form>
-    <div class="demo-logins"><strong>Acessos iniciais</strong><br>ADM: <strong>admin</strong> / <strong>ZONA2026</strong><br>Visitante: <strong>visitante</strong> / <strong>zonavisita</strong></div>
+    <div id="loginError" class="save-feedback"></div><div class="demo-logins"><strong>Acessos iniciais</strong><br>ADM: <strong>admin</strong> / <strong>ZONA2026</strong><br>Visitante: <strong>visitante</strong> / <strong>zonavisita</strong></div>
   </div>
 </div>
 
@@ -446,6 +446,17 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   function saveTimer(){localStorage.setItem(TIMER_KEY,JSON.stringify(session))}
   function formatClock(s){s=Math.floor(Math.max(0,s));var h=String(Math.floor(s/3600)).padStart(2,"0"),m=String(Math.floor((s%3600)/60)).padStart(2,"0"),x=String(s%60).padStart(2,"0");return h+":"+m+":"+x}
 
+  function safeShowApp(){
+    try{showApp()}catch(err){
+      console.error("ZONA HUB startup error",err);
+      localStorage.removeItem(AUTH_KEY);
+      document.getElementById("app").style.display="none";
+      document.getElementById("loginScreen").style.display="flex";
+      var note=document.getElementById("loginError");
+      if(note)note.textContent="A sessão anterior foi reiniciada. Entre novamente.";
+    }
+  }
+
   function showApp(){
     document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="block";
     var u=JSON.parse(localStorage.getItem(AUTH_KEY)||"null");currentUser=u;
@@ -460,9 +471,9 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     e.preventDefault();if(!document.getElementById("termsCheck").checked){notify("Termos de Uso","Aceite os Termos de Uso para entrar.","error");return}var user=document.getElementById("loginUser").value.trim(),pass=document.getElementById("loginPass").value;
     var found=null;if(user==="admin"&&pass==="ZONA2026")found={role:"Administrador"};if(user==="visitante"&&pass==="zonavisita")found={role:"Visitante"};
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
-    localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
+    localStorage.setItem(AUTH_KEY,JSON.stringify(found));safeShowApp();
   });
-  if(localStorage.getItem(AUTH_KEY))setTimeout(showApp,0);
+  if(localStorage.getItem(AUTH_KEY))setTimeout(safeShowApp,0);
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
