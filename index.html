@@ -646,19 +646,52 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   window.closeChallengeAdmin=function(){document.getElementById("challengeBackdrop").classList.remove("open")}
   window.saveChallenge=function(){var title=document.getElementById("challengeTitleInput").value.trim(),reward=Number(document.getElementById("challengeRewardInput").value)||0;if(!title||reward<1){notify("Falta informação","Preencha desafio e recompensa.","error");return}localStorage.setItem(CHALLENGE_KEY,JSON.stringify({title:title,reward:reward,claimed:[]}));closeChallengeAdmin();renderLeague();notify("Desafio publicado","O desafio mensal está disponível para as ligas.")}
   function renderAgenda(){
-    var c=currentContest(),y=monthCursor.getFullYear(),m=monthCursor.getMonth(),first=new Date(y,m,1),last=new Date(y,m+1,0),start=(first.getDay()+6)%7;
-    var days=[];for(var i=0;i<start;i++)days.push({date:new Date(y,m,i-start+1),outside:true});for(var d=1;d<=last.getDate();d++)days.push({date:new Date(y,m,d)});while(days.length<42){var dd=days.length-last.getDate()-start+1;days.push({date:new Date(y,m+1,dd),outside:true})}
+    var c=currentContest(),y=monthCursor.getFullYear(),m=monthCursor.getMonth();
+    var first=new Date(y,m,1),last=new Date(y,m+1,0),start=(first.getDay()+6)%7;
+    var days=[];
+    for(var i=0;i<start;i++)days.push({date:new Date(y,m,i-start+1),outside:true});
+    for(var d=1;d<=last.getDate();d++)days.push({date:new Date(y,m,d),outside:false});
+    while(days.length<42){var n=days.length-start-last.getDate()+1;days.push({date:new Date(y,m+1,n),outside:true})}
+
     var events=[];
     if(c&&c.editalData){
-      var D=c.editalData;if(D.timeline)(D.timeline||[]).forEach(function(x){var ds=dateListString(x[1]);ds.forEach(function(v){events.push({date:v,label:x[0],contest:true})})});
-      if(D.registrationStart&&D.registrationEnd){dateListString(D.registrationStart).concat(dateListString(D.registrationEnd)).forEach(function(v){events.push({date:v,label:"Inscrição",contest:true})})}
-      if(D.proofDate)dateListString(D.proofDate).forEach(function(v){events.push({date:v,label:"PROVA",contest:true,exam:true})})
+      var D=c.editalData;
+      (D.timeline||[]).forEach(function(item){
+        dateListString(item[1]).forEach(function(ds){events.push({date:toISODate(ds),label:item[0],contest:true})})
+      });
+      dateListString(D.registrationStart||"").forEach(function(ds){events.push({date:toISODate(ds),label:"INSCRIÇÃO",contest:true})});
+      dateListString(D.registrationEnd||"").forEach(function(ds){events.push({date:toISODate(ds),label:"FIM DAS INSCRIÇÕES",contest:true})});
+      dateListString(D.proofDate||"").forEach(function(ds){events.push({date:toISODate(ds),label:"PROVA OBJETIVA",contest:true,exam:true})});
     }
-    var grid=document.getElementById("homeCalendar");if(!grid)return;
-    document.getElementById("homeMonthTitle").textContent=new Intl.DateTimeFormat("pt-BR",{month:"long",year:"numeric"}).format(new Date(y,m,1));
-    var html=["DOM","SEG","TER","QUA","QUI","SEX","SÁB"].map(function(x){return '<div class="dow">'+x+"</div>"}).join("");
-    days.forEach(function(o){var key=o.date.toISOString().slice(0,10),isToday=key===today(),ev=events.filter(function(e){return e.date===key}),manual=(profile.agenda||{})[key]||null;html+='<button class="day '+(o.outside?"muted ":"")+(isToday?"today ":"")+(ev.some(function(e){return e.exam})?"exam ":"")+'" onclick="openDayEditor(\''+key+'\')"><div class="day-number">'+o.date.getDate()+"</div><div class="day-events">"+ev.slice(0,2).map(function(e){return '<div class="day-event contest" title="'+esc(e.label)+'">'+esc(e.label)+"</div>"}).join("")+(manual&&manual.note?'<div class="day-event" title="'+esc(manual.note)+'">'+esc(manual.note)+"</div>":"")+"</div>"+(manual&&manual.sticker?'<div class="day-sticker">'+esc(manual.sticker)+'</div>':"")+"</button>"});
+
+    var grid=document.getElementById("homeCalendar"),title=document.getElementById("homeMonthTitle");
+    if(!grid||!title)return;
+    title.textContent=new Intl.DateTimeFormat("pt-BR",{month:"long",year:"numeric"}).format(new Date(y,m,1));
+
+    var html=["DOM","SEG","TER","QUA","QUI","SEX","SÁB"].map(function(dayName){
+      return '<div class="dow">'+dayName+'</div>';
+    }).join("");
+
+    days.forEach(function(item){
+      var key=item.date.getFullYear()+"-"+String(item.date.getMonth()+1).padStart(2,"0")+"-"+String(item.date.getDate()).padStart(2,"0");
+      var isToday=key===today();
+      var dayEvents=events.filter(function(ev){return ev.date===key});
+      var manual=(profile.agenda||{})[key]||null;
+
+      html += '<button type="button" class="day '+(item.outside?"muted ":"")+(isToday?"today ":"")+(dayEvents.some(function(ev){return ev.exam})?"exam ":"")+'" onclick="openDayEditor(\''+key+'\')">';
+      html += '<div class="day-number">'+item.date.getDate()+'</div><div class="day-events">';
+      html += dayEvents.slice(0,2).map(function(ev){return '<div class="day-event contest" title="'+esc(ev.label)+'">'+esc(ev.label)+'</div>'}).join("");
+      if(manual&&manual.note)html += '<div class="day-event" title="'+esc(manual.note)+'">'+esc(manual.note)+'</div>';
+      html += '</div>';
+      if(manual&&manual.sticker)html += '<div class="day-sticker">'+esc(manual.sticker)+'</div>';
+      html += '</button>';
+    });
+
     grid.innerHTML=html;
+  }
+  function toISODate(s){
+    var m=String(s||"").match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
+    return m?m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0"):"";
   }
   function dateListString(s){return String(s||"").match(/\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}/g)||[]}
   window.changeMonth=function(dir){monthCursor=new Date(monthCursor.getFullYear(),monthCursor.getMonth()+dir,1);renderAgenda()}
