@@ -40,46 +40,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 body.zona-app-ready #loginScreen{display:none!important}
 body.zona-app-ready #app{display:block}
 </style>
-
-<style>
-/* ZONA V.02 — Agenda, Gamification, CRUD and GOD MODE */
-.zona-game-strip{display:grid;grid-template-columns:1.2fr 1fr 1.8fr;gap:12px;margin-top:16px}
-.zona-game-box{background:#0c0c0c;border:1px solid #252525;border-radius:16px;padding:15px}
-.zona-game-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8e8e8e}
-.zona-game-value{font-size:25px;font-weight:800;margin-top:5px}
-.zona-game-sub{font-size:12px;color:#8e8e8e;margin-top:4px}
-.zona-fire{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;border:1px solid #baff7c;box-shadow:0 0 16px rgba(186,255,124,.2);color:#baff7c;font-weight:800;margin-right:7px}
-.zona-agenda{margin-top:16px}
-.zona-calendar-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.zona-calendar-title{font-weight:800;font-size:18px}
-.zona-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}
-.zona-dayname{text-align:center;font-size:10px;color:#757575;letter-spacing:.08em;padding:5px 0}
-.zona-day{min-height:76px;border:1px solid #252525;border-radius:12px;background:#0a0a0a;padding:8px;cursor:pointer;transition:.18s ease;position:relative}
-.zona-day:hover{transform:translateY(-1px);border-color:#777;box-shadow:0 0 18px rgba(186,255,124,.08)}
-.zona-day.muted{opacity:.34}
-.zona-day.today{border-color:#baff7c;box-shadow:inset 0 0 0 1px rgba(186,255,124,.15)}
-.zona-day.has-event{border-color:#5f6f52}
-.zona-day-num{font-size:12px;font-weight:800}
-.zona-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#baff7c;margin:3px 2px 0 0}
-.zona-event{font-size:9px;color:#baff7c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:7px}
-.zona-note{font-size:9px;color:#cfcfcf;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.zona-calendar-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.zona-legend{font-size:11px;color:#7c7c7c}
-.zona-modal-list{display:grid;gap:9px}
-.zona-choice{border:1px solid #242424;background:#0b0b0b;border-radius:12px;padding:12px;cursor:pointer;transition:.18s}
-.zona-choice:hover{border-color:#baff7c;box-shadow:0 0 18px rgba(186,255,124,.08)}
-.zona-actions{display:flex;gap:7px;flex-wrap:wrap}
-.zona-table-actions{display:flex;gap:5px;flex-wrap:wrap}
-.zona-mini-btn{border:1px solid #2c2c2c;background:#121212;color:#ededed;border-radius:8px;padding:5px 8px;font-size:10px;cursor:pointer}
-.zona-mini-btn:hover{border-color:#baff7c;color:#baff7c}
-.zona-admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.zona-coins{display:flex;align-items:center;gap:10px}
-.zona-coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 34% 28%,#fff5a8 0,#e7be36 30%,#8a6516 72%,#171717 100%);border:2px solid #d9b43a;box-shadow:0 0 14px rgba(231,190,54,.2);color:#171717;font-weight:900}
-.zona-league{font-weight:800}
-@media(max-width:900px){.zona-game-strip{grid-template-columns:1fr}.zona-day{min-height:64px}}
-@media(max-width:620px){.zona-calendar-grid{gap:4px}.zona-day{padding:6px;border-radius:9px;min-height:57px}.zona-event,.zona-note{font-size:8px}}
-
-</style>
 </head>
 <body>
 <div id="loginScreen">
@@ -300,13 +260,8 @@ body.zona-app-ready #app{display:block}
   var SOCIAL_KEY="ZONA_HUB_SOCIALS_V1";
   var TIMER_KEY="ZONA_HUB_TIMER_V1";
 
-  function safeJSON(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
-  var db=safeJSON(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[]};
-  var session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
-  if(!Array.isArray(db.contests))db.contests=[];
-  if(!Array.isArray(db.questions))db.questions=[];
-  if(!Array.isArray(db.sessions))db.sessions=[];
-  session.running=!!session.running;session.startAt=Number(session.startAt)||0;session.elapsed=Number(session.elapsed)||0;session.subject=String(session.subject||"");
+  var db=JSON.parse(localStorage.getItem(DB_KEY)||"null")||{contests:[],questions:[],sessions:[]};
+  var session=JSON.parse(localStorage.getItem(TIMER_KEY)||"null")||{running:false,startAt:0,elapsed:0,subject:""};
   var currentUser=null;
   var selectedFile=null;
   var extracted=null;
@@ -334,13 +289,12 @@ body.zona-app-ready #app{display:block}
 
   function showApp(){
     document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="block";document.body.classList.add("zona-app-ready");
-    var u=safeJSON(localStorage.getItem(AUTH_KEY),null);currentUser=u;
-    if(!u||!u.role){localStorage.removeItem(AUTH_KEY);document.getElementById("loginScreen").style.display="flex";document.getElementById("app").style.display="none";return}
+    var u=JSON.parse(localStorage.getItem(AUTH_KEY)||"null");currentUser=u;
     document.getElementById("accountName").textContent=u.role==="Administrador"?"Admin":"Visitante";
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();renderAll();loadNews();if(window.zonaEnhance)window.zonaEnhance();clearInterval(window.zonaClockTimer);window.zonaClockTimer=setInterval(updateClock,500);
+    refreshSelects();renderAll();loadNews();setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -359,7 +313,6 @@ body.zona-app-ready #app{display:block}
     }
   });
   // Automatic login intentionally disabled in this build to keep startup safe.
-  document.body.classList.remove("zona-app-ready");
   document.getElementById("loginScreen").style.display="flex";
   document.getElementById("app").style.display="none";
 
@@ -377,7 +330,7 @@ body.zona-app-ready #app{display:block}
 
   function refreshSelects(){
     var contest=currentContest(), extras=[];
-    if(contest&&contest.editalData&&contest.editalData.subjects)extras=contest.editalData.subjects.map(function(s){return s.replace(/\s+—\s+\d+$/,"")});
+    if(contest&&contest.editalData&&contest.editalData.subjects)extras=contest.editalData.subjects.map(function(s){return s.replace(/s+—s+d+$/,"")});
     var all=subjectsCatalog.map(function(g){return {g:g[0],items:g[1].slice()}});if(extras.length)all.push({g:"Edital ativo",items:extras});
     ["questionSubject","clockSubject"].forEach(function(id){
       var el=document.getElementById(id);if(!el)return;var first=id==="questionSubject"?"Selecione a matéria / área":"Escolha a matéria";el.innerHTML='<option value="">'+first+'</option>';
@@ -535,189 +488,6 @@ body.zona-app-ready #app{display:block}
     }catch(e){grid.innerHTML=fallbackNews.map(function(n){return '<article class="news-card"><span class="news-tag">'+n.tag+'</span><div class="news-title">'+esc(n.title)+'</div><div class="news-meta">'+esc(n.meta)+'</div><a class="news-link" href="'+n.url+'" target="_blank" rel="noopener">ABRIR FONTE →</a></article>'}).join("")}
   }
   window.loadNews=loadNews;
-})();
-</script>
-
-<script>
-(function(){
-  "use strict";
-  var DB_KEY="ZONA_HUB_DATABASE_V2";
-  var GAME_KEY="ZONA_GAMIFICATION_V1";
-  var AGENDA_KEY="ZONA_AGENDA_V1";
-  function safeJSON2(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
-  var game=safeJSON2(localStorage.getItem(GAME_KEY),null)||{libs:0,league:"",awardedSessions:[],awardedQuestions:[],challenge:"",plan:"FREE"};
-  var agenda=safeJSON2(localStorage.getItem(AGENDA_KEY),null)||{};
-  if(!Array.isArray(game.awardedSessions))game.awardedSessions=[];
-  if(!Array.isArray(game.awardedQuestions))game.awardedQuestions=[];
-  if(!Array.isArray(agenda))agenda=agenda&&typeof agenda==="object"?agenda:{};
-  var monthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
-  var editQuestionId=null;
-
-  function db(){var b=safeJSON2(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[]};if(!Array.isArray(b.contests))b.contests=[];if(!Array.isArray(b.questions))b.questions=[];if(!Array.isArray(b.sessions))b.sessions=[];return b}
-  function saveDb(v){localStorage.setItem(DB_KEY,JSON.stringify(v))}
-  function saveGame(){localStorage.setItem(GAME_KEY,JSON.stringify(game))}
-  function saveAgenda(){localStorage.setItem(AGENDA_KEY,JSON.stringify(agenda))}
-  function esc2(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
-  function pad(n){return String(n).padStart(2,"0")}
-  function isoDate(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
-  function brDate(s){
-    if(!s)return "";
-    var m=String(s).match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
-    if(m)return m[3]+"-"+pad(m[2])+"-"+pad(m[1]);
-    return String(s).match(/^\d{4}-\d{2}-\d{2}$/)?String(s):"";
-  }
-  function formatBR(s){var d=brDate(s);return d?d.slice(8,10)+"/"+d.slice(5,7)+"/"+d.slice(0,4):s||""}
-  function today(){return isoDate(new Date())}
-  function unique(arr){return Array.from(new Set(arr.filter(Boolean)))}
-  function events(){
-    var b=db(),c=b.contests.find(function(x){return x.active})||null,a=[],d=c&&c.editalData||{};
-    if(c&&c.date)a.push({date:brDate(c.date),label:"Prova / meta do concurso"});
-    if(d.proofDate)a.push({date:brDate(d.proofDate),label:"PROVA"});
-    if(d.registrationStart)a.push({date:brDate(d.registrationStart),label:"Início inscrições"});
-    if(d.registrationEnd)a.push({date:brDate(d.registrationEnd),label:"Fim inscrições"});
-    if(d.paymentDeadline)a.push({date:brDate(d.paymentDeadline),label:"Pagamento"});
-    return a.filter(function(x){return x.date})
-  }
-  function streak(){
-    var days=unique(db().sessions.map(function(s){return s.date}).filter(Boolean)).sort();
-    if(!days.length)return 0;
-    var cur=new Date(today()+"T12:00:00");
-    var set=new Set(days),count=0;
-    if(!set.has(today()))cur.setDate(cur.getDate()-1);
-    while(set.has(isoDate(cur))){count++;cur.setDate(cur.getDate()-1)}
-    return count;
-  }
-  function rewardSync(){
-    var b=db();
-    b.sessions.forEach(function(s){
-      if(s.id&&!game.awardedSessions.includes(s.id)){game.awardedSessions.push(s.id);game.libs+=10}
-    });
-    b.questions.forEach(function(q){
-      if(q.id&&!game.awardedQuestions.includes(q.id)){game.awardedQuestions.push(q.id);game.libs+=2}
-    });
-    saveGame();
-  }
-  function activePlan(){return game.plan||"FREE"}
-  function injectUI(){
-    if(!document.getElementById("zonaGameStrip")){
-      var home=document.getElementById("home"),stats=home&&home.querySelector(".stat-grid");
-      if(home&&stats){
-        stats.insertAdjacentHTML("afterend",'<div class="zona-game-strip" id="zonaGameStrip"></div>');
-      }
-    }
-    if(!document.getElementById("zonaAgendaCard")){
-      var home=document.getElementById("home");
-      var radar=home&&home.querySelector(".news-grid")&&home.querySelector(".news-grid").parentElement;
-      if(home&&radar) radar.insertAdjacentHTML("beforebegin",'<div class="card zona-agenda" id="zonaAgendaCard"></div>');
-    }
-    var qhead=document.querySelector("#questoes .table thead tr");
-    if(qhead&&!qhead.querySelector(".zona-actions-head")) qhead.insertAdjacentHTML("beforeend",'<th class="zona-actions-head">Ações</th>');
-    var side=document.querySelector(".nav");
-    if(side&&!document.getElementById("godModeBtn")){
-      var isAdmin=(JSON.parse(localStorage.getItem("ZONA_HUB_AUTH_V1")||"null")||{}).role==="Administrador";
-      if(isAdmin) side.insertAdjacentHTML("beforeend",'<button class="nav-btn" id="godModeBtn"><span class="nav-icon">✦</span>MODO DEUS</button>');
-      var support=document.querySelector(".side-bottom");
-      if(support&&!document.getElementById("zonaSupportBox")) support.insertAdjacentHTML("beforeend",'<div class="group-card" id="zonaSupportBox" style="margin-top:8px;cursor:pointer"><div class="group-label">Suporte</div><div class="group-value">SEJA UM SÓCIO ZONA</div></div>');
-    }
-    ensureModals();
-    wireButtons();
-  }
-  function renderGame(){
-    var el=document.getElementById("zonaGameStrip");if(!el)return;
-    rewardSync();
-    var s=streak();
-    el.innerHTML='<div class="zona-game-box"><div class="zona-game-label">Constância</div><div class="zona-game-value"><span class="zona-fire">+</span>'+s+'</div><div class="zona-game-sub">dias de sequência de estudo</div></div>'+
-      '<div class="zona-game-box"><div class="zona-game-label">LIBS</div><div class="zona-coins"><span class="zona-coin">L</span><div><div class="zona-game-value" style="font-size:22px">'+game.libs+'</div><div class="zona-game-sub">moedas de evolução</div></div></div></div>'+
-      '<div class="zona-game-box"><div class="zona-game-label">Liga</div><div class="zona-game-value" style="font-size:20px">'+esc2(game.league||"Escolha sua liga")+'</div><div class="zona-game-sub">'+esc2(game.challenge||"Desafio mensal ainda não lançado.")+' <button class="btn btn-secondary" style="margin-left:7px;padding:5px 8px" onclick="window.zonaOpenLeague()">ALTERAR</button></div></div>';
-  }
-  function renderAgenda(){
-    var el=document.getElementById("zonaAgendaCard");if(!el)return;
-    var y=monthCursor.getFullYear(),m=monthCursor.getMonth(),first=new Date(y,m,1),last=new Date(y,m+1,0),start=(first.getDay()+6)%7,total=Math.ceil((start+last.getDate())/7)*7,ev=events(),names=["SEG","TER","QUA","QUI","SEX","SÁB","DOM"];
-    var out='<div class="section-head"><div><div class="section-title">Agenda ZONA</div><div class="section-copy">As datas do concurso ativo entram automaticamente aqui. Clique em um dia para registrar uma nota.</div></div><div class="zona-actions"><button class="btn btn-secondary" onclick="window.zonaPrevMonth()">‹</button><button class="btn btn-secondary" onclick="window.zonaToday()">HOJE</button><button class="btn btn-secondary" onclick="window.zonaNextMonth()">›</button></div></div>';
-    out+='<div class="zona-calendar-head"><div class="zona-calendar-title">'+new Date(y,m,1).toLocaleDateString("pt-BR",{month:"long",year:"numeric"})+'</div><div class="zona-legend">Pontos verdes = datas importantes</div></div><div class="zona-calendar-grid">';
-    names.forEach(function(n){out+='<div class="zona-dayname">'+n+'</div>'});
-    for(var i=0;i<total;i++){
-      var day=i-start+1,d=new Date(y,m,day),inMonth=d.getMonth()===m,date=isoDate(d),e=ev.filter(function(x){return x.date===date}),n=agenda[date]||{};
-      out+='<div class="zona-day'+(inMonth?"":" muted")+(date===today()?" today":"")+(e.length?" has-event":"")+'" onclick="window.zonaOpenDay(\''+date+'\')"><div class="zona-day-num">'+d.getDate()+'</div>';
-      if(e.length)out+='<div class="zona-event"><span class="zona-dot"></span>'+esc2(e[0].label)+'</div>';
-      if(n.sticker)out+='<div class="zona-note">['+esc2(n.sticker)+']</div>';
-      if(n.note)out+='<div class="zona-note">'+esc2(n.note)+'</div>';
-      out+='</div>';
-    }
-    out+='</div><div class="zona-calendar-footer"><div class="zona-legend">'+(ev.length?ev.length+" datas importantes do concurso ativo.":"Nenhuma data automática disponível ainda.")+'</div><button class="btn btn-secondary" onclick="window.zonaOpenDay(\''+today()+'\')">+ NOTA DE HOJE</button></div>';
-    el.innerHTML=out;
-  }
-  function ensureModals(){
-    if(!document.getElementById("zonaDayBackdrop"))document.body.insertAdjacentHTML("beforeend",'<div class="modal-backdrop" id="zonaDayBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">AGENDA ZONA</div><div class="modal-title" id="zonaDayTitle">Dia</div></div><button class="close" onclick="window.zonaCloseDay()">×</button></div><div id="zonaDayEvent" class="tiny" style="margin-bottom:12px"></div><div class="field"><label>Nota</label><textarea class="input" id="zonaDayNote" rows="4" placeholder="Ex.: revisar Constitucional, fazer 40 questões..."></textarea></div><div class="field" style="margin-top:10px"><label>Sticker</label><select class="select" id="zonaDaySticker"><option value="">Sem sticker</option><option>FOCO</option><option>CONSTÂNCIA</option><option>VITÓRIA</option><option>REVISÃO</option><option>SIMULADO</option><option>DESCANSO</option></select></div><button class="btn btn-primary btn-full" style="margin-top:12px" onclick="window.zonaSaveDay()">SALVAR DIA</button></div></div>');
-    if(!document.getElementById("zonaQuestionBackdrop"))document.body.insertAdjacentHTML("beforeend",'<div class="modal-backdrop" id="zonaQuestionBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">QUESTÕES</div><div class="modal-title">Editar resultado</div></div><button class="close" onclick="window.zonaCloseQuestion()">×</button></div><div class="form-grid"><input class="input" id="zonaEditSubject" placeholder="Matéria"><input class="input" id="zonaEditTotal" type="number" min="1" placeholder="Questões"><input class="input" id="zonaEditCorrect" type="number" min="0" placeholder="Acertos"><input class="input" id="zonaEditDate" type="date"></div><div class="zona-actions" style="margin-top:12px"><button class="btn btn-primary" onclick="window.zonaSaveQuestion()">SALVAR ALTERAÇÃO</button><button class="btn btn-danger" onclick="window.zonaDeleteQuestion()">EXCLUIR</button></div></div></div>');
-    if(!document.getElementById("zonaLeagueBackdrop"))document.body.insertAdjacentHTML("beforeend",'<div class="modal-backdrop" id="zonaLeagueBackdrop"><div class="modal large"><div class="modal-head"><div><div class="eyebrow">GAMIFICAÇÃO</div><div class="modal-title">Escolha sua liga</div><div class="tiny" style="margin-top:4px">Sua liga fica registrada neste navegador.</div></div><button class="close" onclick="window.zonaCloseLeague()">×</button></div><div class="zona-modal-list">'+["LIGA CAMUFLAGEM","LIGA CROMÁTICA","LIGA VISÃO"].map(function(x){return '<div class="zona-choice" onclick="window.zonaSetLeague(\''+x+'\')"><strong>'+x+'</strong><div class="tiny" style="margin-top:4px">Desafios mensais, podium e progresso por consistência.</div></div>'}).join("")+'</div></div></div>');
-    if(!document.getElementById("zonaGodBackdrop"))document.body.insertAdjacentHTML("beforeend",'<div class="modal-backdrop" id="zonaGodBackdrop"><div class="modal large"><div class="modal-head"><div><div class="eyebrow">ZONA / ADMIN</div><div class="modal-title">MODO DEUS</div><div class="tiny" style="margin-top:4px">Painel local de demonstração. Não altera outros usuários.</div></div><button class="close" onclick="window.zonaCloseGod()">×</button></div><div class="zona-admin-grid"><div class="mini-box"><div class="mini-label">LIBS atuais</div><div class="mini-value" id="godLibsValue">0</div></div><div class="mini-box"><div class="mini-label">Plano atual</div><div class="mini-value" id="godPlanValue">FREE</div></div></div><div class="field" style="margin-top:14px"><label>Adicionar / remover LIBS</label><div class="form-grid"><input class="input" id="godLibsInput" type="number" placeholder="+50 ou -20"><button class="btn btn-primary" onclick="window.zonaGodAdjust()">APLICAR LIBS</button></div></div><div class="field" style="margin-top:12px"><label>Plano local</label><select class="select" id="godPlanSelect"><option>FREE</option><option>PRATA</option><option>OURO</option></select></div><div class="field" style="margin-top:12px"><label>Desafio mensal</label><input class="input" id="godChallenge" placeholder="Ex.: 300 questões em outubro"></div><div class="zona-actions" style="margin-top:12px"><button class="btn btn-primary" onclick="window.zonaGodSave()">SALVAR CONFIGURAÇÕES</button><button class="btn btn-secondary" onclick="window.zonaGodExport()">EXPORTAR DADOS</button><button class="btn btn-danger" onclick="window.zonaGodReset()">RESETAR DADOS LOCAIS</button></div></div></div>');
-  }
-  var activeDay=today();
-  function wireButtons(){
-    var g=document.getElementById("godModeBtn");if(g&&!g.dataset.wired){g.dataset.wired="1";g.addEventListener("click",function(){window.zonaOpenGod()})}
-    var s=document.getElementById("zonaSupportBox");if(s&&!s.dataset.wired){s.dataset.wired="1";s.addEventListener("click",function(){window.zonaSupport()})}
-  }
-  window.zonaOpenDay=function(date){activeDay=date;var n=agenda[date]||{};document.getElementById("zonaDayTitle").textContent=new Date(date+"T12:00:00").toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});var es=events().filter(function(x){return x.date===date});document.getElementById("zonaDayEvent").textContent=es.length?es.map(function(x){return x.label}).join(" • "):"Sem evento automático neste dia.";document.getElementById("zonaDayNote").value=n.note||"";document.getElementById("zonaDaySticker").value=n.sticker||"";document.getElementById("zonaDayBackdrop").classList.add("open")}
-  window.zonaCloseDay=function(){document.getElementById("zonaDayBackdrop").classList.remove("open")}
-  window.zonaSaveDay=function(){agenda[activeDay]={note:document.getElementById("zonaDayNote").value.trim(),sticker:document.getElementById("zonaDaySticker").value};saveAgenda();window.zonaCloseDay();renderAgenda()}
-  window.zonaPrevMonth=function(){monthCursor.setMonth(monthCursor.getMonth()-1);renderAgenda()}
-  window.zonaNextMonth=function(){monthCursor.setMonth(monthCursor.getMonth()+1);renderAgenda()}
-  window.zonaToday=function(){monthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderAgenda()}
-  window.zonaOpenLeague=function(){document.getElementById("zonaLeagueBackdrop").classList.add("open")}
-  window.zonaCloseLeague=function(){document.getElementById("zonaLeagueBackdrop").classList.remove("open")}
-  window.zonaSetLeague=function(name){game.league=name;game.libs=Math.max(0,game.libs-5);saveGame();window.zonaCloseLeague();renderGame();notifySafe("Liga atualizada","Você entrou em "+name+". 5 LIBS foram investidas.")}
-  window.zonaOpenGod=function(){var a=document.getElementById("zonaGodBackdrop");if(!a)return;document.getElementById("godLibsValue").textContent=game.libs;document.getElementById("godPlanValue").textContent=game.plan;document.getElementById("godPlanSelect").value=game.plan;document.getElementById("godChallenge").value=game.challenge||"";a.classList.add("open")}
-  window.zonaCloseGod=function(){document.getElementById("zonaGodBackdrop").classList.remove("open")}
-  window.zonaGodAdjust=function(){var v=Number(document.getElementById("godLibsInput").value||0);game.libs=Math.max(0,game.libs+v);document.getElementById("godLibsInput").value="";saveGame();window.zonaOpenGod();renderGame()}
-  window.zonaGodSave=function(){game.plan=document.getElementById("godPlanSelect").value;game.challenge=document.getElementById("godChallenge").value.trim();saveGame();window.zonaCloseGod();renderGame();notifySafe("Configuração salva","Plano e desafio local atualizados.")}
-  window.zonaGodExport=function(){var payload={exportedAt:new Date().toISOString(),db:db(),gamification:game,agenda:agenda};var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="zona-hub-backup.json";a.click();setTimeout(function(){URL.revokeObjectURL(url)},500)}
-  window.zonaGodReset=function(){if(!confirm("Resetar concursos, questões, sessões, agenda e gamificação locais?"))return;localStorage.removeItem(DB_KEY);localStorage.removeItem(GAME_KEY);localStorage.removeItem(AGENDA_KEY);location.reload()}
-  window.zonaSupport=function(){window.open("mailto:zona.hub.support@gmail.com?subject=Suporte%20ZONA%20HUB","_blank")}
-  window.zonaOpenQuestion=function(id){var q=db().questions.find(function(x){return x.id===id});if(!q)return;editQuestionId=id;document.getElementById("zonaEditSubject").value=q.subject||"";document.getElementById("zonaEditTotal").value=q.total||0;document.getElementById("zonaEditCorrect").value=q.correct||0;document.getElementById("zonaEditDate").value=q.date||today();document.getElementById("zonaQuestionBackdrop").classList.add("open")}
-  window.zonaCloseQuestion=function(){document.getElementById("zonaQuestionBackdrop").classList.remove("open")}
-  window.zonaSaveQuestion=function(){var b=db(),q=b.questions.find(function(x){return x.id===editQuestionId});if(!q)return;var total=Number(document.getElementById("zonaEditTotal").value),correct=Number(document.getElementById("zonaEditCorrect").value);if(!document.getElementById("zonaEditSubject").value.trim()||total<1||correct<0||correct>total){notifySafe("Resultado inválido","Revise matéria, total e acertos.","error");return}q.subject=document.getElementById("zonaEditSubject").value.trim();q.total=total;q.correct=correct;q.date=document.getElementById("zonaEditDate").value||today();saveDb(b);window.zonaCloseQuestion();refreshQuestionCore();saveGame();renderGame();notifySafe("Resultado atualizado","A performance foi recalculada.")}
-  window.zonaDeleteQuestion=function(){var b=db(),idx=b.questions.findIndex(function(x){return x.id===editQuestionId});if(idx<0)return;if(!confirm("Excluir este resultado de questões?"))return;b.questions.splice(idx,1);saveDb(b);window.zonaCloseQuestion();refreshQuestionCore();notifySafe("Resultado excluído","A performance foi atualizada.")}
-  function renderQuestionsActions(){
-    var b=db(),tb=document.getElementById("questionTable");if(!tb)return;
-    var qs=b.questions.slice().reverse(),rows=Array.from(tb.querySelectorAll("tr"));
-    rows.forEach(function(tr,i){
-      if(!tr.querySelector("td")||tr.dataset.zonaDone==="1")return;
-      var q=qs[i];if(!q)return;
-      var td=document.createElement("td");
-      td.innerHTML='<div class="zona-table-actions"><button type="button" class="zona-mini-btn zona-edit-q">EDITAR</button><button type="button" class="zona-mini-btn zona-delete-q">EXCLUIR</button></div>';
-      td.querySelector(".zona-edit-q").addEventListener("click",function(){window.zonaOpenQuestion(q.id)});
-      td.querySelector(".zona-delete-q").addEventListener("click",function(){window.zonaDeleteQuestion(q.id)});
-      tr.appendChild(td);tr.dataset.zonaDone="1";
-    });
-  }
-  function refreshQuestionCore(){
-    var b=db(),tb=document.getElementById("questionTable");if(!tb)return;
-    if(!b.questions.length){tb.innerHTML='<tr><td colspan="6" class="muted">Nenhum resultado registrado.</td></tr>';return}
-    tb.innerHTML=b.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc2(q.date?formatBR(q.date):"—")+'</td><td>'+esc2(q.subject)+'</td><td>'+Number(q.total||0)+'</td><td>'+Number(q.correct||0)+'</td><td>'+p+'%</td></tr>'}).join("");
-    renderQuestionsActions();
-    var total=b.questions.reduce(function(a,q){return a+Number(q.total||0)},0),correct=b.questions.reduce(function(a,q){return a+Number(q.correct||0)},0),acc=total?Math.round(correct/total*100):0;
-    var h=document.getElementById("homeQuestions"),ha=document.getElementById("homeAccuracy");if(h)h.textContent=total;if(ha)ha.textContent=acc+"%";
-  }
-  window.zonaRefreshCore=refreshQuestionCore;
-  function notifySafe(title,copy,type){var w=document.getElementById("toastWrap");if(!w){alert(title+"\n"+copy);return}var t=document.createElement("div");t.className="toast"+(type==="error"?" error":"");t.innerHTML='<span class="dot"></span><div><div class="toast-title">'+esc2(title)+'</div><div class="toast-copy">'+esc2(copy)+'</div></div>';w.appendChild(t);setTimeout(function(){t.remove()},4200)}
-  var enhancementReady=false;
-  function boot(){
-    window.zonaEnhance=function(){
-      try{
-        injectUI();rewardSync();renderGame();renderAgenda();renderQuestionsActions();
-        if(!enhancementReady){
-          enhancementReady=true;
-          if(!game.league){
-            var app=document.getElementById("app"),auth=safeJSON2(localStorage.getItem("ZONA_HUB_AUTH_V1"),null);
-            if(app&&app.style.display!=="none"&&auth)setTimeout(function(){if(window.zonaOpenLeague)window.zonaOpenLeague()},500);
-          }
-        }
-      }catch(e){console.error("ZONA enhancement error",e)}
-    };
-    window.zonaEnhance();
-  }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
 })();
 </script>
 </body>
