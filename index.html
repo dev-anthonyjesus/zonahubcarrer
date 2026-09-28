@@ -1,1 +1,3938 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>ZONA HUB</title>
+
+<meta
+  name="description"
+  content="ZONA HUB — seu centro de comando para concursos."
+>
+
+<style>
+
+/* =========================================================
+   ZONA HUB
+   VISUAL SYSTEM
+========================================================= */
+
+:root{
+
+  --black:#050505;
+  --black-2:#090909;
+  --black-3:#0e0e0e;
+
+  --card:#111111;
+  --card-2:#151515;
+
+  --line:#252525;
+
+  --white:#f7f7f5;
+  --muted:#888888;
+  --muted-2:#5d5d5d;
+
+  --green:#baff7c;
+  --green-dark:#91d95d;
+
+  --orange:#ff5722;
+
+  --radius:22px;
+
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+
+  margin:0;
+
+  background:
+
+    radial-gradient(
+      circle at 85% 0%,
+      rgba(186,255,124,.055),
+      transparent 28%
+    ),
+
+    var(--black);
+
+  color:var(--white);
+
+  font-family:
+
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+  width:7px;
+}
+
+::-webkit-scrollbar-track{
+  background:var(--black);
+}
+
+::-webkit-scrollbar-thumb{
+  background:#2a2a2a;
+  border-radius:20px;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+
+  min-height:100vh;
+
+  display:flex;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+  width:255px;
+
+  height:100vh;
+
+  position:fixed;
+
+  left:0;
+  top:0;
+
+  padding:28px 18px;
+
+  background:
+
+    rgba(5,5,5,.94);
+
+  border-right:1px solid var(--line);
+
+  z-index:100;
+
+}
+
+
+.logo-area{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:5px 10px 34px;
+
+}
+
+
+.logo{
+
+  width:42px;
+  height:42px;
+
+  object-fit:contain;
+
+}
+
+
+.brand{
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:900;
+
+  letter-spacing:-.4px;
+
+}
+
+
+.brand-sub{
+
+  margin-top:3px;
+
+  font-size:9px;
+
+  color:var(--muted);
+
+  letter-spacing:1.2px;
+
+  text-transform:uppercase;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:5px;
+
+}
+
+
+.nav-button{
+
+  width:100%;
+
+  border:0;
+
+  background:transparent;
+
+  color:#858585;
+
+  text-align:left;
+
+  padding:13px 14px;
+
+  border-radius:13px;
+
+  cursor:pointer;
+
+  font-size:12px;
+
+  transition:.2s;
+
+}
+
+
+.nav-button:hover{
+
+  background:#111;
+
+  color:white;
+
+}
+
+
+.nav-button.active{
+
+  background:#151515;
+
+  color:white;
+
+  box-shadow:
+
+    inset 3px 0 0 var(--green);
+
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer{
+
+  position:absolute;
+
+  left:18px;
+  right:18px;
+  bottom:25px;
+
+  padding:15px;
+
+  background:#0e0e0e;
+
+  border:1px solid var(--line);
+
+  border-radius:16px;
+
+}
+
+
+.sidebar-footer-label{
+
+  font-size:9px;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+}
+
+
+.sidebar-footer-value{
+
+  margin-top:5px;
+
+  font-size:13px;
+
+  font-weight:800;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+  width:100%;
+
+  margin-left:255px;
+
+  padding:35px 42px 60px;
+
+}
+
+
+.topbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:35px;
+
+}
+
+
+.topbar-left{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:6px;
+
+}
+
+
+.eyebrow{
+
+  color:var(--green);
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.8px;
+
+  text-transform:uppercase;
+
+}
+
+
+.page-title{
+
+  font-size:27px;
+
+  font-weight:850;
+
+  letter-spacing:-1px;
+
+}
+
+
+.date{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.page{
+
+  display:none;
+
+}
+
+
+.page.active{
+
+  display:block;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.dashboard-hero{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.45fr)
+    minmax(300px,.55fr);
+
+  gap:17px;
+
+  margin-bottom:17px;
+
+}
+
+
+.hero-card{
+
+  min-height:270px;
+
+  padding:32px;
+
+  border:1px solid var(--line);
+
+  border-radius:var(--radius);
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #141414,
+      #0b0b0b
+    );
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+
+.hero-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  right:-150px;
+  bottom:-180px;
+
+  background:var(--green);
+
+  opacity:.05;
+
+  filter:blur(30px);
+
+  border-radius:50%;
+
+}
+
+
+.hero-title{
+
+  font-size:45px;
+
+  line-height:1;
+
+  letter-spacing:-2px;
+
+  margin:14px 0;
+
+  font-weight:900;
+
+}
+
+
+.hero-description{
+
+  max-width:600px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.7;
+
+}
+
+
+.hero-actions{
+
+  display:flex;
+
+  gap:9px;
+
+  margin-top:25px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
+
+  border:0;
+
+  border-radius:12px;
+
+  padding:12px 17px;
+
+  cursor:pointer;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  letter-spacing:.2px;
+
+}
+
+
+.btn-primary{
+
+  background:var(--green);
+
+  color:#070707;
+
+}
+
+
+.btn-primary:hover{
+
+  background:#caff94;
+
+}
+
+
+.btn-secondary{
+
+  background:#191919;
+
+  color:white;
+
+  border:1px solid var(--line);
+
+}
+
+
+.btn-secondary:hover{
+
+  background:#202020;
+
+}
+
+
+/* =========================================================
+   EXAM CARD
+========================================================= */
+
+.exam-card{
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+
+}
+
+
+.exam-label{
+
+  font-size:9px;
+
+  letter-spacing:1.5px;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+}
+
+
+.exam-name{
+
+  font-size:25px;
+
+  font-weight:900;
+
+  letter-spacing:-1px;
+
+  margin-top:9px;
+
+}
+
+
+.exam-date{
+
+  margin-top:5px;
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+
+.progress-wrapper{
+
+  margin-top:25px;
+
+}
+
+
+.progress-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:8px;
+
+  font-size:10px;
+
+  color:var(--muted);
+
+}
+
+
+.progress{
+
+  height:7px;
+
+  background:#252525;
+
+  border-radius:100px;
+
+  overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+  height:100%;
+
+  width:0%;
+
+  background:var(--green);
+
+  border-radius:100px;
+
+  transition:.5s;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:17px;
+
+  margin-bottom:17px;
+
+}
+
+
+.stat-card{
+
+  padding:21px;
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:18px;
+
+}
+
+
+.stat-label{
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+
+}
+
+
+.stat-value{
+
+  font-size:30px;
+
+  font-weight:900;
+
+  letter-spacing:-1px;
+
+  margin-top:12px;
+
+}
+
+
+.stat-description{
+
+  color:var(--muted-2);
+
+  font-size:10px;
+
+  margin-top:4px;
+
+}
+
+
+/* =========================================================
+   CONTENT GRID
+========================================================= */
+
+.content-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:17px;
+
+}
+
+
+.card{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:var(--radius);
+
+  padding:23px;
+
+}
+
+
+.card-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+
+.card-title{
+
+  font-size:14px;
+
+  font-weight:850;
+
+}
+
+
+.card-subtitle{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:4px;
+
+}
+
+
+/* =========================================================
+   SUBJECT LIST
+========================================================= */
+
+.subject{
+
+  padding:13px 0;
+
+  border-bottom:1px solid var(--line);
+
+}
+
+
+.subject:last-child{
+
+  border-bottom:0;
+
+}
+
+
+.subject-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:7px;
+
+}
+
+
+.subject-name{
+
+  font-size:11px;
+
+}
+
+
+.subject-percent{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+
+  border:1px dashed #303030;
+
+  border-radius:14px;
+
+  padding:30px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:10px;
+
+  margin-bottom:12px;
+
+}
+
+
+.input{
+
+  width:100%;
+
+  padding:12px 13px;
+
+  border-radius:11px;
+
+  border:1px solid var(--line);
+
+  outline:none;
+
+  background:#0b0b0b;
+
+  color:white;
+
+  font-size:12px;
+
+}
+
+
+.input:focus{
+
+  border-color:#555;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+
+.table th,
+.table td{
+
+  padding:12px 8px;
+
+  border-bottom:1px solid var(--line);
+
+  text-align:left;
+
+  font-size:11px;
+
+}
+
+
+.table th{
+
+  color:var(--muted);
+
+  font-weight:700;
+
+}
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+.clock-card{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-height:500px;
+
+}
+
+
+.clock-label{
+
+  color:var(--green);
+
+  font-size:10px;
+
+  letter-spacing:1.8px;
+
+  font-weight:900;
+
+}
+
+
+.clock{
+
+  font-size:78px;
+
+  font-weight:900;
+
+  letter-spacing:-3px;
+
+  margin:20px 0;
+
+  font-variant-numeric:tabular-nums;
+
+}
+
+
+.clock-status{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-bottom:22px;
+
+}
+
+
+.clock-buttons{
+
+  display:flex;
+
+  gap:8px;
+
+}
+
+
+/* =========================================================
+   CONCURSO
+========================================================= */
+
+.contest-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+
+.contest-title{
+
+  font-size:25px;
+
+  font-weight:900;
+
+}
+
+
+.tag{
+
+  display:inline-flex;
+
+  padding:6px 9px;
+
+  border-radius:100px;
+
+  background:#1c2718;
+
+  color:var(--green);
+
+  font-size:9px;
+
+  font-weight:900;
+
+}
+
+
+.info-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+}
+
+
+.info-box{
+
+  padding:15px;
+
+  background:#0d0d0d;
+
+  border:1px solid var(--line);
+
+  border-radius:14px;
+
+}
+
+
+.info-label{
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  text-transform:uppercase;
+
+}
+
+
+.info-value{
+
+  margin-top:7px;
+
+  font-size:13px;
+
+  font-weight:800;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(0,0,0,.75);
+
+  backdrop-filter:blur(10px);
+
+  z-index:500;
+
+}
+
+
+.modal.open{
+
+  display:flex;
+
+}
+
+
+.modal-box{
+
+  width:100%;
+
+  max-width:620px;
+
+  padding:27px;
+
+  background:#111;
+
+  border:1px solid #303030;
+
+  border-radius:24px;
+
+}
+
+
+.modal-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:start;
+
+  margin-bottom:22px;
+
+}
+
+
+.modal-title{
+
+  font-size:22px;
+
+  font-weight:900;
+
+}
+
+
+.modal-description{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.6;
+
+  margin-top:5px;
+
+}
+
+
+.close{
+
+  background:#1a1a1a;
+
+  border:1px solid var(--line);
+
+  color:white;
+
+  border-radius:10px;
+
+  width:34px;
+
+  height:34px;
+
+  cursor:pointer;
+
+}
+
+
+.import-option{
+
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  padding:17px;
+
+  margin-bottom:9px;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.import-option:hover{
+
+  border-color:#555;
+
+  background:#171717;
+
+}
+
+
+.import-option strong{
+
+  display:block;
+
+  font-size:12px;
+
+}
+
+
+.import-option span{
+
+  display:block;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:5px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1000px){
+
+  .sidebar{
+
+    width:210px;
+
+  }
+
+  main{
+
+    margin-left:210px;
+
+  }
+
+  .stats{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+}
+
+
+@media(max-width:760px){
+
+  .app{
+
+    display:block;
+
+  }
+
+  .sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    height:auto;
+
+    border-right:0;
+
+    border-bottom:1px solid var(--line);
+
+  }
+
+  .sidebar-footer{
+
+    display:none;
+
+  }
+
+  .navigation{
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+  main{
+
+    margin-left:0;
+
+    padding:20px;
+
+  }
+
+  .dashboard-hero{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .content-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .stats{
+
+    grid-template-columns:1fr 1fr;
+
+  }
+
+  .hero-title{
+
+    font-size:36px;
+
+  }
+
+  .clock{
+
+    font-size:50px;
+
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .stats{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .info-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+
+/* =========================================================
+   UTILITY
+========================================================= */
+
+.hidden{
+
+  display:none!important;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+
+  <div class="logo-area">
+
+    <img
+      src="logo.png"
+      class="logo"
+      alt="ZONA"
+    >
+
+    <div class="brand">
+
+      <div class="brand-name">
+        ZONA HUB
+      </div>
+
+      <div class="brand-sub">
+        Personal command center
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <nav class="navigation">
+
+
+    <button
+      class="nav-button active"
+      data-page="dashboard"
+    >
+      Dashboard
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="concursos"
+    >
+      Concursos
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="estudos"
+    >
+      Estudos
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="questoes"
+    >
+      Questões
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="performance"
+    >
+      Performance
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="editais"
+    >
+      Editais
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-page="clock"
+    >
+      To Punch the Clock
+    </button>
+
+
+  </nav>
+
+
+  <div class="sidebar-footer">
+
+    <div class="sidebar-footer-label">
+      Concurso ativo
+    </div>
+
+    <div
+      class="sidebar-footer-value"
+      id="sidebarContest"
+    >
+      Nenhum
+    </div>
+
+  </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main>
+
+
+  <header class="topbar">
+
+
+    <div class="topbar-left">
+
+      <div class="eyebrow">
+        ZONA / CAREER
+      </div>
+
+      <div
+        class="page-title"
+        id="pageTitle"
+      >
+        Dashboard
+      </div>
+
+    </div>
+
+
+    <div
+      class="date"
+      id="currentDate"
+    ></div>
+
+
+  </header>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+<section
+  class="page active"
+  id="dashboard"
+>
+
+
+  <div class="dashboard-hero">
+
+
+    <div class="hero-card">
+
+
+      <div class="eyebrow">
+        ZONA HUB
+      </div>
+
+
+      <div class="hero-title">
+
+        Seu centro de comando
+        para a carreira.
+
+      </div>
+
+
+      <div class="hero-description">
+
+        Concursos, estudos, questões e desempenho
+        em um único lugar. Sem aquela sensação de
+        estar administrando cinco planilhas diferentes.
+
+      </div>
+
+
+      <div class="hero-actions">
+
+
+        <button
+          class="btn btn-primary"
+          onclick="goTo('clock')"
+        >
+          INICIAR ESTUDO
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="openContestModal()"
+        >
+          + NOVO CONCURSO
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="hero-card exam-card">
+
+
+      <div>
+
+
+        <div class="exam-label">
+          Concurso ativo
+        </div>
+
+
+        <div
+          class="exam-name"
+          id="activeContestName"
+        >
+          Nenhum concurso
+        </div>
+
+
+        <div
+          class="exam-date"
+          id="activeContestDate"
+        >
+          Adicione seu primeiro concurso
+        </div>
+
+
+        <div class="progress-wrapper">
+
+
+          <div class="progress-header">
+
+            <span>
+              Progresso
+            </span>
+
+            <span id="contestProgressText">
+              0%
+            </span>
+
+          </div>
+
+
+          <div class="progress">
+
+            <div
+              class="progress-fill"
+              id="contestProgress"
+            ></div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <div class="exam-label">
+        ZONA CAREER
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+<!-- =====================================================
+     STATS
+====================================================== -->
+
+<div class="stats">
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      Horas estudadas
+    </div>
+
+    <div
+      class="stat-value"
+      id="hoursStat"
+    >
+      0h
+    </div>
+
+    <div class="stat-description">
+      tempo registrado
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      Questões
+    </div>
+
+    <div
+      class="stat-value"
+      id="questionsStat"
+    >
+      0
+    </div>
+
+    <div class="stat-description">
+      respondidas
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      Acerto
+    </div>
+
+    <div
+      class="stat-value"
+      id="accuracyStat"
+    >
+      0%
+    </div>
+
+    <div class="stat-description">
+      desempenho geral
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-card">
+
+    <div class="stat-label">
+      Sessões
+    </div>
+
+    <div
+      class="stat-value"
+      id="sessionsStat"
+    >
+      0
+    </div>
+
+    <div class="stat-description">
+      sessões concluídas
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD CONTENT
+====================================================== -->
+
+<div class="content-grid">
+
+
+  <div class="card">
+
+
+    <div class="card-header">
+
+      <div>
+
+        <div class="card-title">
+          Últimos estudos
+        </div>
+
+        <div class="card-subtitle">
+          Sua atividade recente
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="recentStudies">
+
+      <div class="empty">
+
+        Ainda não existem estudos registrados.
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <div class="card">
+
+
+    <div class="card-header">
+
+      <div>
+
+        <div class="card-title">
+          Desempenho
+        </div>
+
+        <div class="card-subtitle">
+          Acerto por matéria
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="dashboardPerformance">
+
+      <div class="empty">
+
+        Registre questões para começar.
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CONCURSOS
+====================================================== -->
+
+<section
+  class="page"
+  id="concursos"
+>
+
+
+  <div class="card">
+
+
+    <div class="contest-header">
+
+
+      <div>
+
+        <div class="eyebrow">
+          ZONA CAREER
+        </div>
+
+        <div class="contest-title">
+          Meus concursos
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="openContestModal()"
+      >
+        + NOVO CONCURSO
+      </button>
+
+
+    </div>
+
+
+    <div id="contestList">
+
+      <div class="empty">
+        Nenhum concurso cadastrado.
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     ESTUDOS
+====================================================== -->
+
+<section
+  class="page"
+  id="estudos"
+>
+
+
+  <div class="card">
+
+
+    <div class="card-header">
+
+      <div>
+
+        <div class="card-title">
+          Registro de estudos
+        </div>
+
+        <div class="card-subtitle">
+          Adicione apenas o essencial.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <form
+      id="studyForm"
+    >
+
+
+      <div class="form-grid">
+
+
+        <input
+          class="input"
+          id="studySubject"
+          placeholder="Matéria / assunto"
+          required
+        >
+
+
+        <input
+          class="input"
+          id="studyMinutes"
+          type="number"
+          min="1"
+          placeholder="Minutos"
+          required
+        >
+
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        SALVAR ESTUDO
+      </button>
+
+
+    </form>
+
+
+    <br>
+
+
+    <table class="table">
+
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Data
+          </th>
+
+          <th>
+            Matéria
+          </th>
+
+          <th>
+            Tempo
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody
+        id="studyTable"
+      ></tbody>
+
+
+    </table>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     QUESTÕES
+====================================================== -->
+
+<section
+  class="page"
+  id="questoes"
+>
+
+
+  <div class="card">
+
+
+    <div class="card-header">
+
+      <div>
+
+        <div class="card-title">
+          Questões
+        </div>
+
+        <div class="card-subtitle">
+          Registre uma bateria de questões em segundos.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <form
+      id="questionForm"
+    >
+
+
+      <div class="form-grid">
+
+
+        <input
+          class="input"
+          id="questionSubject"
+          placeholder="Matéria"
+          required
+        >
+
+
+        <input
+          class="input"
+          id="questionTotal"
+          type="number"
+          min="1"
+          placeholder="Questões"
+          required
+        >
+
+
+        <input
+          class="input"
+          id="questionCorrect"
+          type="number"
+          min="0"
+          placeholder="Acertos"
+          required
+        >
+
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        SALVAR RESULTADO
+      </button>
+
+
+    </form>
+
+
+    <br>
+
+
+    <table class="table">
+
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Data
+          </th>
+
+          <th>
+            Matéria
+          </th>
+
+          <th>
+            Questões
+          </th>
+
+          <th>
+            Acertos
+          </th>
+
+          <th>
+            %
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody
+        id="questionTable"
+      ></tbody>
+
+
+    </table>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PERFORMANCE
+====================================================== -->
+
+<section
+  class="page"
+  id="performance"
+>
+
+
+  <div class="content-grid">
+
+
+    <div class="card">
+
+
+      <div class="card-title">
+        Resumo
+      </div>
+
+
+      <br>
+
+
+      <div id="performanceSummary">
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="card">
+
+
+      <div class="card-title">
+        Por matéria
+      </div>
+
+
+      <br>
+
+
+      <div id="performanceSubjects">
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     EDITAIS
+====================================================== -->
+
+<section
+  class="page"
+  id="editais"
+>
+
+
+  <div class="card">
+
+
+    <div class="card-header">
+
+
+      <div>
+
+        <div class="card-title">
+          Editais
+        </div>
+
+        <div class="card-subtitle">
+          Aqui futuramente entra o radar automático.
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="openContestModal()"
+      >
+        + ADICIONAR
+      </button>
+
+
+    </div>
+
+
+    <div class="empty">
+
+      O radar de editais será conectado
+      na próxima etapa.
+
+      <br><br>
+
+      Você poderá receber concursos
+      novos sem precisar cadastrar tudo manualmente.
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CLOCK
+====================================================== -->
+
+<section
+  class="page"
+  id="clock"
+>
+
+
+  <div class="card clock-card">
+
+
+    <div class="clock-label">
+      TO PUNCH THE CLOCK
+    </div>
+
+
+    <div
+      class="clock"
+      id="clockDisplay"
+    >
+      00:00:00
+    </div>
+
+
+    <div
+      class="clock-status"
+      id="clockStatus"
+    >
+      Pronto para começar.
+    </div>
+
+
+    <div class="clock-buttons">
+
+
+      <button
+        class="btn btn-primary"
+        id="startButton"
+      >
+        INICIAR
+      </button>
+
+
+      <button
+        class="btn btn-secondary"
+        id="pauseButton"
+      >
+        PAUSAR
+      </button>
+
+
+      <button
+        class="btn btn-secondary"
+        id="finishButton"
+      >
+        FINALIZAR
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+</main>
+
+</div>
+
+
+
+<!-- =====================================================
+     NEW CONTEST MODAL
+====================================================== -->
+
+<div
+  class="modal"
+  id="contestModal"
+>
+
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+
+      <div>
+
+        <div class="modal-title">
+          Novo concurso
+        </div>
+
+        <div class="modal-description">
+
+          O objetivo é você preencher o mínimo possível.
+          Vamos evoluir a importação automática depois.
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="close"
+        onclick="closeContestModal()"
+      >
+        ×
+      </button>
+
+
+    </div>
+
+
+
+    <div
+      class="import-option"
+      onclick="showQuickContest()"
+    >
+
+      <strong>
+        Cadastro rápido
+      </strong>
+
+      <span>
+        Nome, cargo e data da prova. Só isso.
+      </span>
+
+    </div>
+
+
+
+    <div
+      class="import-option"
+      onclick="showEditalImport()"
+    >
+
+      <strong>
+        Importar edital
+      </strong>
+
+      <span>
+        Escolha um PDF do edital. Estrutura preparada
+        para a futura leitura automática.
+      </span>
+
+    </div>
+
+
+
+    <div
+      id="quickContest"
+      class="hidden"
+    >
+
+      <br>
+
+
+      <div class="form-grid">
+
+
+        <input
+          class="input"
+          id="contestName"
+          placeholder="Nome do concurso"
+        >
+
+
+        <input
+          class="input"
+          id="contestPosition"
+          placeholder="Cargo"
+        >
+
+
+        <input
+          class="input"
+          id="contestDate"
+          type="date"
+        >
+
+
+        <input
+          class="input"
+          id="contestProgressInput"
+          type="number"
+          min="0"
+          max="100"
+          placeholder="Progresso %"
+        >
+
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveContest()"
+      >
+        SALVAR CONCURSO
+      </button>
+
+
+    </div>
+
+
+
+    <div
+      id="editFile"
+      class="hidden"
+    >
+
+      <br>
+
+
+      <input
+        class="input"
+        type="file"
+        accept=".pdf"
+        id="editalFile"
+      >
+
+
+      <br><br>
+
+
+      <div class="modal-description">
+
+        Na V1 o PDF fica apenas associado ao concurso.
+        Na próxima etapa vamos adicionar a leitura automática
+        das informações do edital.
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   ZONA HUB — DATA
+========================================================= */
+
+
+const STORAGE_KEY =
+  "ZONA_HUB_DATABASE_V1";
+
+
+let database =
+  JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  ) || {
+
+    contests:[],
+
+    studies:[],
+
+    questions:[],
+
+    sessions:[]
+
+  };
+
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+
+function saveDatabase(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(database)
+  );
+
+}
+
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+
+function today(){
+
+  return new Date()
+    .toLocaleDateString(
+      "pt-BR"
+    );
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+
+const pageNames = {
+
+  dashboard:"Dashboard",
+
+  concursos:"Concursos",
+
+  estudos:"Estudos",
+
+  questoes:"Questões",
+
+  performance:"Performance",
+
+  editais:"Editais",
+
+  clock:"To Punch the Clock"
+
+};
+
+
+
+function goTo(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      pageElement =>
+        pageElement.classList.remove("active")
+    );
+
+
+  document
+    .getElementById(page)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav-button")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.page === page
+      );
+
+    });
+
+
+  document
+    .getElementById("pageTitle")
+    .textContent =
+      pageNames[page];
+
+}
+
+
+window.goTo = goTo;
+
+
+
+document
+  .querySelectorAll(".nav-button")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => goTo(button.dataset.page)
+    );
+
+  });
+
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+
+document
+  .getElementById("currentDate")
+  .textContent =
+    new Date()
+      .toLocaleDateString(
+        "pt-BR",
+        {
+          weekday:"long",
+          day:"2-digit",
+          month:"long",
+          year:"numeric"
+        }
+      );
+
+
+
+/* =========================================================
+   CONTEST
+========================================================= */
+
+
+function activeContest(){
+
+  return database.contests.find(
+    contest => contest.active
+  );
+
+}
+
+
+
+function renderContests(){
+
+  const list =
+    document.getElementById(
+      "contestList"
+    );
+
+
+  if(!database.contests.length){
+
+    list.innerHTML = `
+      <div class="empty">
+        Nenhum concurso cadastrado.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+    database.contests
+      .map(
+        contest => `
+
+          <div
+            class="info-box"
+            style="margin-bottom:10px"
+          >
+
+            <div
+              style="
+                display:flex;
+                justify-content:space-between;
+                gap:20px;
+                align-items:center;
+              "
+            >
+
+              <div>
+
+                <div
+                  class="info-value"
+                  style="font-size:17px"
+                >
+                  ${escapeHTML(contest.name)}
+                </div>
+
+                <div
+                  class="info-label"
+                  style="margin-top:5px"
+                >
+                  ${escapeHTML(contest.position || "Cargo não informado")}
+                </div>
+
+              </div>
+
+              <button
+                class="btn ${
+                  contest.active
+                    ? "btn-primary"
+                    : "btn-secondary"
+                }"
+                onclick="setActiveContest('${contest.id}')"
+              >
+                ${
+                  contest.active
+                    ? "ATIVO"
+                    : "ATIVAR"
+                }
+              </button>
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+
+function setActiveContest(id){
+
+  database.contests.forEach(
+    contest =>
+      contest.active =
+        contest.id === id
+  );
+
+
+  saveDatabase();
+
+  renderAll();
+
+}
+
+
+
+function openContestModal(){
+
+  document
+    .getElementById("contestModal")
+    .classList.add("open");
+
+}
+
+
+
+window.openContestModal =
+  openContestModal;
+
+
+
+function closeContestModal(){
+
+  document
+    .getElementById("contestModal")
+    .classList.remove("open");
+
+}
+
+
+
+window.closeContestModal =
+  closeContestModal;
+
+
+
+function showQuickContest(){
+
+  document
+    .getElementById("quickContest")
+    .classList.remove("hidden");
+
+}
+
+
+
+window.showQuickContest =
+  showQuickContest;
+
+
+
+function showEditalImport(){
+
+  document
+    .getElementById("editFile")
+    .classList.remove("hidden");
+
+}
+
+
+
+window.showEditalImport =
+  showEditalImport;
+
+
+
+function saveContest(){
+
+  const name =
+    document
+      .getElementById("contestName")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert(
+      "Digite pelo menos o nome do concurso."
+    );
+
+    return;
+
+  }
+
+
+  const contest = {
+
+    id:
+      Date.now().toString(),
+
+    name,
+
+    position:
+      document
+        .getElementById("contestPosition")
+        .value
+        .trim(),
+
+    date:
+      document
+        .getElementById("contestDate")
+        .value,
+
+    progress:
+      Number(
+        document
+          .getElementById("contestProgressInput")
+          .value
+      ) || 0,
+
+    active:
+      database.contests.length === 0
+
+  };
+
+
+  if(contest.active){
+
+    database.contests.forEach(
+      item =>
+        item.active = false
+    );
+
+  }
+
+
+  database.contests.push(
+    contest
+  );
+
+
+  saveDatabase();
+
+  closeContestModal();
+
+  renderAll();
+
+}
+
+
+
+window.saveContest =
+  saveContest;
+
+
+
+/* =========================================================
+   STUDIES
+========================================================= */
+
+
+document
+  .getElementById("studyForm")
+  .addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+
+      const subject =
+        document
+          .getElementById("studySubject")
+          .value
+          .trim();
+
+
+      const minutes =
+        Number(
+          document
+            .getElementById("studyMinutes")
+            .value
+        );
+
+
+      database.studies.push({
+
+        date:today(),
+
+        subject,
+
+        minutes
+
+      });
+
+
+      saveDatabase();
+
+      event.target.reset();
+
+      renderAll();
+
+    }
+  );
+
+
+
+function renderStudies(){
+
+  const table =
+    document.getElementById(
+      "studyTable"
+    );
+
+
+  table.innerHTML =
+    database.studies
+      .slice()
+      .reverse()
+      .map(
+        study => `
+
+          <tr>
+
+            <td>
+              ${study.date}
+            </td>
+
+            <td>
+              ${escapeHTML(study.subject)}
+            </td>
+
+            <td>
+              ${study.minutes} min
+            </td>
+
+          </tr>
+
+        `
+      )
+      .join("");
+
+
+
+  const recent =
+    document.getElementById(
+      "recentStudies"
+    );
+
+
+  if(!database.studies.length){
+
+    recent.innerHTML = `
+      <div class="empty">
+        Ainda não existem estudos registrados.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  recent.innerHTML =
+    database.studies
+      .slice()
+      .reverse()
+      .slice(0,5)
+      .map(
+        study => `
+
+          <div
+            class="subject"
+          >
+
+            <div class="subject-top">
+
+              <span class="subject-name">
+
+                ${escapeHTML(study.subject)}
+
+              </span>
+
+              <span class="subject-percent">
+
+                ${study.minutes} min
+
+              </span>
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+
+document
+  .getElementById("questionForm")
+  .addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+
+      const subject =
+        document
+          .getElementById("questionSubject")
+          .value
+          .trim();
+
+
+      const total =
+        Number(
+          document
+            .getElementById("questionTotal")
+            .value
+        );
+
+
+      const correct =
+        Number(
+          document
+            .getElementById("questionCorrect")
+            .value
+        );
+
+
+      if(correct > total){
+
+        alert(
+          "Os acertos não podem ser maiores que o total."
+        );
+
+        return;
+
+      }
+
+
+      database.questions.push({
+
+        date:today(),
+
+        subject,
+
+        total,
+
+        correct
+
+      });
+
+
+      saveDatabase();
+
+      event.target.reset();
+
+      renderAll();
+
+    }
+  );
+
+
+
+function renderQuestions(){
+
+  const table =
+    document.getElementById(
+      "questionTable"
+    );
+
+
+  table.innerHTML =
+    database.questions
+      .slice()
+      .reverse()
+      .map(
+        question => {
+
+          const percent =
+            Math.round(
+              question.correct /
+              question.total *
+              100
+            );
+
+
+          return `
+
+            <tr>
+
+              <td>
+                ${question.date}
+              </td>
+
+              <td>
+                ${escapeHTML(question.subject)}
+              </td>
+
+              <td>
+                ${question.total}
+              </td>
+
+              <td>
+                ${question.correct}
+              </td>
+
+              <td>
+                ${percent}%
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+
+function calculatePerformance(){
+
+  const subjects = {};
+
+
+  database.questions
+    .forEach(
+      question => {
+
+        if(!subjects[question.subject]){
+
+          subjects[question.subject] = {
+
+            total:0,
+
+            correct:0
+
+          };
+
+        }
+
+
+        subjects[
+          question.subject
+        ].total +=
+          question.total;
+
+
+        subjects[
+          question.subject
+        ].correct +=
+          question.correct;
+
+      }
+    );
+
+
+  return subjects;
+
+}
+
+
+
+function renderPerformance(){
+
+  const subjects =
+    calculatePerformance();
+
+
+  const entries =
+    Object.entries(subjects);
+
+
+  const dashboard =
+    document.getElementById(
+      "dashboardPerformance"
+    );
+
+
+  const performance =
+    document.getElementById(
+      "performanceSubjects"
+    );
+
+
+  if(!entries.length){
+
+    dashboard.innerHTML = `
+      <div class="empty">
+        Registre questões para começar.
+      </div>
+    `;
+
+
+    performance.innerHTML = `
+      <div class="empty">
+        Nenhum dado ainda.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  const html =
+    entries
+      .map(
+        ([subject,data]) => {
+
+          const percent =
+            Math.round(
+              data.correct /
+              data.total *
+              100
+            );
+
+
+          return `
+
+            <div
+              class="subject"
+            >
+
+              <div
+                class="subject-top"
+              >
+
+                <span class="subject-name">
+
+                  ${escapeHTML(subject)}
+
+                </span>
+
+                <span class="subject-percent">
+
+                  ${percent}%
+
+                </span>
+
+              </div>
+
+
+              <div class="progress">
+
+                <div
+                  class="progress-fill"
+                  style="width:${percent}%"
+                ></div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  dashboard.innerHTML =
+    html;
+
+
+  performance.innerHTML =
+    html;
+
+
+
+  const summary =
+    document.getElementById(
+      "performanceSummary"
+    );
+
+
+  const total =
+    database.questions
+      .reduce(
+        (sum,item) =>
+          sum + item.total,
+        0
+      );
+
+
+  const correct =
+    database.questions
+      .reduce(
+        (sum,item) =>
+          sum + item.correct,
+        0
+      );
+
+
+  const accuracy =
+    total
+      ? Math.round(
+          correct /
+          total *
+          100
+        )
+      : 0;
+
+
+  summary.innerHTML = `
+
+    <div class="info-box">
+      <div class="info-label">
+        Questões
+      </div>
+      <div class="info-value">
+        ${total}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="info-box">
+      <div class="info-label">
+        Acertos
+      </div>
+      <div class="info-value">
+        ${correct}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="info-box">
+      <div class="info-label">
+        Taxa de acerto
+      </div>
+      <div class="info-value">
+        ${accuracy}%
+      </div>
+    </div>
+
+  `;
+
+}
+
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+
+let clockRunning = false;
+
+let clockStart = 0;
+
+let clockElapsed = 0;
+
+let clockInterval = null;
+
+
+
+function getClockSeconds(){
+
+  if(!clockRunning){
+
+    return clockElapsed;
+
+  }
+
+
+  return (
+    clockElapsed +
+    (
+      Date.now() -
+      clockStart
+    ) /
+    1000
+  );
+
+}
+
+
+
+function formatClock(seconds){
+
+  seconds =
+    Math.floor(seconds);
+
+
+  const hours =
+    String(
+      Math.floor(
+        seconds / 3600
+      )
+    ).padStart(2,"0");
+
+
+  const minutes =
+    String(
+      Math.floor(
+        seconds % 3600 / 60
+      )
+    ).padStart(2,"0");
+
+
+  const secs =
+    String(
+      seconds % 60
+    ).padStart(2,"0");
+
+
+  return `${hours}:${minutes}:${secs}`;
+
+}
+
+
+
+function updateClock(){
+
+  document
+    .getElementById("clockDisplay")
+    .textContent =
+      formatClock(
+        getClockSeconds()
+      );
+
+}
+
+
+
+document
+  .getElementById("startButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      if(clockRunning)
+        return;
+
+
+      clockRunning = true;
+
+      clockStart =
+        Date.now();
+
+
+      clearInterval(
+        clockInterval
+      );
+
+
+      clockInterval =
+        setInterval(
+          updateClock,
+          250
+        );
+
+
+      document
+        .getElementById(
+          "clockStatus"
+        )
+        .textContent =
+          "Sessão em andamento.";
+
+    }
+  );
+
+
+
+document
+  .getElementById("pauseButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      if(!clockRunning)
+        return;
+
+
+      clockElapsed +=
+        (
+          Date.now() -
+          clockStart
+        ) /
+        1000;
+
+
+      clockRunning = false;
+
+
+      clearInterval(
+        clockInterval
+      );
+
+
+      updateClock();
+
+
+      document
+        .getElementById(
+          "clockStatus"
+        )
+        .textContent =
+          "Sessão pausada.";
+
+    }
+  );
+
+
+
+document
+  .getElementById("finishButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      const seconds =
+        getClockSeconds();
+
+
+      if(seconds < 60){
+
+        alert(
+          "A sessão precisa ter pelo menos 1 minuto."
+        );
+
+        return;
+
+      }
+
+
+      const minutes =
+        Math.round(
+          seconds / 60
+        );
+
+
+      database.sessions.push({
+
+        date:today(),
+
+        minutes
+
+      });
+
+
+      database.studies.push({
+
+        date:today(),
+
+        subject:
+          "Sessão To Punch the Clock",
+
+        minutes
+
+      });
+
+
+      saveDatabase();
+
+
+      clockRunning = false;
+
+      clockElapsed = 0;
+
+      clockStart = 0;
+
+
+      clearInterval(
+        clockInterval
+      );
+
+
+      updateClock();
+
+
+      document
+        .getElementById(
+          "clockStatus"
+        )
+        .textContent =
+          "Sessão finalizada e salva.";
+
+
+      renderAll();
+
+    }
+  );
+
+
+
+/* =========================================================
+   GLOBAL STATS
+========================================================= */
+
+
+function renderStats(){
+
+  const minutes =
+    database.studies
+      .reduce(
+        (sum,item) =>
+          sum +
+          Number(item.minutes || 0),
+        0
+      );
+
+
+  const questions =
+    database.questions
+      .reduce(
+        (sum,item) =>
+          sum +
+          Number(item.total || 0),
+        0
+      );
+
+
+  const correct =
+    database.questions
+      .reduce(
+        (sum,item) =>
+          sum +
+          Number(item.correct || 0),
+        0
+      );
+
+
+  const accuracy =
+    questions
+      ? Math.round(
+          correct /
+          questions *
+          100
+        )
+      : 0;
+
+
+  document
+    .getElementById("hoursStat")
+    .textContent =
+      (minutes / 60)
+        .toFixed(1)
+      + "h";
+
+
+  document
+    .getElementById("questionsStat")
+    .textContent =
+      questions;
+
+
+  document
+    .getElementById("accuracyStat")
+    .textContent =
+      accuracy + "%";
+
+
+  document
+    .getElementById("sessionsStat")
+    .textContent =
+      database.sessions.length;
+
+}
+
+
+
+/* =========================================================
+   ACTIVE CONTEST
+========================================================= */
+
+
+function renderActiveContest(){
+
+  const contest =
+    activeContest();
+
+
+  const name =
+    document.getElementById(
+      "activeContestName"
+    );
+
+
+  const date =
+    document.getElementById(
+      "activeContestDate"
+    );
+
+
+  const progress =
+    document.getElementById(
+      "contestProgress"
+    );
+
+
+  const progressText =
+    document.getElementById(
+      "contestProgressText"
+    );
+
+
+  const sidebar =
+    document.getElementById(
+      "sidebarContest"
+    );
+
+
+  if(!contest){
+
+    name.textContent =
+      "Nenhum concurso";
+
+
+    date.textContent =
+      "Adicione seu primeiro concurso";
+
+
+    progress.style.width =
+      "0%";
+
+
+    progressText.textContent =
+      "0%";
+
+
+    sidebar.textContent =
+      "Nenhum";
+
+
+    return;
+
+  }
+
+
+  name.textContent =
+    contest.name;
+
+
+  date.textContent =
+    contest.date
+      ? new Date(
+          contest.date +
+          "T00:00:00"
+        )
+        .toLocaleDateString(
+          "pt-BR"
+        )
+      : "Data não informada";
+
+
+  const percent =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Number(
+          contest.progress || 0
+        )
+      )
+    );
+
+
+  progress.style.width =
+    percent + "%";
+
+
+  progressText.textContent =
+    percent + "%";
+
+
+  sidebar.textContent =
+    contest.name;
+
+}
+
+
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
+
+
+function renderAll(){
+
+  renderStats();
+
+  renderStudies();
+
+  renderQuestions();
+
+  renderPerformance();
+
+  renderContests();
+
+  renderActiveContest();
+
+}
+
+
+
+renderAll();
+
+updateClock();
+
+
+
+</script>
+
+</body>
+
+</html>
