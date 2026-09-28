@@ -700,10 +700,35 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   }
   function dateListString(s){return String(s||"").match(/\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}/g)||[]}
   window.changeMonth=function(dir){monthCursor=new Date(monthCursor.getFullYear(),monthCursor.getMonth()+dir,1);renderAgenda()}
-  function openDayEditor(key){
-    var note=prompt("Nota para "+new Intl.DateTimeFormat("pt-BR").format(new Date(key+"T12:00:00"))+" (deixe vazio para remover):",((profile.agenda||{})[key]||{}).note||"");
-    if(note===null)return;profile.agenda=profile.agenda||{};if(!note){delete profile.agenda[key]}else{profile.agenda[key]={note:note,sticker:((profile.agenda||{})[key]||{}).sticker||""}}saveProfileLocal();renderAgenda();touchUsage(2)
+  var editingDayKey="",editingSticker="";
+  function renderStickerGrid(){
+    var box=document.getElementById("stickerGrid");if(!box)return;
+    var max=coinsPerPlan();
+    box.innerHTML=STICKERS.map(function(s,i){
+      var unlocked=i<max;
+      var b=document.createElement("button");
+      b.type="button";b.className="sticker"+(unlocked?"":" locked");
+      b.innerHTML='<div class="sticker-mark">'+s[0]+'</div><div class="sticker-name">'+s[1]+'</div>'+(unlocked?"":"<div class=\"tiny\">PLANO</div>");
+      if(unlocked)b.addEventListener("click",function(){editingSticker=s[0];document.querySelectorAll("#stickerGrid .sticker").forEach(function(el){el.style.outline="none"});b.style.outline="1px solid var(--green)"});
+      else b.addEventListener("click",function(){notify("Adesivo bloqueado","Faça upgrade do plano para liberar este adesivo.","error")});
+      box.appendChild(b);
+    });
   }
+  window.openDayEditor=function(key){
+    editingDayKey=key;var current=(profile.agenda||{})[key]||{};editingSticker=current.sticker||"";
+    document.getElementById("dayEditorTitle").textContent=new Intl.DateTimeFormat("pt-BR",{weekday:"long",day:"2-digit",month:"long"}).format(new Date(key+"T12:00:00"));
+    document.getElementById("dayNoteInput").value=current.note||"";
+    document.getElementById("dayEditorBackdrop").classList.add("open");
+    renderStickerGrid();
+    document.querySelectorAll("#stickerGrid .sticker").forEach(function(el){el.style.outline="none";if(el.querySelector(".sticker-mark")&&el.querySelector(".sticker-mark").textContent===editingSticker)el.style.outline="1px solid var(--green)"});
+  };
+  window.closeDayEditor=function(){document.getElementById("dayEditorBackdrop").classList.remove("open");editingDayKey="";editingSticker=""};
+  window.saveDayEditor=function(){
+    if(!editingDayKey)return;var note=document.getElementById("dayNoteInput").value.trim();profile.agenda=profile.agenda||{};
+    if(!note&&!editingSticker)delete profile.agenda[editingDayKey];else profile.agenda[editingDayKey]={note:note,sticker:editingSticker};
+    saveProfileLocal();closeDayEditor();renderAgenda();touchUsage(2);notify("Agenda atualizada","Seu dia foi salvo na AGENDA ZONA.");
+  };
+  window.removeDayEditor=function(){if(!editingDayKey)return;profile.agenda=profile.agenda||{};delete profile.agenda[editingDayKey];saveProfileLocal();closeDayEditor();renderAgenda();notify("Dia limpo","As anotações e o adesivo foram removidos.")};
   window.openDayEditor=openDayEditor;
   function renderProfile(){
     var pp=document.getElementById("profilePhotoPreview");if(pp&&profile.photo)pp.src=profile.photo;
