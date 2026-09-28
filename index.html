@@ -297,8 +297,13 @@ body.zona-app-ready #app{display:block}
   var SOCIAL_KEY="ZONA_HUB_SOCIALS_V1";
   var TIMER_KEY="ZONA_HUB_TIMER_V1";
 
-  var db=JSON.parse(localStorage.getItem(DB_KEY)||"null")||{contests:[],questions:[],sessions:[]};
-  var session=JSON.parse(localStorage.getItem(TIMER_KEY)||"null")||{running:false,startAt:0,elapsed:0,subject:""};
+  function safeJSON(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
+  var db=safeJSON(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[]};
+  var session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
+  if(!Array.isArray(db.contests))db.contests=[];
+  if(!Array.isArray(db.questions))db.questions=[];
+  if(!Array.isArray(db.sessions))db.sessions=[];
+  session.running=!!session.running;session.startAt=Number(session.startAt)||0;session.elapsed=Number(session.elapsed)||0;session.subject=String(session.subject||"");
   var currentUser=null;
   var selectedFile=null;
   var extracted=null;
@@ -326,12 +331,13 @@ body.zona-app-ready #app{display:block}
 
   function showApp(){
     document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="block";document.body.classList.add("zona-app-ready");
-    var u=JSON.parse(localStorage.getItem(AUTH_KEY)||"null");currentUser=u;
+    var u=safeJSON(localStorage.getItem(AUTH_KEY),null);currentUser=u;
+    if(!u||!u.role){localStorage.removeItem(AUTH_KEY);document.getElementById("loginScreen").style.display="flex";document.getElementById("app").style.display="none";return}
     document.getElementById("accountName").textContent=u.role==="Administrador"?"Admin":"Visitante";
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();renderAll();loadNews();setInterval(updateClock,500);
+    refreshSelects();renderAll();loadNews();if(window.zonaEnhance)window.zonaEnhance();clearInterval(window.zonaClockTimer);window.zonaClockTimer=setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -350,6 +356,7 @@ body.zona-app-ready #app{display:block}
     }
   });
   // Automatic login intentionally disabled in this build to keep startup safe.
+  document.body.classList.remove("zona-app-ready");
   document.getElementById("loginScreen").style.display="flex";
   document.getElementById("app").style.display="none";
 
@@ -367,7 +374,7 @@ body.zona-app-ready #app{display:block}
 
   function refreshSelects(){
     var contest=currentContest(), extras=[];
-    if(contest&&contest.editalData&&contest.editalData.subjects)extras=contest.editalData.subjects.map(function(s){return s.replace(/s+—s+d+$/,"")});
+    if(contest&&contest.editalData&&contest.editalData.subjects)extras=contest.editalData.subjects.map(function(s){return s.replace(/\s+—\s+\d+$/,"")});
     var all=subjectsCatalog.map(function(g){return {g:g[0],items:g[1].slice()}});if(extras.length)all.push({g:"Edital ativo",items:extras});
     ["questionSubject","clockSubject"].forEach(function(id){
       var el=document.getElementById(id);if(!el)return;var first=id==="questionSubject"?"Selecione a matéria / área":"Escolha a matéria";el.innerHTML='<option value="">'+first+'</option>';
@@ -534,12 +541,16 @@ body.zona-app-ready #app{display:block}
   var DB_KEY="ZONA_HUB_DATABASE_V2";
   var GAME_KEY="ZONA_GAMIFICATION_V1";
   var AGENDA_KEY="ZONA_AGENDA_V1";
-  var game=JSON.parse(localStorage.getItem(GAME_KEY)||"null")||{libs:0,league:"",awardedSessions:[],awardedQuestions:[],challenge:"",plan:"FREE"};
-  var agenda=JSON.parse(localStorage.getItem(AGENDA_KEY)||"{}")||{};
+  function safeJSON2(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
+  var game=safeJSON2(localStorage.getItem(GAME_KEY),null)||{libs:0,league:"",awardedSessions:[],awardedQuestions:[],challenge:"",plan:"FREE"};
+  var agenda=safeJSON2(localStorage.getItem(AGENDA_KEY),null)||{};
+  if(!Array.isArray(game.awardedSessions))game.awardedSessions=[];
+  if(!Array.isArray(game.awardedQuestions))game.awardedQuestions=[];
+  if(!Array.isArray(agenda))agenda=agenda&&typeof agenda==="object"?agenda:{};
   var monthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
   var editQuestionId=null;
 
-  function db(){return JSON.parse(localStorage.getItem(DB_KEY)||'{"contests":[],"questions":[],"sessions":[]}')}
+  function db(){var b=safeJSON2(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[]};if(!Array.isArray(b.contests))b.contests=[];if(!Array.isArray(b.questions))b.questions=[];if(!Array.isArray(b.sessions))b.sessions=[];return b}
   function saveDb(v){localStorage.setItem(DB_KEY,JSON.stringify(v))}
   function saveGame(){localStorage.setItem(GAME_KEY,JSON.stringify(game))}
   function saveAgenda(){localStorage.setItem(AGENDA_KEY,JSON.stringify(agenda))}
@@ -662,22 +673,44 @@ body.zona-app-ready #app{display:block}
   window.zonaSupport=function(){window.open("mailto:zona.hub.support@gmail.com?subject=Suporte%20ZONA%20HUB","_blank")}
   window.zonaOpenQuestion=function(id){var q=db().questions.find(function(x){return x.id===id});if(!q)return;editQuestionId=id;document.getElementById("zonaEditSubject").value=q.subject||"";document.getElementById("zonaEditTotal").value=q.total||0;document.getElementById("zonaEditCorrect").value=q.correct||0;document.getElementById("zonaEditDate").value=q.date||today();document.getElementById("zonaQuestionBackdrop").classList.add("open")}
   window.zonaCloseQuestion=function(){document.getElementById("zonaQuestionBackdrop").classList.remove("open")}
-  window.zonaSaveQuestion=function(){var b=db(),q=b.questions.find(function(x){return x.id===editQuestionId});if(!q)return;var total=Number(document.getElementById("zonaEditTotal").value),correct=Number(document.getElementById("zonaEditCorrect").value);if(!document.getElementById("zonaEditSubject").value.trim()||total<1||correct<0||correct>total){notifySafe("Resultado inválido","Revise matéria, total e acertos.","error");return}q.subject=document.getElementById("zonaEditSubject").value.trim();q.total=total;q.correct=correct;q.date=document.getElementById("zonaEditDate").value||today();saveDb(b);window.zonaCloseQuestion();location.reload()}
-  window.zonaDeleteQuestion=function(){var b=db(),idx=b.questions.findIndex(function(x){return x.id===editQuestionId});if(idx<0)return;if(!confirm("Excluir este resultado de questões?"))return;b.questions.splice(idx,1);saveDb(b);window.zonaCloseQuestion();location.reload()}
+  window.zonaSaveQuestion=function(){var b=db(),q=b.questions.find(function(x){return x.id===editQuestionId});if(!q)return;var total=Number(document.getElementById("zonaEditTotal").value),correct=Number(document.getElementById("zonaEditCorrect").value);if(!document.getElementById("zonaEditSubject").value.trim()||total<1||correct<0||correct>total){notifySafe("Resultado inválido","Revise matéria, total e acertos.","error");return}q.subject=document.getElementById("zonaEditSubject").value.trim();q.total=total;q.correct=correct;q.date=document.getElementById("zonaEditDate").value||today();saveDb(b);window.zonaCloseQuestion();refreshQuestionCore();saveGame();renderGame();notifySafe("Resultado atualizado","A performance foi recalculada.")}
+  window.zonaDeleteQuestion=function(){var b=db(),idx=b.questions.findIndex(function(x){return x.id===editQuestionId});if(idx<0)return;if(!confirm("Excluir este resultado de questões?"))return;b.questions.splice(idx,1);saveDb(b);window.zonaCloseQuestion();refreshQuestionCore();notifySafe("Resultado excluído","A performance foi atualizada.")}
   function renderQuestionsActions(){
     var b=db(),tb=document.getElementById("questionTable");if(!tb)return;
-    Array.from(tb.querySelectorAll("tr")).forEach(function(tr){var first=tr.querySelector("td"),date=first&&first.textContent;if(!first||tr.dataset.zonaDone==="1")return;var cells=Array.from(tr.children),subject=cells[1]&&cells[1].textContent,total=cells[2]&&Number(cells[2].textContent),correct=cells[3]&&Number(cells[3].textContent);var candidates=b.questions.filter(function(q){return q.subject===subject&&q.total===total&&q.correct===correct});var q=candidates[0];if(!q)return;var td=document.createElement("td");td.innerHTML='<div class="zona-table-actions"><button class="zona-mini-btn" onclick="window.zonaOpenQuestion(\''+q.id+'\')">EDITAR</button><button class="zona-mini-btn" onclick="window.zonaOpenQuestion(\''+q.id+'\')">EXCLUIR</button></div>';tr.appendChild(td);tr.dataset.zonaDone="1"})
+    var qs=b.questions.slice().reverse(),rows=Array.from(tb.querySelectorAll("tr"));
+    rows.forEach(function(tr,i){
+      if(!tr.querySelector("td")||tr.dataset.zonaDone==="1")return;
+      var q=qs[i];if(!q)return;
+      var td=document.createElement("td");
+      td.innerHTML='<div class="zona-table-actions"><button class="zona-mini-btn" onclick="window.zonaOpenQuestion(\\''+q.id+'\\')">EDITAR</button><button class="zona-mini-btn" onclick="window.zonaDeleteQuestion(\\''+q.id+'\\')">EXCLUIR</button></div>';
+      tr.appendChild(td);tr.dataset.zonaDone="1";
+    });
   }
+  function refreshQuestionCore(){
+    var b=db(),tb=document.getElementById("questionTable");if(!tb)return;
+    if(!b.questions.length){tb.innerHTML='<tr><td colspan="6" class="muted">Nenhum resultado registrado.</td></tr>';return}
+    tb.innerHTML=b.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc2(q.date?formatBR(q.date):"—")+'</td><td>'+esc2(q.subject)+'</td><td>'+Number(q.total||0)+'</td><td>'+Number(q.correct||0)+'</td><td>'+p+'%</td></tr>'}).join("");
+    renderQuestionsActions();
+    var total=b.questions.reduce(function(a,q){return a+Number(q.total||0)},0),correct=b.questions.reduce(function(a,q){return a+Number(q.correct||0)},0),acc=total?Math.round(correct/total*100):0;
+    var h=document.getElementById("homeQuestions"),ha=document.getElementById("homeAccuracy");if(h)h.textContent=total;if(ha)ha.textContent=acc+"%";
+  }
+  window.zonaRefreshCore=refreshQuestionCore;
   function notifySafe(title,copy,type){var w=document.getElementById("toastWrap");if(!w){alert(title+"\n"+copy);return}var t=document.createElement("div");t.className="toast"+(type==="error"?" error":"");t.innerHTML='<span class="dot"></span><div><div class="toast-title">'+esc2(title)+'</div><div class="toast-copy">'+esc2(copy)+'</div></div>';w.appendChild(t);setTimeout(function(){t.remove()},4200)}
+  var enhancementReady=false;
   function boot(){
-    injectUI();rewardSync();renderGame();renderAgenda();renderQuestionsActions();
-    if(!game.league){
-      var app=document.getElementById("app"),auth=JSON.parse(localStorage.getItem("ZONA_HUB_AUTH_V1")||"null");
-      if(app&&app.style.display!=="none"&&auth){setTimeout(function(){window.zonaOpenLeague()},500)}
-    }
-    var obs=document.getElementById("questionTable");
-    if(obs&&window.MutationObserver)new MutationObserver(function(){renderQuestionsActions()}).observe(obs,{childList:true,subtree:true});
-    setInterval(function(){rewardSync();renderGame();renderAgenda();renderQuestionsActions()},2200);
+    window.zonaEnhance=function(){
+      try{
+        injectUI();rewardSync();renderGame();renderAgenda();renderQuestionsActions();
+        if(!enhancementReady){
+          enhancementReady=true;
+          if(!game.league){
+            var app=document.getElementById("app"),auth=safeJSON2(localStorage.getItem("ZONA_HUB_AUTH_V1"),null);
+            if(app&&app.style.display!=="none"&&auth)setTimeout(function(){if(window.zonaOpenLeague)window.zonaOpenLeague()},500);
+          }
+        }
+      }catch(e){console.error("ZONA enhancement error",e)}
+    };
+    window.zonaEnhance();
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
 })();
