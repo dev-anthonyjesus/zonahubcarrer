@@ -316,9 +316,14 @@ body.zona-app-ready #app{display:block}
       notify("Não foi possível abrir o painel","A sessão foi reiniciada. Tente entrar novamente.","error");
     }
   });
-  // Automatic login intentionally disabled in this build to keep startup safe.
-  document.getElementById("loginScreen").style.display="flex";
-  document.getElementById("app").style.display="none";
+  // Keep the signed-in demo session across page reloads.
+  var savedAuth=safeJSON(localStorage.getItem(AUTH_KEY),null);
+  if(savedAuth&&savedAuth.role){
+    try{showApp()}catch(err){console.error("ZONA startup",err);localStorage.removeItem(AUTH_KEY);document.getElementById("loginScreen").style.display="flex";document.getElementById("app").style.display="none"}
+  }else{
+    document.getElementById("loginScreen").style.display="flex";
+    document.getElementById("app").style.display="none";
+  }
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
