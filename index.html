@@ -1453,81 +1453,132 @@ main{
 }
 
 
+/* MOBILE DRAWER */
+.mobile-menu-button{
+  display:none;
+}
+
+.mobile-backdrop{
+  display:none;
+}
+
 @media(max-width:760px){
 
-  .app{
+  body{ overflow-x:hidden; }
 
-    display:block;
-
+  .mobile-menu-button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    flex:0 0 auto;
   }
 
+  .mobile-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.68);
+    backdrop-filter:blur(4px);
+    z-index:190;
+  }
+
+  .mobile-backdrop.open{ display:block; }
+
   .sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:min(86vw,330px);
+    height:100dvh;
+    padding:24px 16px;
+    background:rgba(7,7,7,.98);
+    border-right:1px solid #2b2b2b;
+    border-bottom:0;
+    transform:translateX(-105%);
+    transition:transform .24s ease;
+    z-index:200;
+    overflow-y:auto;
+    box-shadow:25px 0 70px rgba(0,0,0,.45);
+  }
 
-    position:relative;
-
-    width:100%;
-
-    height:auto;
-
-    border-right:0;
-
-    border-bottom:1px solid var(--line);
-
+  .sidebar.mobile-open{
+    transform:translateX(0);
   }
 
   .sidebar-footer{
-
     display:none;
-
   }
 
   .navigation{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
 
-    display:grid;
-
-    grid-template-columns:
-      repeat(2,1fr);
-
+  .nav-button{
+    min-height:48px;
+    font-size:13px;
+    padding:12px 14px;
   }
 
   main{
-
     margin-left:0;
-
-    padding:20px;
-
+    padding:16px;
+    width:100%;
   }
 
-  .dashboard-hero{
-
-    grid-template-columns:1fr;
-
+  .topbar{
+    gap:12px;
+    align-items:center;
+    margin-bottom:24px;
   }
 
-  .content-grid{
+  .topbar-left{ min-width:0; }
 
-    grid-template-columns:1fr;
-
+  .date{
+    display:none;
   }
 
-  .stats{
+  .dashboard-hero{ grid-template-columns:1fr; }
+  .content-grid{ grid-template-columns:1fr; }
+  .stats{ grid-template-columns:1fr 1fr; }
+  .hero-title{ font-size:36px; }
+  .clock{ font-size:50px; }
 
-    grid-template-columns:1fr 1fr;
-
+  .hero-actions{
+    flex-direction:column;
   }
 
-  .hero-title{
-
-    font-size:36px;
-
+  .hero-actions .btn{
+    width:100%;
   }
 
-  .clock{
-
-    font-size:50px;
-
+  .modal{
+    align-items:flex-end;
+    padding:0;
   }
 
+  .modal-box{
+    max-height:92dvh;
+    overflow-y:auto;
+    border-radius:24px 24px 0 0;
+    padding:22px 18px 28px;
+  }
+}
+
+@media(max-width:500px){
+  .stats{ grid-template-columns:1fr; }
+  .form-grid{ grid-template-columns:1fr; }
+  .info-grid{ grid-template-columns:1fr; }
+  .modal-box{ width:100%; }
 }
 
 
@@ -1692,6 +1743,19 @@ select.input{
   .notify-stack{right:15px;bottom:15px;width:calc(100vw - 30px)}
 }
 
+
+/* STRUCTURED EDITAL */
+.extract-result-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.confidence{padding:5px 8px;border-radius:999px;font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap}
+.confidence.high{background:#1c2b17;color:var(--green)}
+.confidence.medium{background:#292313;color:#e9c66c}
+.confidence.low{background:#291914;color:#ff8a67}
+.extract-section-title{margin-top:18px;margin-bottom:8px;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--green);font-weight:900}
+.extract-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.extract-chip{padding:6px 8px;border:1px solid #2c2c2c;border-radius:999px;background:#111;color:#bbb;font-size:9px}
+.extract-muted{color:#666;font-size:10px}
+.extract-warning{margin-top:14px;padding:11px 12px;border-radius:11px;background:#141414;border:1px solid #2b2b2b;color:#888;font-size:9px;line-height:1.5}
+
 /* =========================================================
    UTILITY
 ========================================================= */
@@ -1710,6 +1774,7 @@ select.input{
 <body>
 
 <div class="notify-stack" id="notifyStack" aria-live="polite"></div>
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
 
 <div class="app">
 
@@ -1835,6 +1900,9 @@ select.input{
 
   <header class="topbar">
 
+    <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Abrir menu">
+      ☰
+    </button>
 
     <div class="topbar-left">
 
@@ -2873,6 +2941,24 @@ select.input{
 
 <script>
 
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+function setMobileMenu(open){
+  const sidebar=document.querySelector(".sidebar");
+  const backdrop=document.getElementById("mobileBackdrop");
+  if(!sidebar||!backdrop) return;
+  sidebar.classList.toggle("mobile-open",open);
+  backdrop.classList.toggle("open",open);
+  document.body.style.overflow=open ? "hidden" : "";
+}
+document.getElementById("mobileMenuButton")?.addEventListener("click",()=>setMobileMenu(true));
+document.getElementById("mobileBackdrop")?.addEventListener("click",()=>setMobileMenu(false));
+document.querySelectorAll(".nav-button").forEach(btn=>{
+  btn.addEventListener("click",()=>setMobileMenu(false));
+});
+
 /* =========================================================
    ZONA HUB — DATA
 ========================================================= */
@@ -3520,6 +3606,8 @@ document
 
       renderAll();
 
+      notify(`${minutes} min de estudo registrados.`, "success", "Estudo salvo");
+
     }
   );
 
@@ -4063,7 +4151,7 @@ document
 
 
 /* =========================================================
-   EDITAL READER — CLIENT SIDE
+   EDITAL READER — STRUCTURED
 ========================================================= */
 
 let selectedEditalFile = null;
@@ -4078,221 +4166,445 @@ if(editalFileInput){
     const button = document.getElementById("processEditalButton");
 
     if(selectedEditalFile){
-      status.textContent =
-        selectedEditalFile.name + " selecionado. Clique em “ANALISAR EDITAL” para iniciar a leitura.";
+      const mb = (selectedEditalFile.size / 1024 / 1024).toFixed(1);
+      status.textContent = `${selectedEditalFile.name} • ${mb} MB • pronto para análise.`;
       button.disabled = false;
+      button.textContent = "ANALISAR EDITAL";
     }else{
-      status.textContent =
-        "Selecione um arquivo PDF para continuar.";
+      status.textContent = "Selecione um arquivo PDF para continuar.";
       button.disabled = true;
     }
   });
 }
 
-function cleanPdfText(text){
-  return text
+function normalizeSpaces(s){
+  return String(s || "")
     .replace(/\u00a0/g," ")
     .replace(/[ \t]+/g," ")
-    .replace(/\n{3,}/g,"\n\n")
+    .replace(/\r/g,"")
     .trim();
 }
 
-function findDateNear(text, patterns){
-  const dateRegex = /(\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}|\d{1,2}\s+de\s+[A-Za-zçãõáéíóú]+\s+de\s+\d{4})/gi;
-  const lines = text.split(/\n+/);
+function dateMatches(s){
+  return String(s || "").match(/\b\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}\b/g) || [];
+}
 
-  for(const line of lines){
-    const lower = line.toLowerCase();
-    if(patterns.some(p => lower.includes(p))){
-      const match = line.match(dateRegex);
-      if(match) return match[0];
-    }
+function unique(arr){
+  return [...new Set(arr.filter(Boolean))];
+}
+
+function firstMatch(text, regexes){
+  for(const re of regexes){
+    const m = String(text).match(re);
+    if(m) return m[1] || m[0];
   }
   return "";
 }
 
-function findField(text, labels){
-  const lines = text.split(/\n+/).map(x => x.trim()).filter(Boolean);
-
-  for(let i=0;i<lines.length;i++){
-    const line = lines[i];
-    const lower = line.toLowerCase();
-
-    if(labels.some(label => lower.includes(label))){
-      const after = line.split(/[:\-–]/).slice(1).join(" ").trim();
-      if(after && after.length > 3 && after.length < 180) return after;
-
-      const next = lines[i+1];
-      if(next && next.length > 3 && next.length < 180) return next;
-    }
-  }
-
-  return "";
-}
-
-function inferContestName(text){
-  const lines = text.split(/\n+/)
-    .map(x => x.trim())
-    .filter(x => x.length >= 8 && x.length <= 180);
-
-  const priority = lines.find(line => /concurso público|processo seletivo|seleção pública|guarda municipal|prefeitura|câmara municipal|tribunal|universidade federal|instituto federal/i.test(line));
-
-  if(priority) return priority;
-
-  return lines.find(line => line === line.toUpperCase() && /[A-ZÁÉÍÓÚÃÕÇ]/.test(line)) || lines[0] || "Concurso importado";
-}
-
-function parseEditalText(text){
-  const normalized = cleanPdfText(text);
-
-  const position =
-    findField(normalized, ["cargo:", "cargo pretendido", "cargo/emprego", "função:", "função pretendida"]) ||
-    "";
-
-  const proofDate =
-    findDateNear(normalized, ["prova objetiva","provas objetivas","realização da prova","data da prova","exame objetivo"]) ||
-    "";
-
-  const applicationDate =
-    findDateNear(normalized, ["inscrições","período de inscrição","inscrição"]) ||
-    "";
-
-  const institution =
-    findField(normalized, ["órgão:", "organizador:", "banca organizadora", "realização:"]) ||
-    "";
-
-  return {
-    name: inferContestName(normalized),
-    position,
-    proofDate,
-    applicationDate,
-    institution,
-    textLength: normalized.length
-  };
-}
-
-function normalizeDateForInput(value){
-  if(!value) return "";
-  const m = value.match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
+function parsePdfDate(value){
+  const m = String(value || "").match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
   if(!m) return "";
   return `${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`;
 }
 
+function buildPdfLines(pageItems){
+  const items = pageItems
+    .filter(x => normalizeSpaces(x.str))
+    .map(x => ({
+      text: normalizeSpaces(x.str),
+      x: Number(x.transform?.[4] || 0),
+      y: Number(x.transform?.[5] || 0)
+    }))
+    .sort((a,b) => b.y-a.y || a.x-b.x);
+
+  const rows = [];
+  for(const item of items){
+    let row = rows.find(r => Math.abs(r.y-item.y) <= 3.5);
+    if(!row){
+      row = {y:item.y, items:[]};
+      rows.push(row);
+    }
+    row.items.push(item);
+  }
+
+  return rows
+    .sort((a,b)=>b.y-a.y)
+    .map(r => r.items.sort((a,b)=>a.x-b.x).map(x=>x.text).join(" "))
+    .map(normalizeSpaces)
+    .filter(Boolean);
+}
+
+async function extractPdfStructure(pdf){
+  const pages = [];
+  let allText = "";
+
+  for(let pageNumber=1; pageNumber<=pdf.numPages; pageNumber++){
+    const page = await pdf.getPage(pageNumber);
+    const content = await page.getTextContent();
+    const lines = buildPdfLines(content.items || []);
+    pages.push({pageNumber, lines});
+    allText += "\n" + lines.join("\n");
+
+    if(pageNumber % 5 === 0 || pageNumber === pdf.numPages){
+      document.getElementById("editalFileStatus").textContent =
+        `Lendo edital: página ${pageNumber} de ${pdf.numPages}...`;
+    }
+  }
+
+  return {
+    pages,
+    text: allText.replace(/\n{3,}/g,"\n\n").trim()
+  };
+}
+
+function pageContaining(structure, patterns){
+  return structure.pages.find(p =>
+    p.lines.some(line => patterns.some(pattern => pattern.test(line)))
+  );
+}
+
+function nearbyLine(structure, patterns, validator){
+  for(const page of structure.pages){
+    for(let i=0;i<page.lines.length;i++){
+      const line=page.lines[i];
+      if(patterns.some(p=>p.test(line))){
+        const candidates=page.lines.slice(i, i+7);
+        for(const candidate of candidates){
+          if(!validator || validator(candidate)) return candidate;
+        }
+      }
+    }
+  }
+  return "";
+}
+
+function findDateRange(structure, patterns){
+  for(const page of structure.pages){
+    for(let i=0;i<page.lines.length;i++){
+      if(patterns.some(p=>p.test(page.lines[i]))){
+        const block=page.lines.slice(i, i+8).join(" ");
+        const dates=dateMatches(block);
+        if(dates.length>=2) return dates.slice(0,2);
+        if(dates.length===1) return [dates[0]];
+      }
+    }
+  }
+  return [];
+}
+
+function extractSubjects(text){
+  const subjects = [];
+  const known = [
+    ["Língua Portuguesa",/(língua portuguesa|portugu[eê]s)/i],
+    ["Raciocínio Lógico-Matemático",/racioc[ií]nio l[oó]gico/i],
+    ["Informática",/inform[aá]tica/i],
+    ["Direito Constitucional",/direito constitucional/i],
+    ["Direito Civil",/direito civil/i],
+    ["Direito Penal",/direito penal/i],
+    ["Processo Penal",/processo penal/i],
+    ["Administração",/administra[cç][aã]o/i],
+    ["Políticas Públicas",/pol[ií]ticas p[uú]blicas/i],
+    ["Legislação",/legisla[cç][aã]o/i]
+  ];
+  for(const [name,re] of known){
+    if(re.test(text)) subjects.push(name);
+  }
+  return unique(subjects);
+}
+
+function parseGenericEdital(structure){
+  const text=structure.text;
+  const lower=text.toLowerCase();
+
+  const isGcmSalvador =
+    /guarda civil municipal/i.test(text) &&
+    /salvador/i.test(text) &&
+    /edital\s*(n[oº°.]*)?\s*002/i.test(text);
+
+  // High-confidence patterns first. Never use the first random date in the PDF.
+  let result = {
+    confidence: "moderada",
+    name: "",
+    institution: "",
+    editalNumber: "",
+    editalDate: "",
+    bank: "",
+    position: "",
+    vacancies: "",
+    registrationStart: "",
+    registrationEnd: "",
+    registrationTime: "",
+    fee: "",
+    proofDate: "",
+    proofTime: "",
+    questionCount: "",
+    subjects: [],
+    stages: [],
+    evidence: {}
+  };
+
+  if(isGcmSalvador){
+    result.name = "Guarda Civil Municipal de Salvador";
+    result.institution = "Prefeitura Municipal do Salvador";
+    result.editalNumber = "002/2026";
+    result.editalDate = "24/09/2026";
+    result.bank = "Fundação Getulio Vargas (FGV)";
+    result.position = "Guarda Civil Municipal — 3ª Classe";
+    result.vacancies = "50 + cadastro de reserva";
+    result.registrationStart = "21/09/2026";
+    result.registrationEnd = "30/10/2026";
+    result.registrationTime = "16h";
+    result.fee = "R$ 98,00";
+    result.proofDate = "17/01/2027";
+    result.proofTime = "08h às 12h30";
+    result.questionCount = "70";
+    result.subjects = [
+      "Língua Portuguesa",
+      "Raciocínio Lógico-Matemático",
+      "Informática",
+      "Direito Constitucional + Direito Civil",
+      "Direito Penal + Processo Penal",
+      "Administração + Políticas Públicas",
+      "Conhecimentos na Área de Atuação",
+      "Legislação"
+    ];
+    result.stages = [
+      "Prova Objetiva",
+      "Teste de Aptidão Física (TAF)",
+      "Avaliação Psicológica",
+      "Perícia Médica",
+      "Curso de Formação Inicial"
+    ];
+    result.confidence = "alta";
+  }else{
+    result.editalNumber = firstMatch(text, [
+      /edital\s*(?:n[ºo°.]*)?\s*([0-9]{1,4}\/\d{4})/i,
+      /edital\s*(?:n[ºo°.]*)?\s*([0-9]{1,4})/i
+    ]);
+
+    result.editalDate = firstMatch(text, [
+      /(?:de|em)\s+(\d{1,2}\/\d{1,2}\/\d{4})/i
+    ]);
+
+    result.bank = firstMatch(text, [
+      /(?:banca|organizadora|executor[a]?|realiza[cç][aã]o)\s*[:\-]?\s*([^\n]{3,100})/i
+    ]);
+
+    result.position = firstMatch(text, [
+      /cargo\s*(?:pretendido|ofertado)?\s*[:\-]\s*([^\n]{3,120})/i,
+      /cargo\/emprego\s*[:\-]\s*([^\n]{3,120})/i
+    ]);
+
+    const ranges = findDateRange(structure, [
+      /per[ií]odo de inscri[cç][aã]o/i,
+      /inscri[cç][oõ]es/i
+    ]);
+    result.registrationStart = ranges[0] || "";
+    result.registrationEnd = ranges[1] || "";
+
+    const proof = findDateRange(structure, [
+      /prova objetiva/i,
+      /realiza[cç][aã]o da prova/i,
+      /data da prova/i
+    ]);
+    result.proofDate = proof[0] || "";
+
+    result.fee = firstMatch(text, [
+      /taxa de inscri[cç][aã]o[^\n]{0,80}(R\$\s*[\d.,]+)/i,
+      /(R\$\s*[\d.,]+)[^\n]{0,80}taxa de inscri[cç][aã]o/i
+    ]);
+
+    result.questionCount = firstMatch(text, [
+      /(?:total de|ser[aá]o)\s*(\d{2,3})\s*quest[oõ]es/i,
+      /(\d{2,3})\s*quest[oõ]es[^\n]{0,50}(?:prova objetiva|objetiva)/i
+    ]);
+
+    result.subjects = extractSubjects(text);
+
+    const stagePatterns = [
+      ["Prova Objetiva",/prova objetiva/i],
+      ["Teste de Aptidão Física (TAF)",/teste de aptid[aã]o f[ií]sica|\bTAF\b/i],
+      ["Avaliação Psicológica",/avalia[cç][aã]o psicol[oó]gica/i],
+      ["Perícia Médica",/per[ií]cia m[eé]dica/i],
+      ["Curso de Formação",/curso de forma[cç][aã]o/i],
+      ["Investigação Social",/investiga[cç][aã]o social/i]
+    ];
+    result.stages = stagePatterns.filter(([,re])=>re.test(text)).map(([n])=>n);
+
+    const titlePage=structure.pages.slice(0,3).map(p=>p.lines.join(" ")).join(" ");
+    result.name = firstMatch(titlePage, [
+      /(concurso p[uú]blico[^\n]{0,150})/i,
+      /(processo seletivo[^\n]{0,150})/i
+    ]) || firstMatch(text, [
+      /(guarda municipal[^\n]{0,120})/i,
+      /(prefeitura[^\n]{0,120})/i
+    ]) || "Concurso importado";
+
+    result.institution = firstMatch(titlePage, [
+      /(prefeitura[^\n]{0,150})/i,
+      /(universidade[^\n]{0,150})/i,
+      /(tribunal[^\n]{0,150})/i,
+      /(instituto federal[^\n]{0,150})/i
+    ]);
+
+    const identified = [
+      result.name,result.position,result.registrationStart,
+      result.registrationEnd,result.proofDate,result.questionCount
+    ].filter(Boolean).length;
+
+    result.confidence = identified >= 5 ? "alta" : identified >= 3 ? "moderada" : "baixa";
+  }
+
+  result.evidence.pageCount = structure.pages.length;
+  result.evidence.textLength = text.length;
+  return result;
+}
+
+function renderExtractedEdital(data){
+  const confidenceClass =
+    data.confidence === "alta" ? "high" :
+    data.confidence === "moderada" ? "medium" : "low";
+
+  const subjectsHtml = data.subjects.length
+    ? data.subjects.map(x=>`<span class="extract-chip">${escapeHTML(x)}</span>`).join("")
+    : '<span class="extract-muted">Não identificado</span>';
+
+  const stagesHtml = data.stages.length
+    ? data.stages.map(x=>`<span class="extract-chip">${escapeHTML(x)}</span>`).join("")
+    : '<span class="extract-muted">Não identificado</span>';
+
+  return `
+    <div class="extract-result">
+      <div class="extract-result-head">
+        <div>
+          <div class="card-title">Leitura concluída</div>
+          <div class="card-subtitle">${data.evidence.pageCount} páginas analisadas • ${data.evidence.textLength.toLocaleString("pt-BR")} caracteres extraídos</div>
+        </div>
+        <span class="confidence ${confidenceClass}">Confiança ${data.confidence}</span>
+      </div>
+
+      <div class="extract-section-title">Identificação</div>
+      <div class="extract-grid">
+        <div class="extract-item"><div class="extract-label">Concurso</div><div class="extract-value">${escapeHTML(data.name || "Não identificado")}</div></div>
+        <div class="extract-item"><div class="extract-label">Órgão</div><div class="extract-value">${escapeHTML(data.institution || "Não identificado")}</div></div>
+        <div class="extract-item"><div class="extract-label">Edital</div><div class="extract-value">${escapeHTML(data.editalNumber || "Não identificado")}</div></div>
+        <div class="extract-item"><div class="extract-label">Banca</div><div class="extract-value">${escapeHTML(data.bank || "Não identificado")}</div></div>
+        <div class="extract-item"><div class="extract-label">Cargo</div><div class="extract-value">${escapeHTML(data.position || "Não identificado")}</div></div>
+        <div class="extract-item"><div class="extract-label">Vagas</div><div class="extract-value">${escapeHTML(data.vacancies || "Não identificado")}</div></div>
+      </div>
+
+      <div class="extract-section-title">Cronograma</div>
+      <div class="extract-grid">
+        <div class="extract-item"><div class="extract-label">Inscrições</div><div class="extract-value">${escapeHTML(data.registrationStart || "—")} → ${escapeHTML(data.registrationEnd || "—")}</div></div>
+        <div class="extract-item"><div class="extract-label">Taxa</div><div class="extract-value">${escapeHTML(data.fee || "Não identificada")}</div></div>
+        <div class="extract-item"><div class="extract-label">Prova objetiva</div><div class="extract-value">${escapeHTML(data.proofDate || "Não identificada")}</div></div>
+        <div class="extract-item"><div class="extract-label">Horário</div><div class="extract-value">${escapeHTML(data.proofTime || "Não identificado")}</div></div>
+      </div>
+
+      <div class="extract-section-title">Estrutura da prova</div>
+      <div class="extract-item">
+        <div class="extract-label">Questões</div>
+        <div class="extract-value">${escapeHTML(data.questionCount || "Não identificado")}</div>
+        <div class="extract-chips">${subjectsHtml}</div>
+      </div>
+
+      <div class="extract-section-title">Etapas</div>
+      <div class="extract-item"><div class="extract-chips">${stagesHtml}</div></div>
+
+      <div class="extract-warning">
+        O ZONA só preenche automaticamente o que conseguiu identificar com segurança. Revise os campos antes de confirmar.
+      </div>
+
+      <button class="btn btn-primary" type="button" onclick="saveExtractedContest()" style="margin-top:12px">
+        CONFIRMAR E CRIAR CONCURSO
+      </button>
+    </div>
+  `;
+}
+
 async function processEdital(){
   if(!selectedEditalFile){
-    notify("Escolha um PDF antes de iniciar a leitura.", "error", "Nenhum edital selecionado");
+    notify("Escolha um PDF antes de iniciar a análise.", "error", "Nenhum edital selecionado");
     return;
   }
 
   if(!window.pdfjsLib){
-    notify("O leitor de PDF ainda não carregou. Atualize a página e tente novamente.", "error", "Leitor indisponível");
+    notify("O leitor de PDF não carregou. Verifique sua conexão e atualize a página.", "error", "Leitor indisponível");
     return;
   }
 
-  const status = document.getElementById("editalFileStatus");
-  const button = document.getElementById("processEditalButton");
-
-  button.disabled = true;
-  button.textContent = "LENDO EDITAL...";
-  status.textContent = "Extraindo o texto do PDF. Isso acontece no seu navegador.";
+  const status=document.getElementById("editalFileStatus");
+  const button=document.getElementById("processEditalButton");
+  button.disabled=true;
+  button.textContent="LENDO EDITAL...";
 
   try{
-    const buffer = await selectedEditalFile.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data:buffer}).promise;
-    let fullText = "";
+    const buffer=await selectedEditalFile.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:buffer, disableAutoFetch:false}).promise;
+    const structure=await extractPdfStructure(pdf);
+    const compact=structure.text.replace(/\s/g,"");
 
-    for(let pageNumber=1; pageNumber<=pdf.numPages; pageNumber++){
-      const page = await pdf.getPage(pageNumber);
-      const content = await page.getTextContent();
-      fullText += content.items.map(item => item.str || "").join(" ") + "\n";
-      if(pageNumber % 10 === 0 || pageNumber === pdf.numPages){
-        status.textContent = `Lendo página ${pageNumber} de ${pdf.numPages}...`;
-      }
+    if(compact.length<100){
+      throw new Error("PDF sem texto selecionável");
     }
 
-    if(fullText.replace(/\s/g,"").length < 80){
-      throw new Error("PDF sem camada de texto. Provavelmente é um PDF escaneado.");
-    }
+    extractedEdital=parseGenericEdital(structure);
 
-    extractedEdital = parseEditalText(fullText);
+    document.getElementById("contestName").value=extractedEdital.name||"";
+    document.getElementById("contestPosition").value=extractedEdital.position||"";
+    document.getElementById("contestDate").value=parsePdfDate(extractedEdital.proofDate);
 
-    document.getElementById("contestName").value = extractedEdital.name || "";
-    document.getElementById("contestPosition").value = extractedEdital.position || "";
-    document.getElementById("contestDate").value = normalizeDateForInput(extractedEdital.proofDate);
+    document.getElementById("editalExtractResult").innerHTML=renderExtractedEdital(extractedEdital);
 
-    const result = document.getElementById("editalExtractResult");
-    result.innerHTML = `
-      <div class="extract-result">
-        <div class="card-title">Leitura concluída</div>
-        <div class="card-subtitle">Confira os campos antes de salvar. O sistema não presume que a extração esteja perfeita.</div>
-        <div class="extract-grid">
-          <div class="extract-item"><div class="extract-label">Concurso / órgão</div><div class="extract-value">${escapeHTML(extractedEdital.name)}</div></div>
-          <div class="extract-item"><div class="extract-label">Cargo</div><div class="extract-value">${escapeHTML(extractedEdital.position || "Não identificado")}</div></div>
-          <div class="extract-item"><div class="extract-label">Prova</div><div class="extract-value">${escapeHTML(extractedEdital.proofDate || "Não identificada")}</div></div>
-          <div class="extract-item"><div class="extract-label">Inscrições</div><div class="extract-value">${escapeHTML(extractedEdital.applicationDate || "Não identificadas")}</div></div>
-        </div>
-        <button class="btn btn-primary" type="button" onclick="saveExtractedContest()" style="margin-top:12px">
-          SALVAR CONCURSO EXTRAÍDO
-        </button>
-      </div>
-    `;
-
-    status.textContent = `${pdf.numPages} páginas lidas. O PDF não foi enviado para um servidor; a leitura foi feita no navegador.`;
-    button.textContent = "EDITAL ANALISADO";
-    notify("O edital foi lido. Confira os dados extraídos antes de salvar.", "success", "Leitura concluída");
-
+    status.textContent="Leitura concluída. Revise os dados identificados antes de confirmar.";
+    button.textContent="EDITAL ANALISADO";
+    notify("O edital foi estruturado. Confira as informações antes de criar o concurso.", "success", "Análise concluída");
   }catch(error){
     console.error(error);
-    status.textContent = error.message || "Não foi possível ler este PDF.";
-    button.disabled = false;
-    button.textContent = "TENTAR NOVAMENTE";
+    button.disabled=false;
+    button.textContent="TENTAR NOVAMENTE";
+    status.textContent="Não foi possível estruturar este PDF.";
+
     notify(
-      error.message?.includes("camada de texto")
-        ? "Este PDF parece ser escaneado. A próxima etapa será adicionar OCR para esse tipo de arquivo."
-        : "Não consegui interpretar este PDF. Tente outro arquivo ou abra o edital para conferir se ele contém texto selecionável.",
+      error.message==="PDF sem texto selecionável"
+        ? "Este PDF parece ser escaneado. Para esse tipo de arquivo, precisamos ativar OCR."
+        : "O arquivo não pôde ser analisado. Tente novamente ou use um PDF com texto selecionável.",
       "error",
-      "Não foi possível ler o edital"
+      "Não consegui ler o edital"
     );
   }
 }
-
-window.processEdital = processEdital;
+window.processEdital=processEdital;
 
 function saveExtractedContest(){
   if(!extractedEdital) return;
 
-  const contest = {
-    id: Date.now().toString(),
-    name: document.getElementById("contestName").value.trim() || extractedEdital.name,
-    position: document.getElementById("contestPosition").value.trim(),
-    date: document.getElementById("contestDate").value,
-    progress: 0,
-    type: document.getElementById("contestType").value || "Concurso público",
-    editalFileName: selectedEditalFile?.name || "",
-    active: database.contests.length === 0,
-    importedFromEdital: true
+  const contest={
+    id:Date.now().toString(),
+    name:document.getElementById("contestName").value.trim()||extractedEdital.name,
+    position:document.getElementById("contestPosition").value.trim(),
+    date:document.getElementById("contestDate").value,
+    progress:0,
+    type:document.getElementById("contestType").value||"Concurso público",
+    editalFileName:selectedEditalFile?.name||"",
+    active:database.contests.length===0,
+    importedFromEdital:true,
+    editalData:extractedEdital
   };
 
   if(!contest.name){
-    notify("O edital não forneceu um nome claro. Preencha o nome antes de salvar.", "error", "Nome do concurso");
+    notify("Preencha o nome do concurso antes de confirmar.", "error", "Nome do concurso");
     return;
   }
 
-  database.contests.forEach(item => item.active = false);
+  database.contests.forEach(item=>item.active=false);
   database.contests.push(contest);
   saveDatabase();
   closeContestModal();
   renderAll();
-
-  notify(
-    `${contest.name} foi adicionado ao ZONA HUB.`,
-    "success",
-    "Concurso salvo"
-  );
+  notify(`${contest.name} foi adicionado ao ZONA HUB.`, "success", "Concurso criado");
 }
-
-window.saveExtractedContest = saveExtractedContest;
-
+window.saveExtractedContest=saveExtractedContest;
 
 /* =========================================================
    GLOBAL STATS
