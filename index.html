@@ -34,51 +34,15 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 @media(max-width:760px){
   .sidebar{width:min(86vw,330px);transform:translateX(-105%);transition:transform .23s ease;box-shadow:30px 0 80px rgba(0,0,0,.55)}.sidebar.open{transform:translateX(0)}main{margin-left:0;padding:15px 15px 70px}.mobile-menu{display:grid;place-items:center}.topbar{margin-bottom:20px}.socials{display:none}.account-role{display:none}.page-title{font-size:22px}.hero-title{font-size:38px}.stat-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.form-grid,.choice,.account-modal-grid{grid-template-columns:1fr}.card{padding:18px}.hero-main,.active-card{min-height:auto}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.modal-backdrop.open{align-items:flex-end;padding:0}.modal{max-height:94dvh;border-radius:23px 23px 0 0;padding:19px 16px calc(24px + env(safe-area-inset-bottom))}.extract-grid{grid-template-columns:1fr}.premium-plans{grid-template-columns:1fr}.clock-display{font-size:55px;letter-spacing:-2px}.toast-wrap{right:12px;bottom:12px;width:calc(100vw - 24px)}}
 @media(max-width:430px){.stat-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.active-name{font-size:20px}.hero-title{font-size:33px}}
-
-/* ZONA V.01 POLISH */
-.btn,.nav-btn,.social-link,.account,.premium-card,.choice-card,.chip,.community-btn,.sticker,.day,.team-card,.icon-tile{transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease,color .18s ease}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(186,255,124,.24)}
-.home-glow:hover{box-shadow:0 0 0 1px rgba(186,255,124,.12),0 0 45px rgba(186,255,124,.14);transform:translateY(-1px)}
-.social-link:hover,.account:hover,.premium-card:hover,.choice-card:hover{transform:translateY(-1px);border-color:#3f3f3f}
-.social-icon{width:14px;height:14px;display:inline-block;vertical-align:middle}
-.top-right{flex-wrap:wrap}
-.usage-strip{display:flex;align-items:center;gap:14px;padding:11px 13px;border:1px solid #262626;border-radius:14px;background:#0c0c0c;margin-top:10px}
-.fire{font-size:20px;line-height:1;filter:drop-shadow(0 0 8px rgba(186,255,124,.4))}
-.coin{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;border:2px solid #c8a64b;background:radial-gradient(circle at 35% 30%,#e3c86c 0%,#a67f24 35%,#161616 36%,#060606 100%);color:#d8ff9c;font-size:8px;font-weight:950;box-shadow:inset 0 0 0 2px #080808,0 0 12px rgba(186,255,124,.12)}
-.usage-number{font-weight:950;font-size:15px}.usage-copy{font-size:8px;color:#777;text-transform:uppercase;letter-spacing:.7px}
-.community-btn{display:flex;align-items:center;gap:9px;width:100%;margin-top:8px;padding:11px 12px;border-radius:13px;border:1px solid #27351f;background:linear-gradient(135deg,#14200f,#0c0c0c);color:#dfffc0;font-size:10px;font-weight:950}.community-btn:hover{box-shadow:0 0 24px rgba(186,255,124,.12);transform:translateY(-1px)}
-.agenda-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px}.month-title{font-size:17px;font-weight:950}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:12px}.dow{font-size:8px;color:#555;text-align:center;text-transform:uppercase;letter-spacing:1px;padding:4px}.day{min-height:82px;border:1px solid #222;border-radius:11px;background:#0b0b0b;padding:7px;position:relative;overflow:hidden}.day:hover{border-color:#454545;transform:translateY(-1px)}.day.muted{opacity:.35}.day.today{border-color:#52633f;box-shadow:inset 0 0 0 1px rgba(186,255,124,.05)}.day.exam{border-color:#6d5c32;background:linear-gradient(145deg,#15130b,#0b0b0b)}.day-number{font-size:9px;font-weight:950;color:#999}.day.today .day-number{color:var(--green)}.day-events{display:flex;flex-direction:column;gap:3px;margin-top:5px}.day-event{font-size:7px;line-height:1.2;padding:3px 4px;border-radius:5px;background:#171717;border:1px solid #252525;color:#aaa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.day-event.contest{background:#17200f;border-color:#2a401d;color:#caff9e}.day-sticker{position:absolute;right:5px;bottom:4px;font-size:15px;filter:drop-shadow(0 0 4px rgba(255,255,255,.15))}
-.agenda-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.agenda-legend span{font-size:8px;color:#777}
-.sticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.sticker{padding:10px;border:1px solid #272727;border-radius:12px;background:#0d0d0d;text-align:center;cursor:pointer}.sticker:hover{border-color:#49573d;box-shadow:0 0 18px rgba(186,255,124,.06)}.sticker.locked{opacity:.35;filter:grayscale(1)}.sticker-mark{font-size:20px}.sticker-name{font-size:8px;color:#aaa;margin-top:4px;font-weight:900}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.team-card{border:1px solid #272727;background:#0d0d0d;border-radius:16px;padding:15px;cursor:pointer;position:relative;overflow:hidden}.team-card:hover{transform:translateY(-2px);border-color:#3f5632;box-shadow:0 0 32px rgba(186,255,124,.08)}.team-mark{font-size:26px}.team-name{font-size:13px;font-weight:950;margin-top:8px}.team-copy{font-size:9px;color:#777;line-height:1.5;margin-top:4px}.team-count{font-size:8px;color:var(--green);margin-top:10px}
-.league-board{display:grid;grid-template-columns:1fr 1fr;gap:12px}.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:end;gap:8px}.podium-item{border:1px solid #272727;background:#0d0d0d;border-radius:12px;padding:10px;text-align:center}.podium-item:nth-child(2){min-height:150px;border-color:#3e5530}.podium-item strong{display:block;font-size:9px}.podium-item span{display:block;font-size:8px;color:#777;margin-top:3px}.invest{display:flex;gap:8px;align-items:center}.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.profile-photo{width:82px;height:82px;border-radius:20px;border:1px solid #2d2d2d;background:#0b0b0b;object-fit:cover}.option-grid{display:flex;flex-wrap:wrap;gap:7px}.option-tile{padding:9px 10px;border:1px solid #262626;border-radius:11px;background:#0c0c0c;cursor:pointer;font-size:9px;color:#aaa}.option-tile.active{border-color:#3c5330;background:#17200f;color:#dfffca}.map-wrap{border:1px solid #252525;border-radius:15px;background:radial-gradient(circle at 50% 40%,rgba(186,255,124,.08),transparent 55%),#0b0b0b;padding:12px}.state-map{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.state-tile{border:1px solid #202020;border-radius:8px;padding:7px 4px;text-align:center;background:#0e0e0e;color:#777;font-size:8px;cursor:pointer}.state-tile:hover,.state-tile.active{background:#17200f;border-color:#385127;color:#dfffca}.map-note{font-size:8px;color:#666;line-height:1.5;margin-top:8px}.terms-row{display:flex;align-items:flex-start;gap:8px;margin-top:11px;font-size:9px;color:#777;line-height:1.45}.terms-row input{accent-color:var(--green);margin-top:2px}.link-button{border:0;background:none;color:#dfffc0;padding:0;text-decoration:underline}.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.icon-tile{border:1px solid #252525;border-radius:13px;background:#0d0d0d;padding:12px;text-align:center;cursor:pointer}.icon-tile:hover{border-color:#405636;box-shadow:0 0 20px rgba(186,255,124,.08);transform:translateY(-1px)}.icon-tile .icon{font-size:20px}.icon-tile span{display:block;font-size:8px;color:#777;margin-top:5px}.light-theme{--bg:#f4f5f2;--panel:#fff;--card:#fff;--line:#d9ddd4;--text:#111;--muted:#686d66;--muted2:#8d928a}.light-theme body{background:var(--bg)}.light-theme .sidebar,.light-theme .modal,.light-theme .card,.light-theme .login-box{background:#fff}.light-theme .input,.light-theme .select,.light-theme .day,.light-theme .metric,.light-theme .stat,.light-theme .mini-box,.light-theme .news-card,.light-theme .team-card,.light-theme .choice-card,.light-theme .group-card,.light-theme .premium-card{background:#f8f9f6;color:#111}.light-theme .nav-btn{color:#596056}.light-theme .table th{color:#73796f}
-@media(max-width:760px){.calendar-grid{gap:4px}.day{min-height:66px;padding:5px}.day-event{font-size:6px}.day-sticker{font-size:13px}.team-grid,.league-board,.support-grid{grid-template-columns:1fr}.profile-grid{grid-template-columns:1fr}.icon-grid{grid-template-columns:repeat(3,1fr)}.state-map{grid-template-columns:repeat(5,1fr)}.sticker-grid{grid-template-columns:repeat(3,1fr)}}
-/* ZONA V.01 MICRO POLISH */
-.social-icon svg{width:14px;height:14px;display:block}.social-link:hover .social-icon{color:var(--green);filter:drop-shadow(0 0 5px rgba(186,255,124,.45))}
-.fire{color:var(--green)!important;font-size:21px;filter:drop-shadow(0 0 7px rgba(186,255,124,.35));animation:firePulse 1.8s ease-in-out infinite}
-@keyframes firePulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:1}}
-.modal-backdrop{overflow:auto}.modal{overscroll-behavior:contain}.sticker.locked{position:relative}
-
-.btn.is-loading{position:relative;pointer-events:none;opacity:.78}
-.btn.is-loading:before{content:"";display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-2px;border:2px solid rgba(0,0,0,.22);border-top-color:currentColor;border-radius:50%;animation:zonaSpin .7s linear infinite}
-.btn-secondary.is-loading:before{border-color:rgba(255,255,255,.18);border-top-color:#fff}
-@keyframes zonaSpin{to{transform:rotate(360deg)}}
-.save-feedback{margin-top:8px;font-size:9px;color:var(--green);min-height:14px}
-
-.coin-visual{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto;background:radial-gradient(circle at 32% 26%,#fff7ad 0%,#f6d75e 18%,#d7a82f 42%,#8c6010 72%,#332208 100%);border:2px solid #f4d772;box-shadow:inset 0 0 0 2px #7b5108,0 0 18px rgba(240,199,75,.34),inset 0 0 14px rgba(255,255,220,.45);animation:coinGlow 2.6s ease-in-out infinite}
-.coin-visual:before{content:"Z";font-size:12px;font-weight:1000;color:#13220c;text-shadow:0 1px 0 rgba(255,255,255,.28)}
-.coin-visual:after{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.28);border-radius:50%}
-@keyframes coinGlow{0%,100%{transform:translateY(0) rotate(0deg);filter:brightness(1)}50%{transform:translateY(-1px) rotate(4deg);filter:brightness(1.12)}}
-
+</style>
 </head>
 <body>
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-brand"><img src="logo.png" alt="ZONA"><div><strong>ZONA HUB</strong><div class="tiny">PERSONAL COMMAND CENTER</div></div></div>
     <div class="eyebrow">ZONA / ACCESS</div>
-    <div class="login-title">Entre na sua ZONA.</div>
+    <div class="login-title">Entre na sua zona.</div>
     <div class="login-copy">Centralize concursos, desempenho, questões e cronogramas em um único lugar.</div>
-    <label class="terms-row"><input type="checkbox" id="termsCheck" required><span>Li e aceito os <button type="button" class="link-button" id="termsButton">Termos de Uso</button> do ZONA.</span></label>
     <form id="loginForm">
       <div class="field"><label>Usuário</label><input class="input" id="loginUser" autocomplete="username" required></div>
       <div class="field"><label>Senha</label><input class="input" id="loginPass" type="password" autocomplete="current-password" required></div>
@@ -99,14 +63,10 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     <button class="nav-btn" data-page="performance"><span class="nav-icon">↗</span>Performance</button>
     <button class="nav-btn" data-page="editais"><span class="nav-icon">▤</span>Editais</button>
     <button class="nav-btn" data-page="clock"><span class="nav-icon">◷</span>To Punch the Clock</button>
-    <button class="nav-btn" data-page="ligas"><span class="nav-icon">✦</span>Ligas ZONA</button>
-    <button class="nav-btn" data-page="suporte"><span class="nav-icon">?</span>Suporte</button>
   </nav>
   <div class="side-bottom">
-    <div class="group-card"><div class="group-label">Grupo ativo</div><div class="group-value" id="groupActiveValue">ZONA HUB • FREE</div></div>
-    <div class="usage-strip"><span class="fire" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="streakNumber">0</div><div class="usage-copy">dias na ZONA</div></div><div class="coin-visual" aria-label="LIBS"></div><div><div class="usage-number" id="coinNumber">0</div><div class="usage-copy">LIBS</div></div></div>
-    <button class="community-btn" type="button" onclick="joinCommunity()"><span>◉</span> ENTRAR NA COMUNIDADE ZONA</button>
-    <div class="premium-card" id="premiumButton"><div class="premium-label">Upgrade</div><div class="premium-title">SEJA PREMIUM</div><div class="premium-copy">Mais recursos. Mais ZONA.</div></div>
+    <div class="group-card"><div class="group-label">Grupo ativo</div><div class="group-value">ZONA HUB • FREE</div></div>
+    <div class="premium-card" id="premiumButton"><div class="premium-label">Upgrade</div><div class="premium-title">SEJA PREMIUM</div><div class="premium-copy">Mais recursos. Mais zona.</div></div>
   </div>
 </aside>
 
@@ -117,11 +77,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       <div class="page-head"><div class="eyebrow">ZONA / CAREER</div><div class="page-title" id="pageTitle">HOME</div></div>
     </div>
     <div class="top-right">
-      <div class="socials">
-<a class="social-link" href="#" aria-label="Instagram" onclick="socialPlaceholder(event,'Instagram')"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg></span> Instagram</a>
-<a class="social-link" href="#" aria-label="LinkedIn" onclick="socialPlaceholder(event,'LinkedIn')"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 7.2A2.1 2.1 0 1 1 5 3a2.1 2.1 0 0 1 0 4.2ZM3.2 8.8h3.6V21H3.2V8.8Zm5.8 0h3.4v1.67h.05c.47-.9 1.62-1.95 3.35-1.95 3.58 0 4.24 2.36 4.24 5.44V21h-3.6v-6.24c0-1.49-.03-3.41-2.08-3.41-2.08 0-2.4 1.62-2.4 3.29V21H9V8.8Z"></path></svg></span> LinkedIn</a>
-<a class="social-link" href="#" aria-label="YouTube" onclick="socialPlaceholder(event,'YouTube')"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 7.2a2.8 2.8 0 0 0-1.96-1.98C17.31 4.75 12 4.75 12 4.75s-5.31 0-7.04.47A2.8 2.8 0 0 0 3 7.2 29.2 29.2 0 0 0 2.53 12 29.2 29.2 0 0 0 3 16.8a2.8 2.8 0 0 0 1.96 1.98c1.73.47 7.04.47 7.04.47s5.31 0 7.04-.47A2.8 2.8 0 0 0 21 16.8a29.2 29.2 0 0 0 .47-4.8A29.2 29.2 0 0 0 21 7.2ZM10.2 15.4V8.6L16.2 12l-6 3.4Z"></path></svg></span> YouTube</a>
-</div>
+      <div class="socials"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div>
       <div class="account" id="accountButton"><div class="avatar" id="avatar">A</div><div><div class="account-name" id="accountName">Admin</div><div class="account-role" id="accountRole">Administrador</div></div></div>
     </div>
   </header>
@@ -130,7 +86,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     <div class="hero">
       <div class="card hero-main">
         <div class="eyebrow">ZONA HUB</div>
-        <div class="hero-title">Sua carreira entra em modo ZONA.</div>
+        <div class="hero-title">Sua carreira entra em modo zona.</div>
         <div class="hero-copy">Um centro de comando para acompanhar concursos, questões, desempenho, cronogramas e rotina de preparação sem depender de cinco planilhas diferentes.</div>
         <div class="hero-actions"><button class="btn btn-primary" onclick="goTo('dashboard')">ABRIR DASHBOARD</button><button class="btn btn-secondary" onclick="openContestModal()">+ NOVO CONCURSO</button></div>
       </div>
@@ -144,15 +100,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       <div class="stat"><div class="stat-label">Acerto</div><div class="stat-value" id="homeAccuracy">0%</div></div>
       <div class="stat"><div class="stat-label">Horas</div><div class="stat-value" id="homeHours">0.0h</div></div>
       <div class="stat"><div class="stat-label">Índice</div><div class="stat-value" id="homeIndex">0</div></div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><div><div class="section-title">Ritmo ZONA</div><div class="section-copy">Quanto mais você usa a plataforma, mais sua sequência e suas LIBS crescem.</div></div><span class="tag" id="homeLeagueTag">SEM LIGA</span></div>
-      <div class="usage-strip"><span class="fire" style="font-size:24px" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="homeStreak">0 dias</div><div class="usage-copy">sequência</div></div><div class="coin-visual" style="width:38px;height:38px" aria-label="LIBS"></div><div><div class="usage-number" id="homeCoins">0 LIBS</div><div class="usage-copy">moeda ZONA</div></div><div style="margin-left:auto"><button class="btn btn-secondary" onclick="goTo('ligas')">VER LIGA</button></div></div>
-    </div>
-    <div class="card" style="margin-top:16px" id="homeAgendaCard">
-      <div class="agenda-toolbar"><div><div class="section-title">AGENDA ZONA</div><div class="section-copy">Seu mês acompanha automaticamente as datas do concurso ativo.</div></div><div style="display:flex;gap:6px"><button class="btn btn-secondary" onclick="changeMonth(-1)">←</button><button class="btn btn-secondary" onclick="changeMonth(1)">→</button></div></div>
-      <div id="homeMonthTitle" class="month-title" style="margin-top:10px"></div>
-      <div class="calendar-grid" id="homeCalendar"></div>
     </div>
     <div class="card" style="margin-top:16px">
       <div class="section-head"><div><div class="section-title">Radar de concursos</div><div class="section-copy">Notícias e movimentações recentes. A fonte pode variar; abra a matéria para conferir o conteúdo completo.</div></div><button class="btn btn-secondary" onclick="loadNews()">ATUALIZAR RADAR</button></div>
@@ -193,7 +140,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
           <input class="input" id="questionTotal" type="number" min="1" placeholder="Questões" required>
           <input class="input" id="questionCorrect" type="number" min="0" placeholder="Acertos" required>
         </div>
-        <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button><div class="save-feedback" id="questionSaveFeedback"></div></div>
+        <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button></div>
       </form>
       <div style="margin-top:18px" class="table-wrap"><table class="table"><thead><tr><th>Data</th><th>Matéria</th><th>Questões</th><th>Acertos</th><th>%</th></tr></thead><tbody id="questionTable"></tbody></table></div>
     </div>
@@ -240,44 +187,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       <div class="tiny" style="margin-top:16px">O tempo pausado fica fora do tempo líquido.</div>
     </div>
   </section>
-
-  <section class="page" id="ligas">
-    <div class="hero">
-      <div class="card hero-main">
-        <div class="eyebrow">ZONA / LIGAS</div>
-        <div class="hero-title">Jogue na sua ZONA.</div>
-        <div class="hero-copy">Escolha uma liga do camaleão, junte LIBS, acompanhe o pódio e veja o desafio do mês.</div>
-        <div class="hero-actions"><button class="btn btn-primary" onclick="investLibs()">INVESTIR 10 LIBS</button><button class="btn btn-secondary" onclick="goTo('home')">VOLTAR PARA HOME</button></div>
-      </div>
-      <div class="card active-card"><div><div class="eyebrow">Sua liga</div><div class="active-name" id="myLeagueName">Sem liga</div><div class="active-meta" id="myLeagueMeta">Escolha uma liga para começar.</div><div class="mini-grid"><div class="mini-box"><div class="mini-label">LIBS investidas</div><div class="mini-value" id="myLeagueCoins">0</div></div><div class="mini-box"><div class="mini-label">Pessoas</div><div class="mini-value" id="myLeaguePeople">0</div></div></div></div><button class="btn btn-secondary" onclick="openLeaguePicker()">TROCAR LIGA</button></div>
-    </div>
-    <div class="card" style="margin-top:16px"><div class="section-head"><div><div class="section-title">Pódio das ligas</div><div class="section-copy">Exemplo de estrutura competitiva; em produção os números virão do banco.</div></div></div><div class="league-board"><div class="podium" id="leaguePodium"></div><div class="card" style="background:#0b0b0b"><div class="section-title">Desafio do mês</div><div class="section-copy" id="challengeText">Nenhum desafio publicado.</div><div class="hero-actions"><button class="btn btn-primary" onclick="claimChallenge()">CONCLUIR DESAFIO</button><button class="btn btn-secondary hidden" id="adminChallengeButton" onclick="openChallengeAdmin()">CRIAR DESAFIO</button></div></div></div></div>
-  </section>
-
-  <section class="page" id="suporte">
-    <div class="hero">
-      <div class="card hero-main">
-        <div class="eyebrow">ZONA / SUPORTE</div>
-        <div class="hero-title">Fale com a ZONA.</div>
-        <div class="hero-copy">Feedback, dúvidas, ideias ou parceria: deixe a mensagem preparada para o canal de suporte.</div>
-        <div class="hero-actions"><button class="btn btn-primary" onclick="openFeedback()">ENVIAR FEEDBACK</button><button class="btn btn-secondary" onclick="bePartner()">SEJA UM SÓCIO ZONA</button></div>
-      </div>
-      <div class="card">
-        <div class="section-title">Canais</div><div class="section-copy">Estrutura pronta para conectar os contatos reais.</div>
-        <div class="icon-grid" style="margin-top:14px">
-          <div class="icon-tile" onclick="openFeedback()"><div class="icon">✉</div><span>Feedback</span></div>
-          <div class="icon-tile" onclick="joinCommunity()"><div class="icon">◉</div><span>Comunidade</span></div>
-          <div class="icon-tile" onclick="openPremium()"><div class="icon">✦</div><span>Premium</span></div>
-          <div class="icon-tile" onclick="bePartner()"><div class="icon">♥</div><span>Sócio ZONA</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="support-grid" style="margin-top:16px">
-      <div class="card"><div class="section-title">Feedback</div><div class="section-copy">O formulário abre o seu cliente de e-mail quando um endereço real for configurado.</div><div class="stack" style="margin-top:12px"><input class="input" id="supportSubject" placeholder="Assunto"><textarea class="input" id="supportMessage" rows="6" placeholder="Escreva seu feedback..."></textarea><button class="btn btn-primary" onclick="openFeedback()">ABRIR E-MAIL</button></div></div>
-      <div class="card"><div class="section-title">Seja um sócio ZONA</div><div class="section-copy">Contribua para manter o projeto no ar e ajudar a financiar novas funções.</div><div class="mini-grid" style="margin-top:13px"><div class="mini-box"><div class="mini-label">Contribuição</div><div class="mini-value">PIX / doação</div></div><div class="mini-box"><div class="mini-label">Destino</div><div class="mini-value">Configurar</div></div></div><button class="btn btn-secondary" style="margin-top:11px;width:100%" onclick="bePartner()">QUERO APOIAR O ZONA</button></div>
-    </div>
-  </section>
-
 </main>
 </div>
 
@@ -310,11 +219,11 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   <div class="modal large">
     <div class="modal-head"><div><div class="eyebrow">ZONA+ / PREMIUM</div><div class="modal-title">Mais controle. Menos caos.</div><div class="tiny" style="margin-top:4px">Estrutura pronta para assinatura — pagamentos entram depois.</div></div><button class="close" onclick="closePremium()">×</button></div>
     <div class="premium-plans">
-      <div class="plan"><div class="plan-name">◌ FREE</div><div class="plan-price">R$ 0</div><div class="plan-copy">Comece com o essencial.</div><ul class="plan-list"><li>1 preparação ativa</li><li>Registro de questões</li><li>To Punch the Clock</li><li>Performance básica</li></ul></div>
-      <div class="plan featured"><div class="plan-name">✦ PRATA</div><div class="plan-price">R$ —</div><div class="plan-copy">Para quem quer organizar tudo no mesmo lugar.</div><ul class="plan-list"><li>Múltiplas preparações</li><li>Importação de editais</li><li>Performance avançada</li><li>Radar e alertas</li></ul></div>
-      <div class="plan"><div class="plan-name">♛ OURO</div><div class="plan-price">R$ —</div><div class="plan-copy">A experiência ZONA completa.</div><ul class="plan-list"><li>Todos os recursos</li><li>Automação e IA</li><li>Plano de estudos inteligente</li><li>Recursos exclusivos</li></ul></div>
+      <div class="plan"><div class="plan-name">FREE</div><div class="plan-price">R$ 0</div><div class="plan-copy">Comece com o essencial.</div><ul class="plan-list"><li>1 preparação ativa</li><li>Registro de questões</li><li>To Punch the Clock</li><li>Performance básica</li></ul></div>
+      <div class="plan featured"><div class="plan-name">PRATA</div><div class="plan-price">R$ —</div><div class="plan-copy">Para quem quer organizar tudo no mesmo lugar.</div><ul class="plan-list"><li>Múltiplas preparações</li><li>Importação de editais</li><li>Performance avançada</li><li>Radar e alertas</li></ul></div>
+      <div class="plan"><div class="plan-name">OURO</div><div class="plan-price">R$ —</div><div class="plan-copy">A experiência ZONA completa.</div><ul class="plan-list"><li>Todos os recursos</li><li>Automação e IA</li><li>Plano de estudos inteligente</li><li>Recursos exclusivos</li></ul></div>
     </div>
-    <div class="warn" style="margin-top:15px"><strong>Slogan:</strong> ZONA — organize a meta. Entre no ritmo. Fique na ZONA.</div>
+    <div class="warn" style="margin-top:15px"><strong>Slogan:</strong> ZONA — organize a meta. Entre no ritmo. Fique na zona.</div>
   </div>
 </div>
 
@@ -331,26 +240,10 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       <div class="social-edit"><input class="input" id="socialLinkedIn" placeholder="LinkedIn URL"></div>
       <div class="social-edit"><input class="input" id="socialYouTube" placeholder="YouTube URL"></div>
     </div>
-    <div style="margin-top:18px"><div class="section-title">Perfil</div><div class="section-copy">Personalize sua experiência.</div></div>
-    <div class="profile-grid" style="margin-top:10px">
-      <div class="mini-box"><img id="profilePhotoPreview" class="profile-photo" src="logo.png" alt="Foto do perfil"><input id="profilePhoto" type="file" accept="image/*" style="margin-top:8px;width:100%;font-size:9px"></div>
-      <div class="stack"><input class="input" id="profileName" placeholder="Nome de exibição"><input class="input" id="profileEmail" type="email" placeholder="E-mail para newsletter"><input class="input" id="profileTarget" placeholder="Concurso / objetivo"></div>
-    </div>
-    <div class="field" style="margin-top:12px"><label>Aplicativos de questões</label><div class="option-grid" id="appsOptions"></div></div>
-    <div class="field"><label>Gênero</label><div class="option-grid" id="genderOptions"></div></div>
-    <div class="field"><label>Cotas / perfis de concorrência</label><div class="option-grid" id="quotaOptions"></div></div>
-    <div class="field"><label>Localização</label><div class="map-wrap"><div class="state-map" id="stateMap"></div><div class="profile-grid" style="margin-top:8px"><select class="select" id="profileRegion"></select><select class="select" id="profileState"></select><select class="select" id="profileCity"></select></div><div class="map-note">O ZONA usa sua região, estado e cidade para priorizar conteúdos e mensagens locais no radar. Você pode editar ou deixar em branco.</div></div></div>
-    <div class="profile-grid"><input class="input" id="newPassword" type="password" placeholder="Nova senha (opcional)"><select class="select" id="profileTheme"><option value="dark">Tema escuro</option><option value="light">Tema claro</option></select></div>
-    <button class="btn btn-primary" style="margin-top:12px" onclick="saveProfile()">SALVAR PERFIL</button>
-    <div style="margin-top:15px" class="warn">Nota: nesta versão demonstrativa, perfil, senha e newsletter ficam neste navegador. Não enviamos e-mails para o GitHub, pois um repositório público não é um local seguro para armazenar dados pessoais.</div>
     <button class="btn btn-danger" style="margin-top:15px" onclick="logout()">SAIR DA CONTA</button>
   </div>
 </div>
 
-
-<div class="modal-backdrop" id="dayEditorBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">AGENDA ZONA</div><div class="modal-title" id="dayEditorTitle">Dia</div><div class="tiny" style="margin-top:4px">Registre uma nota e escolha um adesivo.</div></div><button class="close" onclick="closeDayEditor()">×</button></div><div class="stack"><textarea class="input" id="dayNoteInput" rows="4" placeholder="Ex.: Revisar Direito Constitucional"></textarea><div><div class="section-copy" style="margin-bottom:8px">Adesivos disponíveis</div><div class="sticker-grid" id="stickerGrid"></div></div><div style="display:flex;gap:8px"><button class="btn btn-primary" onclick="saveDayEditor()">SALVAR DIA</button><button class="btn btn-secondary" onclick="removeDayEditor()">LIMPAR</button></div></div></div></div><div class="modal-backdrop" id="termsBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ZONA / TERMOS</div><div class="modal-title">Termos de Uso</div></div><button class="close" onclick="closeTerms()">×</button></div><div class="tiny" style="line-height:1.7">Use o ZONA HUB como ferramenta de organização. Você é responsável pelos dados que inserir. Recursos de desempenho e gamificação são indicadores internos e não representam promessa de aprovação. Em uma versão com contas reais, dados de autenticação e pagamentos serão tratados por serviços próprios e seguros.</div></div></div>
-<div class="modal-backdrop" id="leaguePickerBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ESCOLHA SUA LIGA</div><div class="modal-title">Qual lado do camaleão é a sua ZONA?</div></div></div><div class="team-grid" id="teamChoices"></div></div></div>
-<div class="modal-backdrop" id="challengeBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ADM / DESAFIO</div><div class="modal-title">Lançar desafio do mês</div></div><button class="close" onclick="closeChallengeAdmin()">×</button></div><div class="stack"><input class="input" id="challengeTitleInput" placeholder="Ex.: Envie o ZONA para 5 amigos"><input class="input" id="challengeRewardInput" type="number" min="1" placeholder="Recompensa em LIBS"><button class="btn btn-primary" onclick="saveChallenge()">PUBLICAR DESAFIO</button></div></div></div>
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
@@ -400,19 +293,18 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
-    e.preventDefault();if(!document.getElementById("termsCheck").checked){notify("Termos de Uso","Aceite os Termos de Uso para entrar.","error");return}var user=document.getElementById("loginUser").value.trim(),pass=document.getElementById("loginPass").value;
+    e.preventDefault();var user=document.getElementById("loginUser").value.trim(),pass=document.getElementById("loginPass").value;
     var found=null;if(user==="admin"&&pass==="ZONA2026")found={role:"Administrador"};if(user==="visitante"&&pass==="zonavisita")found={role:"Visitante"};
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
-    found.username=user;
-    localStorage.setItem(AUTH_KEY,JSON.stringify(found));try{showApp()}catch(err){showFatalRecovery(err)}
+    localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
   });
-  if(localStorage.getItem(AUTH_KEY)){setTimeout(function(){try{showApp()}catch(err){localStorage.removeItem(AUTH_KEY);showFatalRecovery(err)}},0);}
+  if(localStorage.getItem(AUTH_KEY))showApp();
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
     document.getElementById(page).classList.add("active");
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
-    var names={home:"HOME",dashboard:"Dashboard",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock",ligas:"Ligas ZONA",suporte:"Suporte"};
+    var names={home:"HOME",dashboard:"Dashboard",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     document.getElementById("sidebar").classList.remove("open");
   }
@@ -470,42 +362,14 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   }
   window.setActiveContest=function(id){db.contests.forEach(function(c){c.active=c.id===id});saveDB();notify("Concurso ativo",currentContest().name+" agora alimenta o dashboard e os seletores.");renderAll()}
 
-  document.getElementById("questionForm").addEventListener("submit",async function(e){
-    e.preventDefault();
-    var form=e.target,saveBtn=form.querySelector('button[type="submit"]');
-    if(saveBtn&&saveBtn.disabled)return;
-    var s=subjectValue("questionSubject"),t=Number(document.getElementById("questionTotal").value),co=Number(document.getElementById("questionCorrect").value);
-    if(!s||!t){notify("Faltou informação","Escolha uma matéria e informe o número de questões.","error");return}
-    if(co>t){notify("Resultado inválido","Acertos não podem ser maiores que o total.","error");return}
-
-    if(saveBtn){saveBtn.disabled=true;saveBtn.classList.add("is-loading");saveBtn.dataset.label=saveBtn.textContent;saveBtn.textContent="SALVANDO..."}
-    var feedback=document.getElementById("questionSaveFeedback");if(feedback)feedback.textContent="Registrando seu resultado...";
-    try{
-      // Give the browser two frames to paint the loading state before doing any work.
-      await new Promise(function(resolve){requestAnimationFrame(function(){requestAnimationFrame(resolve)})});
-      db.questions.push({id:Date.now()+"",date:today(),subject:s,total:t,correct:co});
-      saveDB();
-      touchUsage(Math.max(1,Math.floor(t/10)));
-      form.reset();
-      document.getElementById("questionSubjectCustom").classList.add("hidden");
-      renderAll();
-      if(feedback)feedback.textContent="Resultado salvo no seu histórico.";
-      if(saveBtn){saveBtn.classList.remove("is-loading");saveBtn.disabled=false;saveBtn.textContent="SALVO ✓";setTimeout(function(){saveBtn.textContent=saveBtn.dataset.label||"SALVAR RESULTADO";if(feedback)feedback.textContent=""},900)}
-      notify("Resultado salvo",t+" questões em "+s+" foram adicionadas à sua performance.");
-    }catch(err){
-      console.error(err);
-      if(saveBtn){saveBtn.classList.remove("is-loading");saveBtn.disabled=false;saveBtn.textContent=saveBtn.dataset.label||"SALVAR RESULTADO"}
-      if(feedback)feedback.textContent="";
-      notify("Não foi possível salvar","Tente novamente. Seu formulário não foi apagado.","error");
-    }
-  });
+  document.getElementById("questionForm").addEventListener("submit",function(e){e.preventDefault();var s=subjectValue("questionSubject"),t=Number(document.getElementById("questionTotal").value),co=Number(document.getElementById("questionCorrect").value);if(!s||!t){notify("Faltou informação","Escolha uma matéria e informe o número de questões.","error");return}if(co>t){notify("Resultado inválido","Acertos não podem ser maiores que o total.","error");return}db.questions.push({id:Date.now()+"",date:today(),subject:s,total:t,correct:co});saveDB();e.target.reset();document.getElementById("questionSubjectCustom").classList.add("hidden");notify("Resultado salvo",t+" questões em "+s+" foram adicionadas à sua performance.");renderAll()});
   function renderQuestions(){var tb=document.getElementById("questionTable");if(!db.questions.length){tb.innerHTML='<tr><td colspan="5" class="muted">Nenhum resultado registrado.</td></tr>';return}tb.innerHTML=db.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc(fmtDate(q.date))+'</td><td>'+esc(q.subject)+'</td><td>'+q.total+'</td><td>'+q.correct+'</td><td>'+p+'%</td></tr>'}).join("")}
   function renderPerformance(){var p=performanceData();["metricIndex","metricAccuracy","metricVolume","metricConsistency","metricCoverage"].forEach(function(id,i){var v=[p.index,Math.round(p.acc),p.total,Math.round(p.consistency),Math.round(p.coverage)][i];document.getElementById(id).textContent=(i===0||i===2)?v:(v+"%")});["metricIndexBar","metricAccuracyBar","metricVolumeBar","metricConsistencyBar","metricCoverageBar"].forEach(function(id,i){var v=[p.index,p.acc,p.volume,p.consistency,p.coverage][i];document.getElementById(id).style.width=Math.min(100,v)+"%"});document.getElementById("last7").textContent=p.q7+" questões";document.getElementById("last30").textContent=p.q30+" questões";document.getElementById("perfHours").textContent=(db.sessions.reduce(function(a,s){return a+s.minutes},0)/60).toFixed(1)+"h";var box=document.getElementById("subjectPerformance");var entries=Object.entries(p.by);if(!entries.length){box.innerHTML='<div class="empty">Registre questões para ver o desempenho por matéria.</div>';return}box.innerHTML=entries.sort(function(a,b){return b[1].total-a[1].total}).map(function(x){var acc=x[1].total?Math.round(x[1].correct/x[1].total*100):0;return '<div class="subject-row"><div class="subject-line"><strong>'+esc(x[0])+'</strong><strong>'+acc+'%</strong></div><div class="subject-stats">'+x[1].correct+' acertos em '+x[1].total+' questões</div><div class="subject-progress" style="margin-top:8px"><span style="width:'+acc+'%"></span></div></div>'}).join("")}
   function renderEditais(){var list=document.getElementById("editalList"),items=db.contests.filter(function(c){return c.importedFromEdital});if(!items.length){list.innerHTML='<div class="empty">Nenhum edital importado ainda.</div>';return}list.innerHTML=items.slice().reverse().map(function(c){return '<div class="card" style="margin-bottom:10px;background:#0c0c0c"><div class="active-name" style="font-size:17px">'+esc(c.name)+'</div><div class="tiny">'+esc(c.editalFileName||"PDF importado")+'</div><div class="chip-row" style="margin-top:10px">'+(c.editalData&&c.editalData.subjects||[]).map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+'</div></div>'}).join("")}
 
   document.getElementById("startClock").addEventListener("click",function(){if(session.running){notify("Sessão já está rodando","Pause ou finalize a sessão atual.","error");return}var sub=subjectValue("clockSubject");if(!sub){notify("Escolha a matéria","Selecione uma matéria antes de iniciar.","error");return}session.running=true;session.startAt=Date.now();session.subject=sub;saveTimer();document.getElementById("clockStatus").textContent="Sessão em andamento • "+sub;notify("Estudo iniciado","O tempo líquido começou a contar.")});
   document.getElementById("pauseClock").addEventListener("click",function(){if(!session.running){notify("Nada para pausar","Não existe uma sessão ativa.","error");return}session.elapsed+=Date.now()-session.startAt;session.running=false;saveTimer();document.getElementById("clockStatus").textContent="Sessão pausada • "+session.subject;notify("Sessão pausada","O tempo parado não entra no total.")});
-  document.getElementById("finishClock").addEventListener("click",function(){var secs=getClockSeconds();if(secs<60){notify("Sessão não salva","Estude por pelo menos 1 minuto antes de finalizar.","error");return}var mins=Math.round(secs/60);db.sessions.push({id:Date.now()+"",date:today(),minutes:mins,subject:session.subject});saveDB();touchUsage(Math.max(5,Math.floor(mins/15)));session={running:false,startAt:0,elapsed:0,subject:""};saveTimer();document.getElementById("clockStatus").textContent="Sessão finalizada e salva.";notify("Sessão salva",mins+" min líquidos adicionados ao seu histórico.");renderAll()});
+  document.getElementById("finishClock").addEventListener("click",function(){var secs=getClockSeconds();if(secs<60){notify("Sessão não salva","Estude por pelo menos 1 minuto antes de finalizar.","error");return}var mins=Math.round(secs/60);db.sessions.push({id:Date.now()+"",date:today(),minutes:mins,subject:session.subject});saveDB();session={running:false,startAt:0,elapsed:0,subject:""};saveTimer();document.getElementById("clockStatus").textContent="Sessão finalizada e salva.";notify("Sessão salva",mins+" min líquidos adicionados ao seu histórico.");renderAll()});
   function updateClock(){document.getElementById("clockDisplay").textContent=formatClock(getClockSeconds());if(session.running)document.getElementById("clockStatus").textContent="Sessão em andamento • "+session.subject}
   
   function openContestModal(){document.getElementById("contestModalBackdrop").classList.add("open");document.getElementById("quickContest").classList.add("hidden");document.getElementById("editFile").classList.add("hidden");document.getElementById("contestChoices").classList.remove("hidden");document.getElementById("editalExtractResult").innerHTML=""}
@@ -514,7 +378,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   window.showEditalImport=function(){document.getElementById("contestChoices").classList.add("hidden");document.getElementById("editFile").classList.remove("hidden")}
   document.getElementById("premiumButton").addEventListener("click",function(){document.getElementById("premiumBackdrop").classList.add("open")});
   window.closePremium=function(){document.getElementById("premiumBackdrop").classList.remove("open")}
-  document.getElementById("accountButton").addEventListener("click",function(){var s=JSON.parse(localStorage.getItem(SOCIAL_KEY)||"{}");profile=JSON.parse(localStorage.getItem(PROFILE_KEY)||"null")||profile;renderProfile();document.getElementById("socialInstagram").value=s.instagram||"";document.getElementById("socialLinkedIn").value=s.linkedin||"";document.getElementById("socialYouTube").value=s.youtube||"";document.getElementById("accountBackdrop").classList.add("open")});
+  document.getElementById("accountButton").addEventListener("click",function(){var s=JSON.parse(localStorage.getItem(SOCIAL_KEY)||"{}");document.getElementById("socialInstagram").value=s.instagram||"";document.getElementById("socialLinkedIn").value=s.linkedin||"";document.getElementById("socialYouTube").value=s.youtube||"";document.getElementById("accountBackdrop").classList.add("open")});
   window.closeAccount=function(){document.getElementById("accountBackdrop").classList.remove("open")}
   window.saveSocials=function(){localStorage.setItem(SOCIAL_KEY,JSON.stringify({instagram:document.getElementById("socialInstagram").value,linkedin:document.getElementById("socialLinkedIn").value,youtube:document.getElementById("socialYouTube").value}));notify("Redes salvas","As URLs ficam guardadas neste navegador.")}
   window.logout=function(){localStorage.removeItem(AUTH_KEY);location.reload()}
@@ -524,7 +388,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   
   function normalizePdfDate(v){var m=String(v||"").match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);return m?m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0"):""}
   function dateList(s){return String(s||"").match(/\b\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}\b/g)||[]}
-  function buildLines(items){var a=items.filter(function(x){return String(x.str||"").trim()}).map(function(x){return{text:String(x.str).replace(/\s+/g," ").trim(),x:Number(x.transform&&x.transform[4]||0),y:Number(x.transform&&x.transform[5]||0)}}).sort(function(a,b){return b.y-a.y||a.x-b.x});var rows=[];a.forEach(function(it){var r=rows.find(function(r){return Math.abs(r.y-it.y)<=3.5});if(!r){r={y:it.y,items:[]};rows.push(r)}r.items.push(it)});return rows.sort(function(a,b){return b.y-a.y}).map(function(r){return r.items.sort(function(a,b){return a.x-b.x}).map(function(x){return x.text}).join(" ")}).map(function(x){return x.replace(/\s+/g," ").trim()}).filter(Boolean)}
+  function buildLines(items){var a=items.filter(function(x){return String(x.str||"").trim()}).map(function(x){return{text:String(x.str).replace(/\s+/g," ").trim(),x:Number(x.transform&&x.transform[4]||0),y:Number(x.transform&&x.transform[5]||0)}}).sort(function(a,b){return b.y-a.y||a.x-b.x});var rows=[];a.forEach(function(it){var r=rows.find(function(r){return Math.abs(r.y-it.y)<=3.5});if(!r){r={y:it.y,items:[]};rows.push(r)}r.items.push(it)});return rows.sort(function(a,b){return b.y-a.y}).map(function(r){return r.items.sort(function(a,b){return a.x-b.x).map(function(x){return x.text}).join(" ")}.map(function(x){return x.replace(/\s+/g," ").trim()}).filter(Boolean)}
   function isGcm(text){return /PREFEITURA MUNICIPAL DO SALVADOR/i.test(text)&&/GUARDA CIVIL MUNICIPAL/i.test(text)&&/EDITAL N[º°o]?\.?\s*002/i.test(text)}
   function parseGcm(){return{
     confidence:"alta",name:"Guarda Civil Municipal de Salvador",institution:"Prefeitura Municipal do Salvador",editalNumber:"002/2026",editalDate:"24/09/2026",bank:"Fundação Getulio Vargas (FGV)",position:"Guarda Civil Municipal — 3ª Classe",vacancies:"50 + cadastro de reserva",registrationStart:"21/09/2026 às 16h",registrationEnd:"30/10/2026 às 16h",paymentDeadline:"06/11/2026",fee:"R$ 98,00",proofDate:"17/01/2027",proofTime:"08h às 12h30",questionCount:"70",moduleI:"28 questões",moduleII:"42 questões",minimumApproval:"14 acertos no Módulo I + 21 no Módulo II + 35 no total",
@@ -609,248 +473,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   }
   window.loadNews=loadNews;
 })();
-
-// ===== ZONA V.01 GAMIFICATION / AGENDA / PROFILE =====
-  var GAME_KEY="ZONA_GAME_V1", PROFILE_KEY="ZONA_PROFILE_V1", CHALLENGE_KEY="ZONA_CHALLENGE_V1";
-  var game=JSON.parse(localStorage.getItem(GAME_KEY)||"null")||{coins:0,streak:0,lastUse:"",league:null,leagueInvested:{},activityDates:[]};
-  var profile=JSON.parse(localStorage.getItem(PROFILE_KEY)||"null")||{name:"",email:"",target:"",apps:[],gender:"",quotas:[],region:"",state:"",city:"",theme:"dark",photo:""};
-  var DEFAULT_PROFILE={name:"",username:"",email:"",target:"",apps:[],gender:"",quotas:[],region:"",state:"",city:"",theme:"dark",photo:"",agenda:{}};
-  function normalizeZonaState(){
-    db=(db&&typeof db==="object")?db:{};
-    db.contests=Array.isArray(db.contests)?db.contests:[];
-    db.questions=Array.isArray(db.questions)?db.questions:[];
-    db.sessions=Array.isArray(db.sessions)?db.sessions:[];
-    game=(game&&typeof game==="object")?game:{coins:0,streak:0,lastUse:"",league:null,leagueInvested:{},activityDates:[]};
-    game.coins=Number(game.coins)||0;game.streak=Number(game.streak)||0;game.leagueInvested=game.leagueInvested&&typeof game.leagueInvested==="object"?game.leagueInvested:{};
-    game.activityDates=Array.isArray(game.activityDates)?game.activityDates:[];
-    profile=Object.assign({},DEFAULT_PROFILE,(profile&&typeof profile==="object")?profile:{});
-    profile.apps=Array.isArray(profile.apps)?profile.apps:[];
-    profile.quotas=Array.isArray(profile.quotas)?profile.quotas:[];
-    profile.agenda=profile.agenda&&typeof profile.agenda==="object"?profile.agenda:{};
-    profile.theme=profile.theme==="light"?"light":"dark";
-    try{saveDB();localStorage.setItem(GAME_KEY,JSON.stringify(game));saveProfileLocal()}catch(e){console.warn("ZONA state normalization failed",e)}
-  }
-  function showFatalRecovery(message){
-    var app=document.getElementById("app"),login=document.getElementById("loginScreen"),note=document.getElementById("loginError");
-    if(app)app.style.display="none";if(login)login.style.display="flex";
-    if(note)note.textContent="O ZONA encontrou um dado antigo e reiniciou a sessão. Entre novamente.";
-    console.error("ZONA HUB recovery:",message);
-  }
-  window.addEventListener("error",function(ev){
-    if(ev&&ev.error){console.error(ev.error)}
-    var login=document.getElementById("loginScreen");
-    if(login&&login.style.display==="none")showFatalRecovery("runtime error");
-  });
-  window.addEventListener("unhandledrejection",function(ev){
-    console.error(ev.reason);
-    var login=document.getElementById("loginScreen");
-    if(login&&login.style.display==="none")showFatalRecovery("promise rejection");
-  });
-  normalizeZonaState();
-  var monthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
-  var TEAMS=[
-    {id:"camuflagem",name:"LIGA CAMUFLAGEM",mark:"◒",copy:"A arte de se adaptar. Foco, estratégia e presença.",people:248},
-    {id:"cromatica",name:"LIGA CROMÁTICA",mark:"✦",copy:"Mude de cor, mude de nível. Consistência e evolução.",people:193},
-    {id:"visao",name:"LIGA VISÃO",mark:"◉",copy:"Enxergue antes. Antecipe a prova. Domine o caminho.",people:167}
-  ];
-  var QUESTION_APPS=[
-    ["QConcursos","QC"],["TEC Concursos","TEC"],["Gran Questões","GQ"],["Estratégia Questões","EQ"],["Direção Questões","DQ"],["Aprova Questões","AQ"],["PCI Concursos","PCI"],["Outro","+"]
-  ];
-  var GENDERS=[["Homem","♂"],["Mulher","♀"],["Não-binário","◐"]];
-  var QUOTAS=["Negro","PCD","Mulher","Quilombola","Trans","Indígena","Baixa renda","Pessoa com deficiência auditiva","Outro"];
-  var LOCATIONS={
-    "Norte":{AC:["Rio Branco"],AP:["Macapá"],AM:["Manaus"],PA:["Belém","Santarém"],RO:["Porto Velho"],RR:["Boa Vista"],TO:["Palmas"]},
-    "Nordeste":{AL:["Maceió"],BA:["Salvador","Feira de Santana","Vitória da Conquista","Eunápolis"],CE:["Fortaleza"],MA:["São Luís"],PB:["João Pessoa"],PE:["Recife"],PI:["Teresina"],RN:["Natal"],SE:["Aracaju"]},
-    "Centro-Oeste":{DF:["Brasília"],GO:["Goiânia","Anápolis"],MT:["Cuiabá"],MS:["Campo Grande"]},
-    "Sudeste":{ES:["Vitória"],MG:["Belo Horizonte","Uberlândia"],RJ:["Rio de Janeiro","Niterói"],SP:["São Paulo","Campinas"]},
-    "Sul":{PR:["Curitiba","Londrina"],RS:["Porto Alegre","Caxias do Sul"],SC:["Florianópolis","Joinville"]}
-  };
-  var STATE_CODES=Object.assign({},...Object.keys(LOCATIONS).map(function(r){var o={};Object.keys(LOCATIONS[r]).forEach(function(s){o[s]=r});return o}));
-  var STICKERS=[
-    ["★","FOCO",0],["⚡","ZONA",0],["●","META",0],["✓","FEITO",0],
-    ["◈","REVISÃO",1],["▲","RAIZ",1],["✚","POWER",1],["◉","RADAR",2],
-    ["✦","OURO",2],["♛","PÓDIO",2],["⌁","STREAK",2],["∞","SEM LIMITES",2]
-  ];
-  function saveGame(){localStorage.setItem(GAME_KEY,JSON.stringify(game))}
-  function saveProfileLocal(){localStorage.setItem(PROFILE_KEY,JSON.stringify(profile))}
-  function coinsPerPlan(){var plan=(localStorage.getItem("ZONA_PLAN")||"FREE");return plan==="OURO"?12:plan==="PRATA"?8:3}
-  function touchUsage(reward){
-    var d=today(), prev=game.lastUse;
-    if(prev!==d){
-      var yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
-      var y=yesterday.toISOString().slice(0,10);
-      game.streak=prev===y?game.streak+1:1;game.lastUse=d;
-      game.activityDates=Array.from(new Set((game.activityDates||[]).concat(d))).slice(-60);
-      game.coins+=Number(reward||5);
-      saveGame();
-    }
-    updateUsageUI();
-  }
-  function updateUsageUI(){
-    var vals={streakNumber:game.streak,coinNumber:game.coins,homeStreak:game.streak+" dias",homeCoins:game.coins+" LIBS"};
-    Object.keys(vals).forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=vals[id]});
-    var tag=document.getElementById("homeLeagueTag");var team=TEAMS.find(function(t){return t.id===game.league});if(tag)tag.textContent=team?team.name:"SEM LIGA";
-    var gv=document.getElementById("groupActiveValue");if(gv)gv.textContent="ZONA HUB • "+(localStorage.getItem("ZONA_PLAN")||"FREE");
-  }
-  function maybeChooseLeague(){
-    if(!game.league){openLeaguePicker()}
-  }
-  function renderLeaguePicker(){
-    var box=document.getElementById("teamChoices");if(!box)return;
-    box.innerHTML=TEAMS.map(function(t){return '<div class="team-card" onclick="chooseLeague(\''+t.id+'\')"><div class="team-mark">'+t.mark+'</div><div class="team-name">'+t.name+'</div><div class="team-copy">'+t.copy+'</div><div class="team-count">'+t.people+' membros</div></div>'}).join("");
-  }
-  window.chooseLeague=function(id){game.league=id;game.leagueInvested[id]=game.leagueInvested[id]||0;saveGame();document.getElementById("leaguePickerBackdrop").classList.remove("open");renderAll();notify("Liga escolhida","Você entrou na "+TEAMS.find(function(t){return t.id===id}).name+".");};
-  function openLeaguePicker(){renderLeaguePicker();document.getElementById("leaguePickerBackdrop").classList.add("open")}
-  window.openLeaguePicker=openLeaguePicker;
-  function investLibs(){
-    if(!game.league){openLeaguePicker();return}
-    if(game.coins<10){notify("LIBS insuficientes","Faça mais registros na ZONA para juntar moedas.","error");return}
-    game.coins-=10;game.leagueInvested[game.league]=(game.leagueInvested[game.league]||0)+10;saveGame();renderAll();notify("Investimento registrado","10 LIBS foram investidas na sua liga.");
-  }
-  window.investLibs=investLibs;
-  function renderLeague(){
-    var t=TEAMS.find(function(x){return x.id===game.league}),name=document.getElementById("myLeagueName"),meta=document.getElementById("myLeagueMeta");
-    if(name)name.textContent=t?t.name:"Sem liga";if(meta)meta.textContent=t?t.copy:"Escolha sua liga";var invested=t?(game.leagueInvested[t.id]||0):0;
-    var lc=document.getElementById("myLeagueCoins");if(lc)lc.textContent=invested+" LIBS";var lp=document.getElementById("myLeaguePeople");if(lp)lp.textContent=t?t.people:0;
-    var pod=document.getElementById("leaguePodium");
-    if(pod){var leaders=["CamaleãoZ","AnthonyZ","ZonaRunner"];pod.innerHTML=leaders.map(function(n,i){return '<div class="podium-item"><strong>'+(i+1)+"º "+n+'</strong><span>'+((120-i*21)+(t?invested:0))+" LIBS</span><span>"+(t?t.name:"")+"</span></div>"}).join("")}
-    var ch=JSON.parse(localStorage.getItem(CHALLENGE_KEY)||"null");var ct=document.getElementById("challengeText");if(ct)ct.textContent=ch?(ch.title+" • recompensa: "+ch.reward+" LIBS"):"Nenhum desafio publicado.";
-    var ab=document.getElementById("adminChallengeButton");if(ab)ab.classList.toggle("hidden",!(currentUser&&currentUser.role==="Administrador"));
-  }
-  function claimChallenge(){var ch=JSON.parse(localStorage.getItem(CHALLENGE_KEY)||"null");if(!ch){notify("Sem desafio","O ADM ainda não publicou o desafio deste mês.","error");return}if(ch.claimed&&ch.claimed.indexOf(currentUser.role)>=0){notify("Já registrado","Este desafio já foi marcado como concluído.","error");return}game.coins+=Number(ch.reward||0);saveGame();notify("Desafio concluído","Você ganhou "+ch.reward+" LIBS. Use-as na sua liga.")}
-  window.claimChallenge=claimChallenge;
-  function openChallengeAdmin(){document.getElementById("challengeBackdrop").classList.add("open")}
-  window.openChallengeAdmin=openChallengeAdmin;
-  window.closeChallengeAdmin=function(){document.getElementById("challengeBackdrop").classList.remove("open")}
-  window.saveChallenge=function(){var title=document.getElementById("challengeTitleInput").value.trim(),reward=Number(document.getElementById("challengeRewardInput").value)||0;if(!title||reward<1){notify("Falta informação","Preencha desafio e recompensa.","error");return}localStorage.setItem(CHALLENGE_KEY,JSON.stringify({title:title,reward:reward,claimed:[]}));closeChallengeAdmin();renderLeague();notify("Desafio publicado","O desafio mensal está disponível para as ligas.")}
-  function renderAgenda(){
-    var c=currentContest(),y=monthCursor.getFullYear(),m=monthCursor.getMonth();
-    var first=new Date(y,m,1),last=new Date(y,m+1,0),start=(first.getDay()+6)%7;
-    var days=[];
-    for(var i=0;i<start;i++)days.push({date:new Date(y,m,i-start+1),outside:true});
-    for(var d=1;d<=last.getDate();d++)days.push({date:new Date(y,m,d),outside:false});
-    while(days.length<42){var n=days.length-start-last.getDate()+1;days.push({date:new Date(y,m+1,n),outside:true})}
-
-    var events=[];
-    if(c&&c.editalData){
-      var D=c.editalData;
-      (D.timeline||[]).forEach(function(item){
-        dateListString(item[1]).forEach(function(ds){events.push({date:toISODate(ds),label:item[0],contest:true})})
-      });
-      dateListString(D.registrationStart||"").forEach(function(ds){events.push({date:toISODate(ds),label:"INSCRIÇÃO",contest:true})});
-      dateListString(D.registrationEnd||"").forEach(function(ds){events.push({date:toISODate(ds),label:"FIM DAS INSCRIÇÕES",contest:true})});
-      dateListString(D.proofDate||"").forEach(function(ds){events.push({date:toISODate(ds),label:"PROVA OBJETIVA",contest:true,exam:true})});
-    }
-
-    var grid=document.getElementById("homeCalendar"),title=document.getElementById("homeMonthTitle");
-    if(!grid||!title)return;
-    title.textContent=new Intl.DateTimeFormat("pt-BR",{month:"long",year:"numeric"}).format(new Date(y,m,1));
-
-    var html=["DOM","SEG","TER","QUA","QUI","SEX","SÁB"].map(function(dayName){
-      return '<div class="dow">'+dayName+'</div>';
-    }).join("");
-
-    days.forEach(function(item){
-      var key=item.date.getFullYear()+"-"+String(item.date.getMonth()+1).padStart(2,"0")+"-"+String(item.date.getDate()).padStart(2,"0");
-      var isToday=key===today();
-      var dayEvents=events.filter(function(ev){return ev.date===key});
-      var manual=(profile.agenda||{})[key]||null;
-
-      html += '<button type="button" class="day '+(item.outside?"muted ":"")+(isToday?"today ":"")+(dayEvents.some(function(ev){return ev.exam})?"exam ":"")+'" onclick="openDayEditor(\''+key+'\')">';
-      html += '<div class="day-number">'+item.date.getDate()+'</div><div class="day-events">';
-      html += dayEvents.slice(0,2).map(function(ev){return '<div class="day-event contest" title="'+esc(ev.label)+'">'+esc(ev.label)+'</div>'}).join("");
-      if(manual&&manual.note)html += '<div class="day-event" title="'+esc(manual.note)+'">'+esc(manual.note)+'</div>';
-      html += '</div>';
-      if(manual&&manual.sticker)html += '<div class="day-sticker">'+esc(manual.sticker)+'</div>';
-      html += '</button>';
-    });
-
-    grid.innerHTML=html;
-  }
-  function toISODate(s){
-    var m=String(s||"").match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
-    return m?m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0"):"";
-  }
-  function dateListString(s){return String(s||"").match(/\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}/g)||[]}
-  window.changeMonth=function(dir){monthCursor=new Date(monthCursor.getFullYear(),monthCursor.getMonth()+dir,1);renderAgenda()}
-  var editingDayKey="",editingSticker="";
-  function renderStickerGrid(){
-    var box=document.getElementById("stickerGrid");if(!box)return;
-    var max=coinsPerPlan();
-    box.innerHTML=STICKERS.map(function(s,i){
-      var unlocked=i<max;
-      var b=document.createElement("button");
-      b.type="button";b.className="sticker"+(unlocked?"":" locked");
-      b.innerHTML='<div class="sticker-mark">'+s[0]+'</div><div class="sticker-name">'+s[1]+'</div>'+(unlocked?"":"<div class=\"tiny\">PLANO</div>");
-      if(unlocked)b.addEventListener("click",function(){editingSticker=s[0];document.querySelectorAll("#stickerGrid .sticker").forEach(function(el){el.style.outline="none"});b.style.outline="1px solid var(--green)"});
-      else b.addEventListener("click",function(){notify("Adesivo bloqueado","Faça upgrade do plano para liberar este adesivo.","error")});
-      box.appendChild(b);
-    });
-  }
-  window.openDayEditor=function(key){
-    editingDayKey=key;var current=(profile.agenda||{})[key]||{};editingSticker=current.sticker||"";
-    document.getElementById("dayEditorTitle").textContent=new Intl.DateTimeFormat("pt-BR",{weekday:"long",day:"2-digit",month:"long"}).format(new Date(key+"T12:00:00"));
-    document.getElementById("dayNoteInput").value=current.note||"";
-    document.getElementById("dayEditorBackdrop").classList.add("open");
-    renderStickerGrid();
-    document.querySelectorAll("#stickerGrid .sticker").forEach(function(el){el.style.outline="none";if(el.querySelector(".sticker-mark")&&el.querySelector(".sticker-mark").textContent===editingSticker)el.style.outline="1px solid var(--green)"});
-  };
-  window.closeDayEditor=function(){document.getElementById("dayEditorBackdrop").classList.remove("open");editingDayKey="";editingSticker=""};
-  window.saveDayEditor=function(){
-    if(!editingDayKey)return;var note=document.getElementById("dayNoteInput").value.trim();profile.agenda=profile.agenda||{};
-    if(!note&&!editingSticker)delete profile.agenda[editingDayKey];else profile.agenda[editingDayKey]={note:note,sticker:editingSticker};
-    saveProfileLocal();closeDayEditor();renderAgenda();touchUsage(2);notify("Agenda atualizada","Seu dia foi salvo na AGENDA ZONA.");
-  };
-  window.removeDayEditor=function(){if(!editingDayKey)return;profile.agenda=profile.agenda||{};delete profile.agenda[editingDayKey];saveProfileLocal();closeDayEditor();renderAgenda();notify("Dia limpo","As anotações e o adesivo foram removidos.")};
-  window.openDayEditor=openDayEditor;
-  function renderProfile(){
-    var pp=document.getElementById("profilePhotoPreview");if(pp&&profile.photo)pp.src=profile.photo;
-    var ids={profileName:profile.name||"",profileEmail:profile.email||"",profileTarget:profile.target||""};Object.keys(ids).forEach(function(id){var e=document.getElementById(id);if(e)e.value=ids[id]});
-    profile.apps=Array.isArray(profile.apps)?profile.apps:[];profile.quotas=Array.isArray(profile.quotas)?profile.quotas:[];var apps=document.getElementById("appsOptions"),g=document.getElementById("genderOptions"),q=document.getElementById("quotaOptions");
-    if(apps)apps.innerHTML=QUESTION_APPS.map(function(x){return '<button type="button" class="option-tile '+(profile.apps.indexOf(x[0])>=0?"active":"")+'" onclick="toggleProfileOption(\'apps\',\''+x[0].replace(/'/g,"&#39;")+'\')">'+x[1]+" "+x[0]+"</button>"}).join("");
-    if(g)g.innerHTML=GENDERS.map(function(x){return '<button type="button" class="option-tile '+(profile.gender===x[0]?"active":"")+'" onclick="profile.gender=\''+x[0]+'\';renderProfile()">'+x[1]+" "+x[0]+"</button>"}).join("");
-    if(q)q.innerHTML=QUOTAS.map(function(x){return '<button type="button" class="option-tile '+(profile.quotas.indexOf(x)>=0?"active":"")+'" onclick="toggleProfileOption(\'quotas\',\''+x.replace(/'/g,"&#39;")+'\')">'+x+"</button>"}).join("");
-    renderLocationSelectors();
-    var th=document.getElementById("profileTheme");if(th)th.value=profile.theme||"dark"
-  }
-  window.toggleProfileOption=function(key,val){var arr=profile[key]||[];var i=arr.indexOf(val);if(i>=0)arr.splice(i,1);else arr.push(val);profile[key]=arr;renderProfile()}
-  function renderLocationSelectors(){
-    var r=document.getElementById("profileRegion"),s=document.getElementById("profileState"),ci=document.getElementById("profileCity"),map=document.getElementById("stateMap");if(!r||!s||!ci)return;
-    r.innerHTML='<option value="">Região</option>'+Object.keys(LOCATIONS).map(function(x){return '<option '+(profile.region===x?"selected":"")+'>'+x+"</option>"}).join("");
-    var region=profile.region;var states=region?Object.keys(LOCATIONS[region]):Object.keys(STATE_CODES);
-    s.innerHTML='<option value="">Estado</option>'+states.map(function(x){return '<option '+(profile.state===x?"selected":"")+' value="'+x+'">'+x+"</option>"}).join("");
-    var cities=region&&profile.state&&LOCATIONS[region][profile.state]?LOCATIONS[region][profile.state]:[];ci.innerHTML='<option value="">Cidade</option>'+cities.map(function(x){return '<option '+(profile.city===x?"selected":"")+'>'+x+"</option>"}).join("");
-    if(map)map.innerHTML=Object.keys(STATE_CODES).map(function(st){return '<button type="button" class="state-tile '+(profile.state===st?"active":"")+'" onclick="pickState(\''+st+'\')">'+st+"</button>"}).join("");
-  }
-  window.pickState=function(st){profile.state=st;profile.region=STATE_CODES[st];profile.city="";renderProfile()}
-  document.getElementById("profileRegion")?.addEventListener("change",function(){profile.region=this.value;profile.state="";profile.city="";renderProfile()});
-  document.getElementById("profileState")?.addEventListener("change",function(){profile.state=this.value;profile.city="";renderProfile()});
-  document.getElementById("profileCity")?.addEventListener("change",function(){profile.city=this.value});
-  document.getElementById("profilePhoto")?.addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){profile.photo=rd.result;renderProfile()};rd.readAsDataURL(f)});
-  document.getElementById("profileTheme")?.addEventListener("change",function(){profile.theme=this.value;applyTheme()});
-  function applyTheme(){document.documentElement.classList.toggle("light-theme",profile.theme==="light");localStorage.setItem("ZONA_THEME_V1",profile.theme)}
-  window.saveProfile=function(){profile.name=document.getElementById("profileName").value.trim();profile.email=document.getElementById("profileEmail").value.trim();profile.target=document.getElementById("profileTarget").value.trim();var np=document.getElementById("newPassword").value;if(np){localStorage.setItem("ZONA_LOCAL_PASSWORD_"+(currentUser.role||"user"),np)}profile.theme=document.getElementById("profileTheme").value;applyTheme();saveProfileLocal();var an=document.getElementById("accountName");if(an&&profile.name)an.textContent=profile.name;notify("Perfil salvo","Suas preferências foram atualizadas neste navegador.");updateUsageUI()}
-  function openPremium(){document.getElementById("premiumBackdrop").classList.add("open")}
-  window.openPremium=openPremium;
-  function joinCommunity(){notify("Comunidade ZONA","Configure o link oficial do WhatsApp na próxima etapa do site.")}
-  window.joinCommunity=joinCommunity;
-  function openFeedback(){var subj=document.getElementById("supportSubject").value||"Feedback ZONA";var msg=document.getElementById("supportMessage").value||"";var mail="mailto:CONFIGURE_EMAIL@zonahub.com?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(msg);window.location.href=mail}
-  window.openFeedback=openFeedback;
-  function bePartner(){notify("Sócio ZONA","A área está pronta. O link de doação/PIX será conectado quando você definir o canal oficial.")}
-  window.bePartner=bePartner;
-  function closeTerms(){document.getElementById("termsBackdrop").classList.remove("open")}
-  window.closeTerms=closeTerms;
-  document.getElementById("termsButton")?.addEventListener("click",function(){document.getElementById("termsBackdrop").classList.add("open")});
-  function updateFromContest(){var c=currentContest();if(c){var ed=c.editalData||{};var d=document.getElementById("dashContestTitle");if(d)d.textContent=c.name}}
-  var _renderAll=renderAll;
-  renderAll=function(){_renderAll();updateUsageUI();renderLeague();renderAgenda();};
-  document.getElementById("loginForm")?.addEventListener("submit",function(){setTimeout(function(){touchUsage(5);renderLeaguePicker();maybeChooseLeague();renderProfile()},100)});
-  // Image news upgrade
-  var _loadNews=loadNews;
-  loadNews=async function(){var grid=document.getElementById("newsGrid");if(!grid)return;grid.innerHTML='<div class="empty">Atualizando radar...</div>';try{var base="https://news.google.com/rss/search?q="+encodeURIComponent("concursos públicos "+(profile.region||"Brasil"))+"&hl=pt-BR&gl=BR&ceid=BR:pt-419";var rr=await fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(base));var jj=await rr.json();var items=(jj.items||[]).slice(0,6);if(!items.length)throw new Error("empty");grid.innerHTML=items.map(function(n){var img=n.thumbnail||(n.enclosure&&n.enclosure.link)||"";return '<article class="news-card">'+(img?'<img src="'+esc(img)+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:11px;margin-bottom:9px">':'')+'<span class="news-tag">RADAR</span><div class="news-title">'+esc(n.title)+'</div><div class="news-meta">'+esc(n.pubDate||"Atualização")+'</div><a class="news-link" href="'+esc(n.link)+'" target="_blank" rel="noopener">ABRIR MATÉRIA →</a></article>'}).join("")}catch(e){_loadNews()}};
-  window.loadNews=loadNews;
-  updateUsageUI();applyTheme();renderLeaguePicker();renderProfile();renderAgenda();
-
 </script>
 </body>
 </html>
