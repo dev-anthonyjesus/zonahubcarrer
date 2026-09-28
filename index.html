@@ -682,7 +682,9 @@ body.zona-app-ready #app{display:block}
       if(!tr.querySelector("td")||tr.dataset.zonaDone==="1")return;
       var q=qs[i];if(!q)return;
       var td=document.createElement("td");
-      td.innerHTML='<div class="zona-table-actions"><button class="zona-mini-btn" onclick="window.zonaOpenQuestion(\\''+q.id+'\\')">EDITAR</button><button class="zona-mini-btn" onclick="window.zonaDeleteQuestion(\\''+q.id+'\\')">EXCLUIR</button></div>';
+      td.innerHTML='<div class="zona-table-actions"><button type="button" class="zona-mini-btn zona-edit-q">EDITAR</button><button type="button" class="zona-mini-btn zona-delete-q">EXCLUIR</button></div>';
+      td.querySelector(".zona-edit-q").addEventListener("click",function(){window.zonaOpenQuestion(q.id)});
+      td.querySelector(".zona-delete-q").addEventListener("click",function(){window.zonaDeleteQuestion(q.id)});
       tr.appendChild(td);tr.dataset.zonaDone="1";
     });
   }
