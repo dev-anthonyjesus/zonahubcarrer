@@ -17,6 +17,16 @@
   content="ZONA HUB — seu centro de comando para concursos."
 >
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  });
+</script>
+
 <style>
 
 /* =========================================================
@@ -203,6 +213,157 @@ body{
   text-transform:uppercase;
 
 }
+
+
+
+
+/* =========================================================
+   ZONA HUB — UX / NOTIFICATIONS
+========================================================= */
+
+function notify(message, type="success", title="ZONA HUB"){
+  const stack = document.getElementById("notifyStack");
+  if(!stack) return;
+
+  const toast = document.createElement("div");
+  toast.className = "toast " + (type === "error" ? "error" : "");
+  toast.innerHTML = `
+    <span class="toast-dot"></span>
+    <div>
+      <div class="toast-title">${escapeHTML(title)}</div>
+      <div class="toast-message">${escapeHTML(message)}</div>
+    </div>
+  `;
+
+  stack.appendChild(toast);
+  setTimeout(() => toast.remove(), 4200);
+}
+
+function setSelectValue(selectId, value){
+  const select = document.getElementById(selectId);
+  if(!select) return;
+  const exists = [...select.options].some(o => o.value === value);
+  if(exists){
+    select.value = value;
+  }else{
+    select.value = "__custom__";
+    const custom = document.getElementById(selectId + "Custom");
+    if(custom){
+      custom.classList.remove("hidden");
+      custom.value = value || "";
+    }
+  }
+}
+
+function getSelectedSubject(selectId){
+  const select = document.getElementById(selectId);
+  const custom = document.getElementById(selectId + "Custom");
+  if(!select) return "";
+  if(select.value === "__custom__"){
+    return (custom?.value || "").trim();
+  }
+  return select.value.trim();
+}
+
+function bindSubjectSelector(selectId){
+  const select = document.getElementById(selectId);
+  const custom = document.getElementById(selectId + "Custom");
+  if(!select || !custom) return;
+
+  select.addEventListener("change", () => {
+    const customMode = select.value === "__custom__";
+    custom.classList.toggle("hidden", !customMode);
+    custom.required = customMode;
+    if(!customMode) custom.value = "";
+  });
+}
+
+const SUBJECT_CATALOG = {
+  "Base comum": [
+    "Língua Portuguesa","Gramática","Interpretação de Texto","Redação","Literatura",
+    "Raciocínio Lógico","Matemática","Estatística","Probabilidade",
+    "Atualidades","Conhecimentos Gerais","Atualidades e Mundo Contemporâneo"
+  ],
+  "Direito": [
+    "Direito Constitucional","Direito Administrativo","Direito Civil","Direito Penal",
+    "Direito Processual Penal","Direito Processual Civil","Direito do Trabalho",
+    "Direito Processual do Trabalho","Direito Tributário","Direito Empresarial",
+    "Direito Eleitoral","Direito Previdenciário","Direito Ambiental",
+    "Direitos Humanos","Direito do Consumidor","Direito Financeiro","Direito Internacional",
+    "Legislação Especial","Legislação Institucional","ECA","LGPD"
+  ],
+  "Administração e gestão": [
+    "Administração Geral","Administração Pública","Gestão de Pessoas","Gestão de Projetos",
+    "Gestão Pública","Políticas Públicas","Governança","Compliance","Licitações e Contratos",
+    "Orçamento Público","AFO","Contabilidade Geral","Contabilidade Pública",
+    "Economia","Finanças","Marketing","Empreendedorismo","Gestão de Processos"
+  ],
+  "Tecnologia": [
+    "Informática","Tecnologia da Informação","Segurança da Informação","Redes de Computadores",
+    "Banco de Dados","SQL","Programação","Python","JavaScript","HTML e CSS",
+    "Engenharia de Software","Algoritmos","Estruturas de Dados","Ciência de Dados",
+    "Inteligência Artificial","Machine Learning","Power BI","Excel","Pacote Office"
+  ],
+  "Saúde": [
+    "Biologia","Anatomia","Fisiologia","Bioquímica","Farmacologia","Microbiologia",
+    "Imunologia","Genética","Saúde Coletiva","Saúde Pública","Epidemiologia",
+    "Enfermagem","Medicina","Psicologia","Psiquiatria","Nutrição","Fisioterapia",
+    "Odontologia","Biomedicina","Educação Física","Terapia Ocupacional"
+  ],
+  "Humanas e sociais": [
+    "História","Geografia","Sociologia","Filosofia","Antropologia","Ciência Política",
+    "Psicologia Social","Psicologia do Desenvolvimento","Psicologia Cognitiva",
+    "Psicologia Organizacional","Psicologia Clínica","Psicometria","Neuropsicologia",
+    "Processos Psicológicos Básicos","Indivíduo e Sociedade","Metodologia Científica"
+  ],
+  "Exatas e engenharia": [
+    "Álgebra","Geometria","Cálculo","Física","Química","Mecânica","Eletricidade",
+    "Eletrônica","Termodinâmica","Resistência dos Materiais","Mecânica dos Fluidos",
+    "Fenômenos de Transporte","Engenharia de Produção","Engenharia Civil",
+    "Engenharia Química","Engenharia Elétrica","Engenharia Mecânica"
+  ],
+  "Educação e idiomas": [
+    "Pedagogia","Didática","Psicopedagogia","Educação Inclusiva","BNCC",
+    "Língua Inglesa","Língua Espanhola","Língua Francesa","LIBRAS","Redação Acadêmica"
+  ],
+  "Segurança e legislação": [
+    "Legislação de Trânsito","Legislação Penal","Segurança Pública","Criminologia",
+    "Direitos Humanos e Cidadania","Defesa Civil","Guarda Municipal",
+    "Legislação Municipal","Legislação Estadual","Legislação Federal"
+  ]
+};
+
+function populateSubjectSelects(){
+  ["studySubject","questionSubject"].forEach(id => {
+    const select = document.getElementById(id);
+    if(!select) return;
+
+    const first = select.options[0]?.outerHTML || "";
+    select.innerHTML = first;
+
+    Object.entries(SUBJECT_CATALOG).forEach(([group, items]) => {
+      const optgroup = document.createElement("optgroup");
+      optgroup.label = group;
+      items.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        optgroup.appendChild(option);
+      });
+      select.appendChild(optgroup);
+    });
+
+    const custom = document.createElement("option");
+    custom.value = "__custom__";
+    custom.textContent = "Outra matéria / assunto...";
+    select.appendChild(custom);
+  });
+
+  bindSubjectSelector("studySubject");
+  bindSubjectSelector("questionSubject");
+}
+
+populateSubjectSelects();
 
 
 /* =========================================================
@@ -1394,6 +1555,144 @@ main{
 
 
 /* =========================================================
+   ZONA SELECTS / NOTIFICATIONS
+========================================================= */
+
+.select-wrap{
+  position:relative;
+}
+
+.input,
+select.input{
+  appearance:none;
+}
+
+.select-wrap::after{
+  content:"⌄";
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-55%);
+  color:#777;
+  pointer-events:none;
+  font-size:13px;
+}
+
+.select-wrap select{
+  padding-right:34px;
+}
+
+.custom-subject{
+  margin-top:10px;
+}
+
+.file-zone{
+  margin-top:12px;
+  padding:18px;
+  border:1px dashed #3a3a3a;
+  border-radius:15px;
+  background:#0b0b0b;
+}
+
+.file-zone:hover{
+  border-color:#666;
+}
+
+.file-zone input[type="file"]{
+  width:100%;
+  color:#aaa;
+  font-size:11px;
+}
+
+.file-status{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.6;
+}
+
+.extract-result{
+  margin-top:14px;
+  padding:15px;
+  border:1px solid #303030;
+  border-radius:14px;
+  background:#0d0d0d;
+}
+
+.extract-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:10px;
+}
+
+.extract-item{
+  padding:10px;
+  border-radius:10px;
+  background:#121212;
+}
+
+.extract-label{
+  color:var(--muted);
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.extract-value{
+  margin-top:4px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.notify-stack{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  width:min(360px,calc(100vw - 40px));
+}
+
+.toast{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:14px 15px;
+  border:1px solid #303030;
+  border-radius:15px;
+  background:rgba(18,18,18,.96);
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
+  animation:toastIn .22s ease;
+}
+
+.toast-dot{
+  width:8px;
+  height:8px;
+  margin-top:5px;
+  border-radius:50%;
+  background:var(--green);
+  flex:0 0 auto;
+}
+
+.toast.error .toast-dot{ background:var(--orange); }
+.toast-title{font-size:11px;font-weight:900;}
+.toast-message{margin-top:3px;color:#999;font-size:10px;line-height:1.45;}
+
+@keyframes toastIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  .extract-grid{grid-template-columns:1fr}
+  .notify-stack{right:15px;bottom:15px;width:calc(100vw - 30px)}
+}
+
+/* =========================================================
    UTILITY
 ========================================================= */
 
@@ -1410,6 +1709,7 @@ main{
 
 <body>
 
+<div class="notify-stack" id="notifyStack" aria-live="polite"></div>
 
 <div class="app">
 
@@ -1968,11 +2268,15 @@ main{
       <div class="form-grid">
 
 
+        <div class="select-wrap">
+          <select class="input" id="studySubject" required>
+            <option value="">Selecione a matéria / área</option>
+          </select>
+        </div>
         <input
-          class="input"
-          id="studySubject"
-          placeholder="Matéria / assunto"
-          required
+          class="input custom-subject hidden"
+          id="studySubjectCustom"
+          placeholder="Digite a matéria ou assunto"
         >
 
 
@@ -2080,11 +2384,15 @@ main{
       <div class="form-grid">
 
 
+        <div class="select-wrap">
+          <select class="input" id="questionSubject" required>
+            <option value="">Selecione a matéria / área</option>
+          </select>
+        </div>
         <input
-          class="input"
-          id="questionSubject"
-          placeholder="Matéria"
-          required
+          class="input custom-subject hidden"
+          id="questionSubjectCustom"
+          placeholder="Digite a matéria ou assunto"
         >
 
 
@@ -2392,8 +2700,7 @@ main{
 
         <div class="modal-description">
 
-          O objetivo é você preencher o mínimo possível.
-          Vamos evoluir a importação automática depois.
+          Preencha o mínimo possível. Se tiver o PDF, use a importação para extrair os dados automaticamente.
 
         </div>
 
@@ -2439,8 +2746,7 @@ main{
       </strong>
 
       <span>
-        Escolha um PDF do edital. Estrutura preparada
-        para a futura leitura automática.
+        Escolha um PDF e o ZONA HUB fará a leitura do texto diretamente no navegador.
       </span>
 
     </div>
@@ -2479,6 +2785,25 @@ main{
         >
 
 
+        <div class="select-wrap">
+          <select class="input" id="contestType" required>
+            <option value="">Tipo de preparação</option>
+            <option>Concurso público</option>
+            <option>Vestibular / ENEM</option>
+            <option>Graduação</option>
+            <option>Pós-graduação</option>
+            <option>Residência</option>
+            <option>OAB / Ordem profissional</option>
+            <option>Certificação profissional</option>
+            <option>Curso técnico</option>
+            <option>Curso livre</option>
+            <option>Idiomas</option>
+            <option>Militar</option>
+            <option>Mestrado / Doutorado</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
         <input
           class="input"
           id="contestProgressInput"
@@ -2512,24 +2837,29 @@ main{
       <br>
 
 
-      <input
-        class="input"
-        type="file"
-        accept=".pdf"
-        id="editalFile"
-      >
-
-
-      <br><br>
-
-
-      <div class="modal-description">
-
-        Na V1 o PDF fica apenas associado ao concurso.
-        Na próxima etapa vamos adicionar a leitura automática
-        das informações do edital.
-
+      <div class="file-zone">
+        <input
+          type="file"
+          accept="application/pdf,.pdf"
+          id="editalFile"
+        >
+        <div class="file-status" id="editalFileStatus">
+          Selecione o PDF. O ZONA HUB vai extrair o texto no próprio navegador e tentar identificar nome, cargo, datas e estrutura.
+        </div>
       </div>
+
+      <button
+        class="btn btn-primary"
+        id="processEditalButton"
+        type="button"
+        onclick="processEdital()"
+        disabled
+        style="margin-top:10px"
+      >
+        ANALISAR EDITAL
+      </button>
+
+      <div id="editalExtractResult"></div>
 
 
     </div>
@@ -2895,8 +3225,10 @@ function saveContest(){
 
   if(!name){
 
-    alert(
-      "Digite pelo menos o nome do concurso."
+    notify(
+      "Informe pelo menos o nome do concurso para continuar.",
+      "error",
+      "Falta uma informação"
     );
 
     return;
@@ -2905,6 +3237,11 @@ function saveContest(){
 
 
   const contest = {
+
+    type:
+      document
+        .getElementById("contestType")
+        .value || "Concurso público",
 
     id:
       Date.now().toString(),
@@ -2979,11 +3316,7 @@ document
       event.preventDefault();
 
 
-      const subject =
-        document
-          .getElementById("studySubject")
-          .value
-          .trim();
+      const subject = getSelectedSubject("studySubject");
 
 
       const minutes =
@@ -3010,6 +3343,18 @@ document
       event.target.reset();
 
       renderAll();
+
+      notify(
+        `${total} questões registradas em ${subject}.`,
+        "success",
+        "Resultado salvo"
+      );
+
+      notify(
+        `${subject} — ${minutes} min registrados.`,
+        "success",
+        "Estudo salvo"
+      );
 
     }
   );
@@ -3124,11 +3469,7 @@ document
       event.preventDefault();
 
 
-      const subject =
-        document
-          .getElementById("questionSubject")
-          .value
-          .trim();
+      const subject = getSelectedSubject("questionSubject");
 
 
       const total =
@@ -3149,8 +3490,10 @@ document
 
       if(correct > total){
 
-        alert(
-          "Os acertos não podem ser maiores que o total."
+        notify(
+          "Revise a bateria: o número de acertos não pode ultrapassar o total de questões.",
+          "error",
+          "Resultado inválido"
         );
 
         return;
@@ -3646,8 +3989,10 @@ document
 
       if(seconds < 60){
 
-        alert(
-          "A sessão precisa ter pelo menos 1 minuto."
+        notify(
+          "A sessão ainda está muito curta. Estude por pelo menos 1 minuto antes de finalizar.",
+          "error",
+          "Sessão não finalizada"
         );
 
         return;
@@ -3713,6 +4058,240 @@ document
     }
   );
 
+
+
+
+
+/* =========================================================
+   EDITAL READER — CLIENT SIDE
+========================================================= */
+
+let selectedEditalFile = null;
+let extractedEdital = null;
+
+const editalFileInput = document.getElementById("editalFile");
+
+if(editalFileInput){
+  editalFileInput.addEventListener("change", () => {
+    selectedEditalFile = editalFileInput.files?.[0] || null;
+    const status = document.getElementById("editalFileStatus");
+    const button = document.getElementById("processEditalButton");
+
+    if(selectedEditalFile){
+      status.textContent =
+        selectedEditalFile.name + " selecionado. Clique em “ANALISAR EDITAL” para iniciar a leitura.";
+      button.disabled = false;
+    }else{
+      status.textContent =
+        "Selecione um arquivo PDF para continuar.";
+      button.disabled = true;
+    }
+  });
+}
+
+function cleanPdfText(text){
+  return text
+    .replace(/\u00a0/g," ")
+    .replace(/[ \t]+/g," ")
+    .replace(/\n{3,}/g,"\n\n")
+    .trim();
+}
+
+function findDateNear(text, patterns){
+  const dateRegex = /(\d{1,2}[\/.-]\d{1,2}[\/.-]\d{4}|\d{1,2}\s+de\s+[A-Za-zçãõáéíóú]+\s+de\s+\d{4})/gi;
+  const lines = text.split(/\n+/);
+
+  for(const line of lines){
+    const lower = line.toLowerCase();
+    if(patterns.some(p => lower.includes(p))){
+      const match = line.match(dateRegex);
+      if(match) return match[0];
+    }
+  }
+  return "";
+}
+
+function findField(text, labels){
+  const lines = text.split(/\n+/).map(x => x.trim()).filter(Boolean);
+
+  for(let i=0;i<lines.length;i++){
+    const line = lines[i];
+    const lower = line.toLowerCase();
+
+    if(labels.some(label => lower.includes(label))){
+      const after = line.split(/[:\-–]/).slice(1).join(" ").trim();
+      if(after && after.length > 3 && after.length < 180) return after;
+
+      const next = lines[i+1];
+      if(next && next.length > 3 && next.length < 180) return next;
+    }
+  }
+
+  return "";
+}
+
+function inferContestName(text){
+  const lines = text.split(/\n+/)
+    .map(x => x.trim())
+    .filter(x => x.length >= 8 && x.length <= 180);
+
+  const priority = lines.find(line => /concurso público|processo seletivo|seleção pública|guarda municipal|prefeitura|câmara municipal|tribunal|universidade federal|instituto federal/i.test(line));
+
+  if(priority) return priority;
+
+  return lines.find(line => line === line.toUpperCase() && /[A-ZÁÉÍÓÚÃÕÇ]/.test(line)) || lines[0] || "Concurso importado";
+}
+
+function parseEditalText(text){
+  const normalized = cleanPdfText(text);
+
+  const position =
+    findField(normalized, ["cargo:", "cargo pretendido", "cargo/emprego", "função:", "função pretendida"]) ||
+    "";
+
+  const proofDate =
+    findDateNear(normalized, ["prova objetiva","provas objetivas","realização da prova","data da prova","exame objetivo"]) ||
+    "";
+
+  const applicationDate =
+    findDateNear(normalized, ["inscrições","período de inscrição","inscrição"]) ||
+    "";
+
+  const institution =
+    findField(normalized, ["órgão:", "organizador:", "banca organizadora", "realização:"]) ||
+    "";
+
+  return {
+    name: inferContestName(normalized),
+    position,
+    proofDate,
+    applicationDate,
+    institution,
+    textLength: normalized.length
+  };
+}
+
+function normalizeDateForInput(value){
+  if(!value) return "";
+  const m = value.match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/);
+  if(!m) return "";
+  return `${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`;
+}
+
+async function processEdital(){
+  if(!selectedEditalFile){
+    notify("Escolha um PDF antes de iniciar a leitura.", "error", "Nenhum edital selecionado");
+    return;
+  }
+
+  if(!window.pdfjsLib){
+    notify("O leitor de PDF ainda não carregou. Atualize a página e tente novamente.", "error", "Leitor indisponível");
+    return;
+  }
+
+  const status = document.getElementById("editalFileStatus");
+  const button = document.getElementById("processEditalButton");
+
+  button.disabled = true;
+  button.textContent = "LENDO EDITAL...";
+  status.textContent = "Extraindo o texto do PDF. Isso acontece no seu navegador.";
+
+  try{
+    const buffer = await selectedEditalFile.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data:buffer}).promise;
+    let fullText = "";
+
+    for(let pageNumber=1; pageNumber<=pdf.numPages; pageNumber++){
+      const page = await pdf.getPage(pageNumber);
+      const content = await page.getTextContent();
+      fullText += content.items.map(item => item.str || "").join(" ") + "\n";
+      if(pageNumber % 10 === 0 || pageNumber === pdf.numPages){
+        status.textContent = `Lendo página ${pageNumber} de ${pdf.numPages}...`;
+      }
+    }
+
+    if(fullText.replace(/\s/g,"").length < 80){
+      throw new Error("PDF sem camada de texto. Provavelmente é um PDF escaneado.");
+    }
+
+    extractedEdital = parseEditalText(fullText);
+
+    document.getElementById("contestName").value = extractedEdital.name || "";
+    document.getElementById("contestPosition").value = extractedEdital.position || "";
+    document.getElementById("contestDate").value = normalizeDateForInput(extractedEdital.proofDate);
+
+    const result = document.getElementById("editalExtractResult");
+    result.innerHTML = `
+      <div class="extract-result">
+        <div class="card-title">Leitura concluída</div>
+        <div class="card-subtitle">Confira os campos antes de salvar. O sistema não presume que a extração esteja perfeita.</div>
+        <div class="extract-grid">
+          <div class="extract-item"><div class="extract-label">Concurso / órgão</div><div class="extract-value">${escapeHTML(extractedEdital.name)}</div></div>
+          <div class="extract-item"><div class="extract-label">Cargo</div><div class="extract-value">${escapeHTML(extractedEdital.position || "Não identificado")}</div></div>
+          <div class="extract-item"><div class="extract-label">Prova</div><div class="extract-value">${escapeHTML(extractedEdital.proofDate || "Não identificada")}</div></div>
+          <div class="extract-item"><div class="extract-label">Inscrições</div><div class="extract-value">${escapeHTML(extractedEdital.applicationDate || "Não identificadas")}</div></div>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="saveExtractedContest()" style="margin-top:12px">
+          SALVAR CONCURSO EXTRAÍDO
+        </button>
+      </div>
+    `;
+
+    status.textContent = `${pdf.numPages} páginas lidas. O PDF não foi enviado para um servidor; a leitura foi feita no navegador.`;
+    button.textContent = "EDITAL ANALISADO";
+    notify("O edital foi lido. Confira os dados extraídos antes de salvar.", "success", "Leitura concluída");
+
+  }catch(error){
+    console.error(error);
+    status.textContent = error.message || "Não foi possível ler este PDF.";
+    button.disabled = false;
+    button.textContent = "TENTAR NOVAMENTE";
+    notify(
+      error.message?.includes("camada de texto")
+        ? "Este PDF parece ser escaneado. A próxima etapa será adicionar OCR para esse tipo de arquivo."
+        : "Não consegui interpretar este PDF. Tente outro arquivo ou abra o edital para conferir se ele contém texto selecionável.",
+      "error",
+      "Não foi possível ler o edital"
+    );
+  }
+}
+
+window.processEdital = processEdital;
+
+function saveExtractedContest(){
+  if(!extractedEdital) return;
+
+  const contest = {
+    id: Date.now().toString(),
+    name: document.getElementById("contestName").value.trim() || extractedEdital.name,
+    position: document.getElementById("contestPosition").value.trim(),
+    date: document.getElementById("contestDate").value,
+    progress: 0,
+    type: document.getElementById("contestType").value || "Concurso público",
+    editalFileName: selectedEditalFile?.name || "",
+    active: database.contests.length === 0,
+    importedFromEdital: true
+  };
+
+  if(!contest.name){
+    notify("O edital não forneceu um nome claro. Preencha o nome antes de salvar.", "error", "Nome do concurso");
+    return;
+  }
+
+  database.contests.forEach(item => item.active = false);
+  database.contests.push(contest);
+  saveDatabase();
+  closeContestModal();
+  renderAll();
+
+  notify(
+    `${contest.name} foi adicionado ao ZONA HUB.`,
+    "success",
+    "Concurso salvo"
+  );
+}
+
+window.saveExtractedContest = saveExtractedContest;
 
 
 /* =========================================================
