@@ -80,11 +80,11 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     <div class="login-copy">Centralize concursos, desempenho, questões e cronogramas em um único lugar.</div>
     <label class="terms-row"><input type="checkbox" id="termsCheck" required><span>Li e aceito os <button type="button" class="link-button" id="termsButton">Termos de Uso</button> do ZONA.</span></label>
     <form id="loginForm">
-      <div class="field"><label>Usuário</label><input class="input" id="loginUser" autocomplete="username" placeholder="Digite seu nome de usuário" required></div>
+      <div class="field"><label>Usuário</label><input class="input" id="loginUser" autocomplete="username" required></div>
       <div class="field"><label>Senha</label><input class="input" id="loginPass" type="password" autocomplete="current-password" required></div>
       <button class="btn btn-primary btn-full" type="submit">ENTRAR NO ZONA HUB</button>
     </form>
-    <div id="loginError" class="save-feedback"></div><div class="demo-logins"><strong>Acessos iniciais</strong><br>ADM: <strong>admin</strong> / <strong>ZONA2026</strong><br>Visitante: <strong>visitante</strong> / <strong>zonavisita</strong></div>
+    <div class="demo-logins"><strong>Acessos iniciais</strong><br>ADM: <strong>admin</strong> / <strong>ZONA2026</strong><br>Visitante: <strong>visitante</strong> / <strong>zonavisita</strong></div>
   </div>
 </div>
 
@@ -101,11 +101,10 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     <button class="nav-btn" data-page="clock"><span class="nav-icon">◷</span>To Punch the Clock</button>
     <button class="nav-btn" data-page="ligas"><span class="nav-icon">✦</span>Ligas ZONA</button>
     <button class="nav-btn" data-page="suporte"><span class="nav-icon">?</span>Suporte</button>
-    <button class="nav-btn admin-only" data-page="admin"><span class="nav-icon">◆</span>MODO DEUS / ADM</button>
   </nav>
   <div class="side-bottom">
     <div class="group-card"><div class="group-label">Grupo ativo</div><div class="group-value" id="groupActiveValue">ZONA HUB • FREE</div></div>
-    <div class="usage-strip"><span class="fire" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="streakNumber">0</div><div class="usage-copy">dias na ZONA</div></div><div class="coin-visual" aria-label="LIBS"><svg viewBox="0 0 100 100" role="img" aria-hidden="true"><defs><radialGradient id="cg" cx="30%" cy="25%"><stop offset="0%" stop-color="#fff6a8"/><stop offset="24%" stop-color="#f8d95c"/><stop offset="60%" stop-color="#c18d20"/><stop offset="100%" stop-color="#6f4709"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="1.7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle cx="50" cy="50" r="46" fill="url(#cg)" stroke="#f6dc77" stroke-width="3"/><circle cx="50" cy="50" r="38" fill="#101010" stroke="#8e6518" stroke-width="2"/><path d="M31 63c4-14 11-27 25-31 8-2 15 0 19 6-2 8-8 10-14 9 2 5 0 12-5 17-3 3-7 5-10 5-4 0-8-2-10-6l-3 3z" fill="#d4a62f" stroke="#e9d167" stroke-width="1.2" filter="url(#glow)"/><circle cx="69" cy="40" r="3" fill="#baff7c"/><path d="M49 69c8 7 18 7 23 0 3-4 2-8-1-10-4-3-8-1-8 3 0 3 3 4 5 2" fill="none" stroke="#baff7c" stroke-width="2" stroke-linecap="round"/><path d="M35 54l10-4-4-6 14 5-9 4 4 6z" fill="#baff7c" opacity=".9"/></svg></div><div><div class="usage-number" id="coinNumber">0</div><div class="usage-copy">LIBS</div></div></div>
+    <div class="usage-strip"><span class="fire" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="streakNumber">0</div><div class="usage-copy">dias na ZONA</div></div><div class="coin-visual" aria-label="LIBS"></div><div><div class="usage-number" id="coinNumber">0</div><div class="usage-copy">LIBS</div></div></div>
     <button class="community-btn" type="button" onclick="joinCommunity()"><span>◉</span> ENTRAR NA COMUNIDADE ZONA</button>
     <div class="premium-card" id="premiumButton"><div class="premium-label">Upgrade</div><div class="premium-title">SEJA PREMIUM</div><div class="premium-copy">Mais recursos. Mais ZONA.</div></div>
   </div>
@@ -148,7 +147,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     </div>
     <div class="card" style="margin-top:16px">
       <div class="section-head"><div><div class="section-title">Ritmo ZONA</div><div class="section-copy">Quanto mais você usa a plataforma, mais sua sequência e suas LIBS crescem.</div></div><span class="tag" id="homeLeagueTag">SEM LIGA</span></div>
-      <div class="usage-strip"><span class="fire" style="font-size:24px" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="homeStreak">0 dias</div><div class="usage-copy">sequência</div></div><div class="coin-visual" style="width:38px;height:38px" aria-label="LIBS"><svg viewBox="0 0 100 100" role="img" aria-hidden="true"><defs><radialGradient id="cg" cx="30%" cy="25%"><stop offset="0%" stop-color="#fff6a8"/><stop offset="24%" stop-color="#f8d95c"/><stop offset="60%" stop-color="#c18d20"/><stop offset="100%" stop-color="#6f4709"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="1.7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle cx="50" cy="50" r="46" fill="url(#cg)" stroke="#f6dc77" stroke-width="3"/><circle cx="50" cy="50" r="38" fill="#101010" stroke="#8e6518" stroke-width="2"/><path d="M31 63c4-14 11-27 25-31 8-2 15 0 19 6-2 8-8 10-14 9 2 5 0 12-5 17-3 3-7 5-10 5-4 0-8-2-10-6l-3 3z" fill="#d4a62f" stroke="#e9d167" stroke-width="1.2" filter="url(#glow)"/><circle cx="69" cy="40" r="3" fill="#baff7c"/><path d="M49 69c8 7 18 7 23 0 3-4 2-8-1-10-4-3-8-1-8 3 0 3 3 4 5 2" fill="none" stroke="#baff7c" stroke-width="2" stroke-linecap="round"/><path d="M35 54l10-4-4-6 14 5-9 4 4 6z" fill="#baff7c" opacity=".9"/></svg></div><div><div class="usage-number" id="homeCoins">0 LIBS</div><div class="usage-copy">moeda ZONA</div></div><div style="margin-left:auto"><button class="btn btn-secondary" onclick="goTo('ligas')">VER LIGA</button></div></div>
+      <div class="usage-strip"><span class="fire" style="font-size:24px" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="homeStreak">0 dias</div><div class="usage-copy">sequência</div></div><div class="coin-visual" style="width:38px;height:38px" aria-label="LIBS"></div><div><div class="usage-number" id="homeCoins">0 LIBS</div><div class="usage-copy">moeda ZONA</div></div><div style="margin-left:auto"><button class="btn btn-secondary" onclick="goTo('ligas')">VER LIGA</button></div></div>
     </div>
     <div class="card" style="margin-top:16px" id="homeAgendaCard">
       <div class="agenda-toolbar"><div><div class="section-title">AGENDA ZONA</div><div class="section-copy">Seu mês acompanha automaticamente as datas do concurso ativo.</div></div><div style="display:flex;gap:6px"><button class="btn btn-secondary" onclick="changeMonth(-1)">←</button><button class="btn btn-secondary" onclick="changeMonth(1)">→</button></div></div>
@@ -196,7 +195,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
         </div>
         <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button><div class="save-feedback" id="questionSaveFeedback"></div></div>
       </form>
-      <div style="margin-top:18px" class="table-wrap"><table class="table"><thead><tr><th>Data</th><th>Matéria</th><th>Questões</th><th>Acertos</th><th>%</th><th>Ações</th></tr></thead><tbody id="questionTable"></tbody></table></div>
+      <div style="margin-top:18px" class="table-wrap"><table class="table"><thead><tr><th>Data</th><th>Matéria</th><th>Questões</th><th>Acertos</th><th>%</th></tr></thead><tbody id="questionTable"></tbody></table></div>
     </div>
   </section>
 
@@ -279,62 +278,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     </div>
   </section>
 
-
-  <section class="page" id="admin">
-    <div class="hero">
-      <div class="card hero-main">
-        <div class="eyebrow">ZONA / MODO DEUS</div>
-        <div class="hero-title">Painel do ADM.</div>
-        <div class="hero-copy">Controle local da plataforma: dados, moedas, planos, concursos, desafios, sessões e registros de questões. Em produção, estes controles devem migrar para um backend com permissões reais.</div>
-        <div class="hero-actions">
-          <span class="admin-badge">ADMINISTRADOR</span>
-          <button class="btn btn-secondary" onclick="adminRecalculate()">RECALCULAR PERFORMANCE</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="section-title">Resumo do sistema</div>
-        <div class="admin-grid" style="margin-top:13px">
-          <div class="admin-card"><strong id="adminUsers">1</strong><small>USUÁRIO LOCAL</small></div>
-          <div class="admin-card"><strong id="adminQuestions">0</strong><small>QUESTÕES</small></div>
-          <div class="admin-card"><strong id="adminSessions">0</strong><small>SESSÕES</small></div>
-          <div class="admin-card"><strong id="adminCoins">0</strong><small>LIBS NO PERFIL</small></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><div><div class="section-title">Economia ZONA</div><div class="section-copy">Adicione ou retire LIBS do usuário local.</div></div></div>
-      <div class="edit-form">
-        <input class="input" id="adminCoinAmount" type="number" min="1" value="100" placeholder="Quantidade de LIBS">
-        <select class="select" id="adminCoinAction"><option value="add">Adicionar LIBS</option><option value="remove">Remover LIBS</option><option value="set">Definir saldo</option></select>
-      </div>
-      <button class="btn btn-primary" style="margin-top:10px" onclick="adminCoins()">APLICAR AO SALDO</button>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><div><div class="section-title">Controle de acesso e plano</div><div class="section-copy">Altere o nível e o acesso do perfil local.</div></div></div>
-      <div class="edit-form">
-        <select class="select" id="adminPlan"><option>FREE</option><option>PRATA</option><option>OURO</option></select>
-        <select class="select" id="adminLeague"><option value="">Sem liga</option><option value="camuflagem">Liga Camuflagem</option><option value="cromatica">Liga Cromática</option><option value="visao">Liga Visão</option></select>
-      </div>
-      <div class="admin-actions"><button class="btn btn-primary" onclick="adminAccessSave()">SALVAR ACESSO</button><button class="btn btn-secondary" onclick="openLeaguePicker()">ABRIR ESCOLHA DE LIGA</button></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><div><div class="section-title">Desafio mensal</div><div class="section-copy">Somente ADM pode publicar ou substituir o desafio da ZONA.</div></div><button class="btn btn-secondary" onclick="openChallengeAdmin()">CRIAR / EDITAR</button></div>
-      <div class="mini-box" id="adminChallengePreview">Nenhum desafio.</div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="section-head"><div><div class="section-title">Zona de manutenção</div><div class="section-copy">Ações destrutivas exigem confirmação.</div></div></div>
-      <div class="admin-actions">
-        <button class="btn btn-secondary" onclick="adminExport()">EXPORTAR DADOS</button>
-        <button class="btn btn-danger" onclick="adminClearQuestions()">APAGAR TODAS AS QUESTÕES</button>
-        <button class="btn btn-danger" onclick="adminReset()">RESETAR ZONA LOCAL</button>
-      </div>
-    </div>
-  </section>
-
 </main>
 </div>
 
@@ -391,7 +334,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     <div style="margin-top:18px"><div class="section-title">Perfil</div><div class="section-copy">Personalize sua experiência.</div></div>
     <div class="profile-grid" style="margin-top:10px">
       <div class="mini-box"><img id="profilePhotoPreview" class="profile-photo" src="logo.png" alt="Foto do perfil"><input id="profilePhoto" type="file" accept="image/*" style="margin-top:8px;width:100%;font-size:9px"></div>
-      <div class="stack"><input class="input" id="profileUsername" placeholder="Nome de usuário"><input class="input" id="profileName" placeholder="Nome de exibição"><input class="input" id="profileEmail" type="email" placeholder="E-mail para newsletter"><input class="input" id="profileTarget" placeholder="Concurso / objetivo"></div>
+      <div class="stack"><input class="input" id="profileName" placeholder="Nome de exibição"><input class="input" id="profileEmail" type="email" placeholder="E-mail para newsletter"><input class="input" id="profileTarget" placeholder="Concurso / objetivo"></div>
     </div>
     <div class="field" style="margin-top:12px"><label>Aplicativos de questões</label><div class="option-grid" id="appsOptions"></div></div>
     <div class="field"><label>Gênero</label><div class="option-grid" id="genderOptions"></div></div>
@@ -408,7 +351,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 <div class="modal-backdrop" id="dayEditorBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">AGENDA ZONA</div><div class="modal-title" id="dayEditorTitle">Dia</div><div class="tiny" style="margin-top:4px">Registre uma nota e escolha um adesivo.</div></div><button class="close" onclick="closeDayEditor()">×</button></div><div class="stack"><textarea class="input" id="dayNoteInput" rows="4" placeholder="Ex.: Revisar Direito Constitucional"></textarea><div><div class="section-copy" style="margin-bottom:8px">Adesivos disponíveis</div><div class="sticker-grid" id="stickerGrid"></div></div><div style="display:flex;gap:8px"><button class="btn btn-primary" onclick="saveDayEditor()">SALVAR DIA</button><button class="btn btn-secondary" onclick="removeDayEditor()">LIMPAR</button></div></div></div></div><div class="modal-backdrop" id="termsBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ZONA / TERMOS</div><div class="modal-title">Termos de Uso</div></div><button class="close" onclick="closeTerms()">×</button></div><div class="tiny" style="line-height:1.7">Use o ZONA HUB como ferramenta de organização. Você é responsável pelos dados que inserir. Recursos de desempenho e gamificação são indicadores internos e não representam promessa de aprovação. Em uma versão com contas reais, dados de autenticação e pagamentos serão tratados por serviços próprios e seguros.</div></div></div>
 <div class="modal-backdrop" id="leaguePickerBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ESCOLHA SUA LIGA</div><div class="modal-title">Qual lado do camaleão é a sua ZONA?</div></div></div><div class="team-grid" id="teamChoices"></div></div></div>
 <div class="modal-backdrop" id="challengeBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">ADM / DESAFIO</div><div class="modal-title">Lançar desafio do mês</div></div><button class="close" onclick="closeChallengeAdmin()">×</button></div><div class="stack"><input class="input" id="challengeTitleInput" placeholder="Ex.: Envie o ZONA para 5 amigos"><input class="input" id="challengeRewardInput" type="number" min="1" placeholder="Recompensa em LIBS"><button class="btn btn-primary" onclick="saveChallenge()">PUBLICAR DESAFIO</button></div></div></div>
-<div class="modal-backdrop" id="questionEditBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow">QUESTÕES / EDIÇÃO</div><div class="modal-title">Editar resultado</div><div class="tiny">Corrija o registro sem perder o histórico.</div></div><button class="close" onclick="closeQuestionEdit()">×</button></div><div class="stack"><select class="select" id="editQuestionSubject"></select><input class="input" id="editQuestionTotal" type="number" min="1" placeholder="Questões"><input class="input" id="editQuestionCorrect" type="number" min="0" placeholder="Acertos"><div style="display:flex;gap:8px"><button class="btn btn-primary" onclick="saveQuestionEdit()">SALVAR ALTERAÇÃO</button><button class="btn btn-danger" onclick="deleteEditingQuestion()">EXCLUIR REGISTRO</button></div></div></div></div><div class="toast-wrap" id="toastWrap"></div>
+<div class="toast-wrap" id="toastWrap"></div>
 
 <script>
 (function(){
@@ -446,17 +389,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   function saveTimer(){localStorage.setItem(TIMER_KEY,JSON.stringify(session))}
   function formatClock(s){s=Math.floor(Math.max(0,s));var h=String(Math.floor(s/3600)).padStart(2,"0"),m=String(Math.floor((s%3600)/60)).padStart(2,"0"),x=String(s%60).padStart(2,"0");return h+":"+m+":"+x}
 
-  function safeShowApp(){
-    try{showApp()}catch(err){
-      console.error("ZONA HUB startup error",err);
-      localStorage.removeItem(AUTH_KEY);
-      document.getElementById("app").style.display="none";
-      document.getElementById("loginScreen").style.display="flex";
-      var note=document.getElementById("loginError");
-      if(note)note.textContent="A sessão anterior foi reiniciada. Entre novamente.";
-    }
-  }
-
   function showApp(){
     document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="block";
     var u=JSON.parse(localStorage.getItem(AUTH_KEY)||"null");currentUser=u;
@@ -471,9 +403,9 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     e.preventDefault();if(!document.getElementById("termsCheck").checked){notify("Termos de Uso","Aceite os Termos de Uso para entrar.","error");return}var user=document.getElementById("loginUser").value.trim(),pass=document.getElementById("loginPass").value;
     var found=null;if(user==="admin"&&pass==="ZONA2026")found={role:"Administrador"};if(user==="visitante"&&pass==="zonavisita")found={role:"Visitante"};
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
-    localStorage.setItem(AUTH_KEY,JSON.stringify(found));safeShowApp();
+    localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
   });
-  if(localStorage.getItem(AUTH_KEY))setTimeout(safeShowApp,0);
+  if(localStorage.getItem(AUTH_KEY))showApp();
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
@@ -566,7 +498,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
       notify("Não foi possível salvar","Tente novamente. Seu formulário não foi apagado.","error");
     }
   });
-  function renderQuestions(){var tb=document.getElementById("questionTable");if(!db.questions.length){tb.innerHTML='<tr><td colspan="6" class="muted">Nenhum resultado registrado.</td></tr>';return}tb.innerHTML=db.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc(fmtDate(q.date))+'</td><td>'+esc(q.subject)+'</td><td>'+q.total+'</td><td>'+q.correct+'</td><td>'+p+'%</td></tr>'}).join("")}
+  function renderQuestions(){var tb=document.getElementById("questionTable");if(!db.questions.length){tb.innerHTML='<tr><td colspan="5" class="muted">Nenhum resultado registrado.</td></tr>';return}tb.innerHTML=db.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc(fmtDate(q.date))+'</td><td>'+esc(q.subject)+'</td><td>'+q.total+'</td><td>'+q.correct+'</td><td>'+p+'%</td></tr>'}).join("")}
   function renderPerformance(){var p=performanceData();["metricIndex","metricAccuracy","metricVolume","metricConsistency","metricCoverage"].forEach(function(id,i){var v=[p.index,Math.round(p.acc),p.total,Math.round(p.consistency),Math.round(p.coverage)][i];document.getElementById(id).textContent=(i===0||i===2)?v:(v+"%")});["metricIndexBar","metricAccuracyBar","metricVolumeBar","metricConsistencyBar","metricCoverageBar"].forEach(function(id,i){var v=[p.index,p.acc,p.volume,p.consistency,p.coverage][i];document.getElementById(id).style.width=Math.min(100,v)+"%"});document.getElementById("last7").textContent=p.q7+" questões";document.getElementById("last30").textContent=p.q30+" questões";document.getElementById("perfHours").textContent=(db.sessions.reduce(function(a,s){return a+s.minutes},0)/60).toFixed(1)+"h";var box=document.getElementById("subjectPerformance");var entries=Object.entries(p.by);if(!entries.length){box.innerHTML='<div class="empty">Registre questões para ver o desempenho por matéria.</div>';return}box.innerHTML=entries.sort(function(a,b){return b[1].total-a[1].total}).map(function(x){var acc=x[1].total?Math.round(x[1].correct/x[1].total*100):0;return '<div class="subject-row"><div class="subject-line"><strong>'+esc(x[0])+'</strong><strong>'+acc+'%</strong></div><div class="subject-stats">'+x[1].correct+' acertos em '+x[1].total+' questões</div><div class="subject-progress" style="margin-top:8px"><span style="width:'+acc+'%"></span></div></div>'}).join("")}
   function renderEditais(){var list=document.getElementById("editalList"),items=db.contests.filter(function(c){return c.importedFromEdital});if(!items.length){list.innerHTML='<div class="empty">Nenhum edital importado ainda.</div>';return}list.innerHTML=items.slice().reverse().map(function(c){return '<div class="card" style="margin-bottom:10px;background:#0c0c0c"><div class="active-name" style="font-size:17px">'+esc(c.name)+'</div><div class="tiny">'+esc(c.editalFileName||"PDF importado")+'</div><div class="chip-row" style="margin-top:10px">'+(c.editalData&&c.editalData.subjects||[]).map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+'</div></div>'}).join("")}
 
@@ -884,82 +816,6 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   loadNews=async function(){var grid=document.getElementById("newsGrid");if(!grid)return;grid.innerHTML='<div class="empty">Atualizando radar...</div>';try{var base="https://news.google.com/rss/search?q="+encodeURIComponent("concursos públicos "+(profile.region||"Brasil"))+"&hl=pt-BR&gl=BR&ceid=BR:pt-419";var rr=await fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(base));var jj=await rr.json();var items=(jj.items||[]).slice(0,6);if(!items.length)throw new Error("empty");grid.innerHTML=items.map(function(n){var img=n.thumbnail||(n.enclosure&&n.enclosure.link)||"";return '<article class="news-card">'+(img?'<img src="'+esc(img)+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:11px;margin-bottom:9px">':'')+'<span class="news-tag">RADAR</span><div class="news-title">'+esc(n.title)+'</div><div class="news-meta">'+esc(n.pubDate||"Atualização")+'</div><a class="news-link" href="'+esc(n.link)+'" target="_blank" rel="noopener">ABRIR MATÉRIA →</a></article>'}).join("")}catch(e){_loadNews()}};
   loadNews=_loadNews;
   updateUsageUI();applyTheme();renderLeaguePicker();renderProfile();renderAgenda();
-
-
-  // ===== QUESTION CRUD + GOD MODE =====
-  var editingQuestionId=null;
-  function refreshAdminUI(){
-    var adm=currentUser&&currentUser.role==="Administrador";
-    document.querySelectorAll(".admin-only").forEach(function(e){e.classList.toggle("visible",!!adm)});
-    var qs=document.getElementById("adminQuestions"),ss=document.getElementById("adminSessions"),cc=document.getElementById("adminCoins");
-    if(qs)qs.textContent=db.questions.length;if(ss)ss.textContent=db.sessions.length;if(cc)cc.textContent=game.coins;
-    var ap=document.getElementById("adminPlan");if(ap)ap.value=localStorage.getItem("ZONA_PLAN")||"FREE";
-    var al=document.getElementById("adminLeague");if(al)al.value=game.league||"";
-    var ch=JSON.parse(localStorage.getItem(CHALLENGE_KEY)||"null"),cp=document.getElementById("adminChallengePreview");if(cp)cp.textContent=ch?(ch.title+" • "+ch.reward+" LIBS"):"Nenhum desafio publicado.";
-  }
-  function isAdmin(){return currentUser&&currentUser.role==="Administrador"}
-  function ensureAdmin(){if(!isAdmin()){notify("Área restrita","Somente o Administrador pode usar o MODO DEUS.","error");return false}return true}
-  window.adminCoins=function(){
-    if(!ensureAdmin())return;
-    var n=Number(document.getElementById("adminCoinAmount").value)||0,a=document.getElementById("adminCoinAction").value;
-    if(n<0){notify("Valor inválido","Informe uma quantidade válida.","error");return}
-    if(a==="add")game.coins+=n;else if(a==="remove")game.coins=Math.max(0,game.coins-n);else game.coins=n;
-    saveGame();updateUsageUI();refreshAdminUI();notify("Economia atualizada","Saldo atual: "+game.coins+" LIBS.");
-  };
-  window.adminAccessSave=function(){if(!ensureAdmin())return;var plan=document.getElementById("adminPlan").value,league=document.getElementById("adminLeague").value;localStorage.setItem("ZONA_PLAN",plan);game.league=league||null;saveGame();updateUsageUI();renderAll();refreshAdminUI();notify("Acesso atualizado","Plano: "+plan+". Liga: "+(league||"sem liga")+".")};
-  window.adminRecalculate=function(){if(!ensureAdmin())return;renderAll();notify("Performance recalculada","Os indicadores foram atualizados a partir dos registros atuais.")};
-  window.adminExport=function(){if(!ensureAdmin())return;var payload={database:db,game:game,profile:profile,plan:localStorage.getItem("ZONA_PLAN")||"FREE"};var a=document.createElement("a");a.href="data:application/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(payload,null,2));a.download="zona-hub-backup.json";a.click();notify("Backup gerado","O arquivo JSON foi preparado para exportação.")};
-  window.adminClearQuestions=function(){if(!ensureAdmin())return;if(!confirm("Apagar todos os registros de questões? Esta ação não pode ser desfeita."))return;db.questions=[];saveDB();renderAll();refreshAdminUI();notify("Questões apagadas","O histórico de questões foi zerado.")};
-  window.adminReset=function(){if(!ensureAdmin())return;if(!confirm("Resetar todos os dados locais do ZONA HUB?"))return;localStorage.removeItem(DB_KEY);localStorage.removeItem(GAME_KEY);localStorage.removeItem(PROFILE_KEY);localStorage.removeItem("ZONA_PLAN");location.reload()};
-
-  function buildEditSubjectSelect(current){
-    var el=document.getElementById("editQuestionSubject");if(!el)return;el.innerHTML="";
-    refreshSelects();var source=document.getElementById("questionSubject");if(source){Array.from(source.options).forEach(function(o){el.appendChild(o.cloneNode(true))})}
-    if(current)el.value=current;if(el.value!==current&&current){var op=document.createElement("option");op.value=current;op.textContent=current;el.appendChild(op);el.value=current}
-  }
-  window.openQuestionEdit=function(id){var q=db.questions.find(function(x){return String(x.id)===String(id)});if(!q)return;editingQuestionId=String(id);buildEditSubjectSelect(q.subject);document.getElementById("editQuestionTotal").value=q.total;document.getElementById("editQuestionCorrect").value=q.correct;document.getElementById("questionEditBackdrop").classList.add("open")};
-  window.closeQuestionEdit=function(){document.getElementById("questionEditBackdrop").classList.remove("open");editingQuestionId=null};
-  window.saveQuestionEdit=function(){var q=db.questions.find(function(x){return String(x.id)===editingQuestionId});if(!q)return;var s=document.getElementById("editQuestionSubject").value,t=Number(document.getElementById("editQuestionTotal").value),co=Number(document.getElementById("editQuestionCorrect").value);if(!s||t<1||co<0||co>t){notify("Registro inválido","Confira matéria, total e acertos.","error");return}q.subject=s;q.total=t;q.correct=co;saveDB();closeQuestionEdit();renderAll();notify("Questão atualizada","O registro foi corrigido sem apagar os demais dados.")};
-  window.deleteEditingQuestion=function(){if(!editingQuestionId)return;deleteQuestion(editingQuestionId);closeQuestionEdit()};
-  window.deleteQuestion=function(id){var q=db.questions.find(function(x){return String(x.id)===String(id)});if(!q)return;if(!confirm("Excluir o registro de "+q.subject+"?"))return;db.questions=db.questions.filter(function(x){return String(x.id)!==String(id)});saveDB();renderAll();notify("Registro excluído","A atividade de "+q.subject+" foi removida do histórico.")};
-
-  // Replace question renderer with CRUD actions.
-  var _renderQuestions=renderQuestions;
-  renderQuestions=function(){
-    var tb=document.getElementById("questionTable");
-    if(!db.questions.length){tb.innerHTML='<tr><td colspan="6" class="muted">Nenhum resultado registrado.</td></tr>';return}
-    tb.innerHTML=db.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc(fmtDate(q.date))+'</td><td>'+esc(q.subject)+'</td><td>'+q.total+'</td><td>'+q.correct+'</td><td>'+p+'%</td><td><div class="row-actions"><button class="icon-btn" onclick="openQuestionEdit(\\\''+String(q.id)+'\\\')" title="Editar">✎</button><button class="icon-btn danger" onclick="deleteQuestion(\\\''+String(q.id)+'\\\')" title="Excluir">×</button></div></td></tr>'}).join("");
-  };
-
-  // Add loading state to question save.
-  var questionHandler=document.getElementById("questionForm");
-  if(questionHandler){
-    questionHandler.addEventListener("submit",function(){
-      var btn=questionHandler.querySelector('button[type="submit"]');
-      if(btn&&!btn.disabled){btn.disabled=true;btn.classList.add("is-loading");btn.textContent="SALVANDO...";setTimeout(function(){if(btn){btn.disabled=false;btn.classList.remove("is-loading");btn.textContent="SALVAR RESULTADO"}},650)}
-    },true);
-  }
-
-  // Username + profile controls.
-  function hydrateUsername(){
-    var el=document.getElementById("profileUsername");if(el)el.value=profile.username||((currentUser&&currentUser.username)||"");
-  }
-  var _renderProfileOld=renderProfile;
-  renderProfile=function(){_renderProfileOld();hydrateUsername()};
-  var _saveProfileOld=window.saveProfile;
-  window.saveProfile=function(){
-    profile.username=(document.getElementById("profileUsername")||{}).value?document.getElementById("profileUsername").value.trim():"";
-    _saveProfileOld();
-    if(profile.username){var an=document.getElementById("accountName");if(an)an.textContent=profile.username}
-  };
-  var _showAppOld=showApp;
-  // showApp will be followed by admin UI refresh via timeout in case of early execution.
-  setTimeout(function(){refreshAdminUI();renderProfile();},0);
-
-  // Add admin page to page-name mapping.
-  var _goTo=goTo;
-  goTo=function(page){_goTo(page);if(page==="admin")refreshAdminUI()};
-  window.goTo=goTo;
 
 </script>
 </body>
