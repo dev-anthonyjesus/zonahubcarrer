@@ -76,7 +76,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   <div class="login-box">
     <div class="login-brand"><img src="logo.png" alt="ZONA"><div><strong>ZONA HUB</strong><div class="tiny">PERSONAL COMMAND CENTER</div></div></div>
     <div class="eyebrow">ZONA / ACCESS</div>
-    <div class="login-title">Entre na sua zona.</div>
+    <div class="login-title">Entre na sua ZONA.</div>
     <div class="login-copy">Centralize concursos, desempenho, questões e cronogramas em um único lugar.</div>
     <label class="terms-row"><input type="checkbox" id="termsCheck" required><span>Li e aceito os <button type="button" class="link-button" id="termsButton">Termos de Uso</button> do ZONA.</span></label>
     <form id="loginForm">
@@ -404,9 +404,9 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     var found=null;if(user==="admin"&&pass==="ZONA2026")found={role:"Administrador"};if(user==="visitante"&&pass==="zonavisita")found={role:"Visitante"};
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
     found.username=user;
-    localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
+    localStorage.setItem(AUTH_KEY,JSON.stringify(found));try{showApp()}catch(err){showFatalRecovery(err)}
   });
-  if(localStorage.getItem(AUTH_KEY)){setTimeout(function(){try{showApp()}catch(err){console.error(err);localStorage.removeItem(AUTH_KEY);document.getElementById("app").style.display="none";document.getElementById("loginScreen").style.display="flex";}},0);}
+  if(localStorage.getItem(AUTH_KEY)){setTimeout(function(){try{showApp()}catch(err){localStorage.removeItem(AUTH_KEY);showFatalRecovery(err)}},0);}
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
@@ -614,6 +614,39 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   var GAME_KEY="ZONA_GAME_V1", PROFILE_KEY="ZONA_PROFILE_V1", CHALLENGE_KEY="ZONA_CHALLENGE_V1";
   var game=JSON.parse(localStorage.getItem(GAME_KEY)||"null")||{coins:0,streak:0,lastUse:"",league:null,leagueInvested:{},activityDates:[]};
   var profile=JSON.parse(localStorage.getItem(PROFILE_KEY)||"null")||{name:"",email:"",target:"",apps:[],gender:"",quotas:[],region:"",state:"",city:"",theme:"dark",photo:""};
+  var DEFAULT_PROFILE={name:"",username:"",email:"",target:"",apps:[],gender:"",quotas:[],region:"",state:"",city:"",theme:"dark",photo:"",agenda:{}};
+  function normalizeZonaState(){
+    db=(db&&typeof db==="object")?db:{};
+    db.contests=Array.isArray(db.contests)?db.contests:[];
+    db.questions=Array.isArray(db.questions)?db.questions:[];
+    db.sessions=Array.isArray(db.sessions)?db.sessions:[];
+    game=(game&&typeof game==="object")?game:{coins:0,streak:0,lastUse:"",league:null,leagueInvested:{},activityDates:[]};
+    game.coins=Number(game.coins)||0;game.streak=Number(game.streak)||0;game.leagueInvested=game.leagueInvested&&typeof game.leagueInvested==="object"?game.leagueInvested:{};
+    game.activityDates=Array.isArray(game.activityDates)?game.activityDates:[];
+    profile=Object.assign({},DEFAULT_PROFILE,(profile&&typeof profile==="object")?profile:{});
+    profile.apps=Array.isArray(profile.apps)?profile.apps:[];
+    profile.quotas=Array.isArray(profile.quotas)?profile.quotas:[];
+    profile.agenda=profile.agenda&&typeof profile.agenda==="object"?profile.agenda:{};
+    profile.theme=profile.theme==="light"?"light":"dark";
+    try{saveDB();localStorage.setItem(GAME_KEY,JSON.stringify(game));saveProfileLocal()}catch(e){console.warn("ZONA state normalization failed",e)}
+  }
+  function showFatalRecovery(message){
+    var app=document.getElementById("app"),login=document.getElementById("loginScreen"),note=document.getElementById("loginError");
+    if(app)app.style.display="none";if(login)login.style.display="flex";
+    if(note)note.textContent="O ZONA encontrou um dado antigo e reiniciou a sessão. Entre novamente.";
+    console.error("ZONA HUB recovery:",message);
+  }
+  window.addEventListener("error",function(ev){
+    if(ev&&ev.error){console.error(ev.error)}
+    var login=document.getElementById("loginScreen");
+    if(login&&login.style.display==="none")showFatalRecovery("runtime error");
+  });
+  window.addEventListener("unhandledrejection",function(ev){
+    console.error(ev.reason);
+    var login=document.getElementById("loginScreen");
+    if(login&&login.style.display==="none")showFatalRecovery("promise rejection");
+  });
+  normalizeZonaState();
   var monthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1);
   var TEAMS=[
     {id:"camuflagem",name:"LIGA CAMUFLAGEM",mark:"◒",copy:"A arte de se adaptar. Foco, estratégia e presença.",people:248},
@@ -773,7 +806,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   function renderProfile(){
     var pp=document.getElementById("profilePhotoPreview");if(pp&&profile.photo)pp.src=profile.photo;
     var ids={profileName:profile.name||"",profileEmail:profile.email||"",profileTarget:profile.target||""};Object.keys(ids).forEach(function(id){var e=document.getElementById(id);if(e)e.value=ids[id]});
-    var apps=document.getElementById("appsOptions"),g=document.getElementById("genderOptions"),q=document.getElementById("quotaOptions");
+    profile.apps=Array.isArray(profile.apps)?profile.apps:[];profile.quotas=Array.isArray(profile.quotas)?profile.quotas:[];var apps=document.getElementById("appsOptions"),g=document.getElementById("genderOptions"),q=document.getElementById("quotaOptions");
     if(apps)apps.innerHTML=QUESTION_APPS.map(function(x){return '<button type="button" class="option-tile '+(profile.apps.indexOf(x[0])>=0?"active":"")+'" onclick="toggleProfileOption(\'apps\',\''+x[0].replace(/'/g,"&#39;")+'\')">'+x[1]+" "+x[0]+"</button>"}).join("");
     if(g)g.innerHTML=GENDERS.map(function(x){return '<button type="button" class="option-tile '+(profile.gender===x[0]?"active":"")+'" onclick="profile.gender=\''+x[0]+'\';renderProfile()">'+x[1]+" "+x[0]+"</button>"}).join("");
     if(q)q.innerHTML=QUOTAS.map(function(x){return '<button type="button" class="option-tile '+(profile.quotas.indexOf(x)>=0?"active":"")+'" onclick="toggleProfileOption(\'quotas\',\''+x.replace(/'/g,"&#39;")+'\')">'+x+"</button>"}).join("");
@@ -815,7 +848,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   // Image news upgrade
   var _loadNews=loadNews;
   loadNews=async function(){var grid=document.getElementById("newsGrid");if(!grid)return;grid.innerHTML='<div class="empty">Atualizando radar...</div>';try{var base="https://news.google.com/rss/search?q="+encodeURIComponent("concursos públicos "+(profile.region||"Brasil"))+"&hl=pt-BR&gl=BR&ceid=BR:pt-419";var rr=await fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(base));var jj=await rr.json();var items=(jj.items||[]).slice(0,6);if(!items.length)throw new Error("empty");grid.innerHTML=items.map(function(n){var img=n.thumbnail||(n.enclosure&&n.enclosure.link)||"";return '<article class="news-card">'+(img?'<img src="'+esc(img)+'" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:11px;margin-bottom:9px">':'')+'<span class="news-tag">RADAR</span><div class="news-title">'+esc(n.title)+'</div><div class="news-meta">'+esc(n.pubDate||"Atualização")+'</div><a class="news-link" href="'+esc(n.link)+'" target="_blank" rel="noopener">ABRIR MATÉRIA →</a></article>'}).join("")}catch(e){_loadNews()}};
-  loadNews=_loadNews;
+  window.loadNews=loadNews;
   updateUsageUI();applyTheme();renderLeaguePicker();renderProfile();renderAgenda();
 
 </script>
