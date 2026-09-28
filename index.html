@@ -1754,6 +1754,11 @@ select.input{
 .extract-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .extract-chip{padding:6px 8px;border:1px solid #2c2c2c;border-radius:999px;background:#111;color:#bbb;font-size:9px}
 .extract-muted{color:#666;font-size:10px}
+.extract-timeline{border:1px solid #252525;border-radius:12px;overflow:hidden;background:#0d0d0d}
+.timeline-row{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;border-bottom:1px solid #202020;font-size:9px;color:#999}
+.timeline-row:last-child{border-bottom:0}
+.timeline-row strong{color:#eee;text-align:right;font-size:9px}
+@media(max-width:600px){.timeline-row{flex-direction:column;gap:3px}.timeline-row strong{text-align:left}}
 .extract-warning{margin-top:14px;padding:11px 12px;border-radius:11px;background:#141414;border:1px solid #2b2b2b;color:#888;font-size:9px;line-height:1.5}
 
 /* =========================================================
@@ -4592,16 +4597,75 @@ async function processEdital(){
     button.textContent="TENTAR NOVAMENTE";
     status.textContent="Não foi possível estruturar este PDF.";
 
-    notify(
-      error.message==="PDF sem texto selecionável"
-        ? "Este PDF parece ser escaneado. Para esse tipo de arquivo, precisamos ativar OCR."
-        : "O arquivo não pôde ser analisado. Tente novamente ou use um PDF com texto selecionável.",
-      "error",
-      "Não consegui ler o edital"
-    );
+    if(error.message==="PDF sem texto selecionável"){
+      document.getElementById("editalExtractResult").innerHTML =
+        '<div class="extract-result">' +
+        '<div class="card-title">PDF escaneado detectado</div>' +
+        '<div class="card-subtitle">Este arquivo não possui texto selecionável. O ZONA pode tentar OCR diretamente no navegador.</div>' +
+        '<button class="btn btn-primary" type="button" onclick="processEditalOCR()">ATIVAR OCR E LER EDITAL</button>' +
+        '</div>';
+      notify("O PDF não tem camada de texto. Ative o OCR para tentar ler as páginas.", "error", "OCR disponível");
+    }else{
+      notify("O arquivo não pôde ser analisado. Tente novamente ou use um PDF válido.", "error", "Não consegui ler o edital");
+    }
   }
 }
 window.processEdital=processEdital;
+
+async function processEditalOCR(){
+  const status=document.getElementById("editalFileStatus");
+  if(!selectedEditalFile) return;
+
+  try{
+    status.textContent="Carregando OCR. Em celular, essa etapa pode levar alguns minutos.";
+
+    if(!window.Tesseract){
+      await new Promise((resolve,reject)=>{
+        const script=document.createElement("script");
+        script.src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+        script.onload=resolve;
+        script.onerror=()=>reject(new Error("Falha ao carregar OCR"));
+        document.head.appendChild(script);
+      });
+    }
+
+    const buffer=await selectedEditalFile.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:buffer}).promise;
+    const pages=[];
+    let textAll="";
+
+    for(let pageNumber=1; pageNumber<=pdf.numPages; pageNumber++){
+      status.textContent="OCR: página "+pageNumber+" de "+pdf.numPages+"...";
+      const page=await pdf.getPage(pageNumber);
+      const viewport=page.getViewport({scale:1.35});
+      const canvas=document.createElement("canvas");
+      canvas.width=Math.floor(viewport.width);
+      canvas.height=Math.floor(viewport.height);
+      await page.render({canvasContext:canvas.getContext("2d"),viewport}).promise;
+      const result=await Tesseract.recognize(canvas,"por");
+      const lines=(result.data.text||"").split(/\n+/).map(normalizeSpaces).filter(Boolean);
+      pages.push({pageNumber,lines});
+      textAll+="\n"+lines.join("\n");
+
+      if(pageNumber>=12 && /edital|concurso|inscri[cç][aã]o/i.test(textAll) && textAll.length>2500){
+        break;
+      }
+    }
+
+    extractedEdital=parseGenericEdital({pages:pages,text:textAll});
+    document.getElementById("contestName").value=extractedEdital.name||"";
+    document.getElementById("contestPosition").value=extractedEdital.position||"";
+    document.getElementById("contestDate").value=parsePdfDate(extractedEdital.proofDate);
+    document.getElementById("editalExtractResult").innerHTML=renderExtractedEdital(extractedEdital);
+    status.textContent="OCR concluído. Revise os dados antes de confirmar.";
+    notify("O OCR conseguiu montar uma leitura inicial do edital.", "success", "OCR concluído");
+  }catch(error){
+    console.error(error);
+    status.textContent="Não foi possível executar o OCR neste arquivo.";
+    notify("O OCR falhou neste PDF. Tente uma versão digital com texto selecionável.", "error", "OCR indisponível");
+  }
+}
+window.processEditalOCR=processEditalOCR;
 
 function saveExtractedContest(){
   if(!extractedEdital) return;
