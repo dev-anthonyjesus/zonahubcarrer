@@ -462,7 +462,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
     localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
   });
-  if(localStorage.getItem(AUTH_KEY))showApp();
+  if(localStorage.getItem(AUTH_KEY))setTimeout(showApp,0);
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
