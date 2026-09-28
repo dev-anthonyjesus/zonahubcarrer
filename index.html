@@ -58,7 +58,18 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 .fire{color:var(--green)!important;font-size:21px;filter:drop-shadow(0 0 7px rgba(186,255,124,.35));animation:firePulse 1.8s ease-in-out infinite}
 @keyframes firePulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:1}}
 .modal-backdrop{overflow:auto}.modal{overscroll-behavior:contain}.sticker.locked{position:relative}
-</style>
+
+.btn.is-loading{position:relative;pointer-events:none;opacity:.78}
+.btn.is-loading:before{content:"";display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-2px;border:2px solid rgba(0,0,0,.22);border-top-color:currentColor;border-radius:50%;animation:zonaSpin .7s linear infinite}
+.btn-secondary.is-loading:before{border-color:rgba(255,255,255,.18);border-top-color:#fff}
+@keyframes zonaSpin{to{transform:rotate(360deg)}}
+.save-feedback{margin-top:8px;font-size:9px;color:var(--green);min-height:14px}
+
+.coin-visual{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto;background:radial-gradient(circle at 32% 26%,#fff7ad 0%,#f6d75e 18%,#d7a82f 42%,#8c6010 72%,#332208 100%);border:2px solid #f4d772;box-shadow:inset 0 0 0 2px #7b5108,0 0 18px rgba(240,199,75,.34),inset 0 0 14px rgba(255,255,220,.45);animation:coinGlow 2.6s ease-in-out infinite}
+.coin-visual:before{content:"Z";font-size:12px;font-weight:1000;color:#13220c;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.coin-visual:after{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.28);border-radius:50%}
+@keyframes coinGlow{0%,100%{transform:translateY(0) rotate(0deg);filter:brightness(1)}50%{transform:translateY(-1px) rotate(4deg);filter:brightness(1.12)}}
+
 </head>
 <body>
 <div id="loginScreen">
@@ -93,7 +104,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   </nav>
   <div class="side-bottom">
     <div class="group-card"><div class="group-label">Grupo ativo</div><div class="group-value" id="groupActiveValue">ZONA HUB • FREE</div></div>
-    <div class="usage-strip"><span class="fire" aria-label="sequência ZONA">♨</span><div><div class="usage-number" id="streakNumber">0</div><div class="usage-copy">dias na ZONA</div></div><div class="coin">Z</div><div><div class="usage-number" id="coinNumber">0</div><div class="usage-copy">LIBS</div></div></div>
+    <div class="usage-strip"><span class="fire" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="streakNumber">0</div><div class="usage-copy">dias na ZONA</div></div><div class="coin-visual" aria-label="LIBS"></div><div><div class="usage-number" id="coinNumber">0</div><div class="usage-copy">LIBS</div></div></div>
     <button class="community-btn" type="button" onclick="joinCommunity()"><span>◉</span> ENTRAR NA COMUNIDADE ZONA</button>
     <div class="premium-card" id="premiumButton"><div class="premium-label">Upgrade</div><div class="premium-title">SEJA PREMIUM</div><div class="premium-copy">Mais recursos. Mais ZONA.</div></div>
   </div>
@@ -136,7 +147,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     </div>
     <div class="card" style="margin-top:16px">
       <div class="section-head"><div><div class="section-title">Ritmo ZONA</div><div class="section-copy">Quanto mais você usa a plataforma, mais sua sequência e suas LIBS crescem.</div></div><span class="tag" id="homeLeagueTag">SEM LIGA</span></div>
-      <div class="usage-strip"><span class="fire" style="font-size:24px" aria-label="sequência ZONA">♨</span><div><div class="usage-number" id="homeStreak">0 dias</div><div class="usage-copy">sequência</div></div><div class="coin" style="width:34px;height:34px">Z</div><div><div class="usage-number" id="homeCoins">0 LIBS</div><div class="usage-copy">moeda ZONA</div></div><div style="margin-left:auto"><button class="btn btn-secondary" onclick="goTo('ligas')">VER LIGA</button></div></div>
+      <div class="usage-strip"><span class="fire" style="font-size:24px" aria-label="sequência ZONA">ϟ</span><div><div class="usage-number" id="homeStreak">0 dias</div><div class="usage-copy">sequência</div></div><div class="coin-visual" style="width:38px;height:38px" aria-label="LIBS"></div><div><div class="usage-number" id="homeCoins">0 LIBS</div><div class="usage-copy">moeda ZONA</div></div><div style="margin-left:auto"><button class="btn btn-secondary" onclick="goTo('ligas')">VER LIGA</button></div></div>
     </div>
     <div class="card" style="margin-top:16px" id="homeAgendaCard">
       <div class="agenda-toolbar"><div><div class="section-title">AGENDA ZONA</div><div class="section-copy">Seu mês acompanha automaticamente as datas do concurso ativo.</div></div><div style="display:flex;gap:6px"><button class="btn btn-secondary" onclick="changeMonth(-1)">←</button><button class="btn btn-secondary" onclick="changeMonth(1)">→</button></div></div>
@@ -182,7 +193,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
           <input class="input" id="questionTotal" type="number" min="1" placeholder="Questões" required>
           <input class="input" id="questionCorrect" type="number" min="0" placeholder="Acertos" required>
         </div>
-        <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button></div>
+        <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button><div class="save-feedback" id="questionSaveFeedback"></div></div>
       </form>
       <div style="margin-top:18px" class="table-wrap"><table class="table"><thead><tr><th>Data</th><th>Matéria</th><th>Questões</th><th>Acertos</th><th>%</th></tr></thead><tbody id="questionTable"></tbody></table></div>
     </div>
@@ -458,7 +469,35 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
   }
   window.setActiveContest=function(id){db.contests.forEach(function(c){c.active=c.id===id});saveDB();notify("Concurso ativo",currentContest().name+" agora alimenta o dashboard e os seletores.");renderAll()}
 
-  document.getElementById("questionForm").addEventListener("submit",function(e){e.preventDefault();var s=subjectValue("questionSubject"),t=Number(document.getElementById("questionTotal").value),co=Number(document.getElementById("questionCorrect").value);if(!s||!t){notify("Faltou informação","Escolha uma matéria e informe o número de questões.","error");return}if(co>t){notify("Resultado inválido","Acertos não podem ser maiores que o total.","error");return}db.questions.push({id:Date.now()+"",date:today(),subject:s,total:t,correct:co});saveDB();touchUsage(Math.max(1,Math.floor(t/10)));e.target.reset();document.getElementById("questionSubjectCustom").classList.add("hidden");notify("Resultado salvo",t+" questões em "+s+" foram adicionadas à sua performance.");renderAll()});
+  document.getElementById("questionForm").addEventListener("submit",async function(e){
+    e.preventDefault();
+    var form=e.target,saveBtn=form.querySelector('button[type="submit"]');
+    if(saveBtn&&saveBtn.disabled)return;
+    var s=subjectValue("questionSubject"),t=Number(document.getElementById("questionTotal").value),co=Number(document.getElementById("questionCorrect").value);
+    if(!s||!t){notify("Faltou informação","Escolha uma matéria e informe o número de questões.","error");return}
+    if(co>t){notify("Resultado inválido","Acertos não podem ser maiores que o total.","error");return}
+
+    if(saveBtn){saveBtn.disabled=true;saveBtn.classList.add("is-loading");saveBtn.dataset.label=saveBtn.textContent;saveBtn.textContent="SALVANDO..."}
+    var feedback=document.getElementById("questionSaveFeedback");if(feedback)feedback.textContent="Registrando seu resultado...";
+    try{
+      // Give the browser two frames to paint the loading state before doing any work.
+      await new Promise(function(resolve){requestAnimationFrame(function(){requestAnimationFrame(resolve)})});
+      db.questions.push({id:Date.now()+"",date:today(),subject:s,total:t,correct:co});
+      saveDB();
+      touchUsage(Math.max(1,Math.floor(t/10)));
+      form.reset();
+      document.getElementById("questionSubjectCustom").classList.add("hidden");
+      renderAll();
+      if(feedback)feedback.textContent="Resultado salvo no seu histórico.";
+      if(saveBtn){saveBtn.classList.remove("is-loading");saveBtn.disabled=false;saveBtn.textContent="SALVO ✓";setTimeout(function(){saveBtn.textContent=saveBtn.dataset.label||"SALVAR RESULTADO";if(feedback)feedback.textContent=""},900)}
+      notify("Resultado salvo",t+" questões em "+s+" foram adicionadas à sua performance.");
+    }catch(err){
+      console.error(err);
+      if(saveBtn){saveBtn.classList.remove("is-loading");saveBtn.disabled=false;saveBtn.textContent=saveBtn.dataset.label||"SALVAR RESULTADO"}
+      if(feedback)feedback.textContent="";
+      notify("Não foi possível salvar","Tente novamente. Seu formulário não foi apagado.","error");
+    }
+  });
   function renderQuestions(){var tb=document.getElementById("questionTable");if(!db.questions.length){tb.innerHTML='<tr><td colspan="5" class="muted">Nenhum resultado registrado.</td></tr>';return}tb.innerHTML=db.questions.slice().reverse().map(function(q){var p=q.total?Math.round(q.correct/q.total*100):0;return '<tr><td>'+esc(fmtDate(q.date))+'</td><td>'+esc(q.subject)+'</td><td>'+q.total+'</td><td>'+q.correct+'</td><td>'+p+'%</td></tr>'}).join("")}
   function renderPerformance(){var p=performanceData();["metricIndex","metricAccuracy","metricVolume","metricConsistency","metricCoverage"].forEach(function(id,i){var v=[p.index,Math.round(p.acc),p.total,Math.round(p.consistency),Math.round(p.coverage)][i];document.getElementById(id).textContent=(i===0||i===2)?v:(v+"%")});["metricIndexBar","metricAccuracyBar","metricVolumeBar","metricConsistencyBar","metricCoverageBar"].forEach(function(id,i){var v=[p.index,p.acc,p.volume,p.consistency,p.coverage][i];document.getElementById(id).style.width=Math.min(100,v)+"%"});document.getElementById("last7").textContent=p.q7+" questões";document.getElementById("last30").textContent=p.q30+" questões";document.getElementById("perfHours").textContent=(db.sessions.reduce(function(a,s){return a+s.minutes},0)/60).toFixed(1)+"h";var box=document.getElementById("subjectPerformance");var entries=Object.entries(p.by);if(!entries.length){box.innerHTML='<div class="empty">Registre questões para ver o desempenho por matéria.</div>';return}box.innerHTML=entries.sort(function(a,b){return b[1].total-a[1].total}).map(function(x){var acc=x[1].total?Math.round(x[1].correct/x[1].total*100):0;return '<div class="subject-row"><div class="subject-line"><strong>'+esc(x[0])+'</strong><strong>'+acc+'%</strong></div><div class="subject-stats">'+x[1].correct+' acertos em '+x[1].total+' questões</div><div class="subject-progress" style="margin-top:8px"><span style="width:'+acc+'%"></span></div></div>'}).join("")}
   function renderEditais(){var list=document.getElementById("editalList"),items=db.contests.filter(function(c){return c.importedFromEdital});if(!items.length){list.innerHTML='<div class="empty">Nenhum edital importado ainda.</div>';return}list.innerHTML=items.slice().reverse().map(function(c){return '<div class="card" style="margin-bottom:10px;background:#0c0c0c"><div class="active-name" style="font-size:17px">'+esc(c.name)+'</div><div class="tiny">'+esc(c.editalFileName||"PDF importado")+'</div><div class="chip-row" style="margin-top:10px">'+(c.editalData&&c.editalData.subjects||[]).map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+'</div></div>'}).join("")}
