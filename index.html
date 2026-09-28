@@ -403,9 +403,10 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
     e.preventDefault();if(!document.getElementById("termsCheck").checked){notify("Termos de Uso","Aceite os Termos de Uso para entrar.","error");return}var user=document.getElementById("loginUser").value.trim(),pass=document.getElementById("loginPass").value;
     var found=null;if(user==="admin"&&pass==="ZONA2026")found={role:"Administrador"};if(user==="visitante"&&pass==="zonavisita")found={role:"Visitante"};
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
+    found.username=user;
     localStorage.setItem(AUTH_KEY,JSON.stringify(found));showApp();
   });
-  if(localStorage.getItem(AUTH_KEY))showApp();
+  if(localStorage.getItem(AUTH_KEY)){setTimeout(function(){try{showApp()}catch(err){console.error(err);localStorage.removeItem(AUTH_KEY);document.getElementById("app").style.display="none";document.getElementById("loginScreen").style.display="flex";}},0);}
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
