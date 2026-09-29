@@ -34,6 +34,45 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 @media(max-width:760px){
   .sidebar{width:min(86vw,330px);transform:translateX(-105%);transition:transform .23s ease;box-shadow:30px 0 80px rgba(0,0,0,.55)}.sidebar.open{transform:translateX(0)}main{margin-left:0;padding:15px 15px 70px}.mobile-menu{display:grid;place-items:center}.topbar{margin-bottom:20px}.socials{display:none}.account-role{display:none}.page-title{font-size:22px}.hero-title{font-size:38px}.stat-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.form-grid,.choice,.account-modal-grid{grid-template-columns:1fr}.card{padding:18px}.hero-main,.active-card{min-height:auto}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.modal-backdrop.open{align-items:flex-end;padding:0}.modal{max-height:94dvh;border-radius:23px 23px 0 0;padding:19px 16px calc(24px + env(safe-area-inset-bottom))}.extract-grid{grid-template-columns:1fr}.premium-plans{grid-template-columns:1fr}.clock-display{font-size:55px;letter-spacing:-2px}.toast-wrap{right:12px;bottom:12px;width:calc(100vw - 24px)}}
 @media(max-width:430px){.stat-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.active-name{font-size:20px}.hero-title{font-size:33px}}
+.agenda-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr);gap:14px}
+.agenda-hero{position:relative;overflow:hidden}
+.agenda-hero:after{content:"";position:absolute;width:280px;height:280px;right:-100px;top:-150px;border-radius:50%;background:var(--green);opacity:.06;filter:blur(30px)}
+.agenda-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.agenda-kpi{border:1px solid #242424;background:#0b0b0b;border-radius:13px;padding:11px}
+.agenda-kpi-label{font-size:8px;color:#666;text-transform:uppercase;letter-spacing:.8px}
+.agenda-kpi-value{font-size:19px;font-weight:950;margin-top:4px}
+.libs-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #35472a;background:#121b0e;border-radius:99px;color:var(--green);font-size:10px;font-weight:950}
+.libs-badge strong{font-size:16px}
+.agenda-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;flex-wrap:wrap}
+.agenda-week-scroll{overflow-x:auto;padding-bottom:4px}
+.agenda-week{display:grid;grid-template-columns:repeat(7,minmax(155px,1fr));gap:8px;min-width:1120px}
+.agenda-day{border:1px solid #232323;background:#0b0b0b;border-radius:16px;min-height:430px;overflow:hidden}
+.agenda-day.today{border-color:#435a37;box-shadow:0 0 25px rgba(186,255,124,.05)}
+.agenda-day-head{padding:13px 12px;border-bottom:1px solid #202020;background:#101010}
+.agenda-day-name{font-size:9px;color:#777;text-transform:uppercase;letter-spacing:1px;font-weight:950}
+.agenda-day-date{font-size:16px;font-weight:950;margin-top:3px}
+.agenda-day-progress{height:4px;background:#222;margin-top:9px;border-radius:99px;overflow:hidden}
+.agenda-day-progress span{display:block;height:100%;background:var(--green);border-radius:99px}
+.agenda-tasks{padding:9px;display:flex;flex-direction:column;gap:8px}
+.agenda-task{border:1px solid #252525;background:#111;border-radius:13px;padding:11px;transition:.2s}
+.agenda-task.done{opacity:.55}
+.agenda-task.done .agenda-task-title{text-decoration:line-through}
+.agenda-task-top{display:flex;gap:9px;align-items:flex-start}
+.agenda-check{appearance:none;width:19px;height:19px;min-width:19px;border:1px solid #4a4a4a;border-radius:6px;background:#0a0a0a;margin:0;cursor:pointer;position:relative}
+.agenda-check:checked{background:var(--green);border-color:var(--green)}
+.agenda-check:checked:after{content:"✓";position:absolute;left:3px;top:-1px;color:#070707;font-size:14px;font-weight:950}
+.agenda-task-title{font-size:10px;font-weight:950;line-height:1.35}
+.agenda-task-meta{font-size:8px;color:#666;margin-top:4px;line-height:1.4}
+.agenda-task-reward{display:inline-flex;margin-top:8px;padding:4px 6px;border-radius:7px;background:#182210;color:var(--green);font-size:8px;font-weight:950}
+.agenda-empty{padding:20px 10px;color:#555;font-size:9px;text-align:center}
+.agenda-subjects{display:flex;flex-direction:column;gap:7px}
+.agenda-subject-row{display:grid;grid-template-columns:minmax(150px,1fr) 1fr 70px;align-items:center;gap:10px;padding:10px;border:1px solid #222;background:#0d0d0d;border-radius:11px}
+.agenda-subject-name{font-size:9px;font-weight:900}
+.agenda-subject-bar{height:5px;background:#222;border-radius:99px;overflow:hidden}
+.agenda-subject-bar span{display:block;height:100%;background:var(--green)}
+.agenda-subject-weight{font-size:8px;color:#777;text-align:right}
+@media(max-width:900px){.agenda-head{grid-template-columns:1fr}.agenda-kpis{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:760px){.agenda-kpis{grid-template-columns:1fr}.agenda-toolbar{align-items:stretch}.agenda-toolbar .btn,.agenda-toolbar .select{width:100%}.agenda-subject-row{grid-template-columns:1fr}.agenda-subject-weight{text-align:left}}
 /* ZONA BOOTSAFE */
 #loginScreen{display:flex!important}
 #app{display:none}
@@ -75,6 +114,7 @@ body.zona-app-ready #app{display:block}
   <nav class="nav">
     <button class="nav-btn home-glow active" data-page="home"><span class="nav-icon">⌂</span>HOME</button>
     <button class="nav-btn" data-page="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
+    <button class="nav-btn" data-page="agenda"><span class="nav-icon">▦</span>Agenda de Estudos</button>
     <button class="nav-btn" data-page="concursos"><span class="nav-icon">◉</span>Concursos</button>
     <button class="nav-btn" data-page="questoes"><span class="nav-icon">□</span>Questões</button>
     <button class="nav-btn" data-page="performance"><span class="nav-icon">↗</span>Performance</button>
@@ -138,6 +178,64 @@ body.zona-app-ready #app{display:block}
       </div>
     </div>
     <div class="card" style="margin-top:16px"><div class="section-head"><div><div class="section-title">Tudo que o ZONA sabe do edital</div><div class="section-copy">Campos preenchidos automaticamente e exibidos aqui quando disponíveis.</div></div></div><div id="dashDetails"></div></div>
+  </section>
+
+  <section class="page" id="agenda">
+    <div class="agenda-head">
+      <div class="card agenda-hero">
+        <div class="eyebrow">AGENDA INTELIGENTE</div>
+        <div class="hero-title" style="font-size:38px;max-width:650px" id="agendaTitle">Seu plano semanal</div>
+        <div class="hero-copy" id="agendaCopy">Envie um edital e o ZONA transforma a distribuição de questões em uma semana de estudos organizada.</div>
+        <div class="agenda-kpis">
+          <div class="agenda-kpi"><div class="agenda-kpi-label">Semana</div><div class="agenda-kpi-value" id="agendaWeekLabel">—</div></div>
+          <div class="agenda-kpi"><div class="agenda-kpi-label">Tarefas concluídas</div><div class="agenda-kpi-value" id="agendaDone">0/0</div></div>
+          <div class="agenda-kpi"><div class="agenda-kpi-label">Progresso</div><div class="agenda-kpi-value" id="agendaProgress">0%</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-head"><div><div class="section-title">Seu saldo</div><div class="section-copy">LIBS são a recompensa por cumprir o plano.</div></div></div>
+        <div class="libs-badge"><strong id="libsBalance">0</strong> LIBS</div>
+        <div class="mini-grid" style="margin-top:14px">
+          <div class="mini-box"><div class="mini-label">Bônus diário</div><div class="mini-value">+25 LIBS</div></div>
+          <div class="mini-box"><div class="mini-label">Bônus semanal</div><div class="mini-value">+100 LIBS</div></div>
+        </div>
+        <div class="tiny" style="margin-top:12px">Cada tarefa concluída vale LIBS uma única vez. O histórico de progresso fica salvo neste navegador.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="agenda-toolbar">
+        <div><div class="section-title">Semana de estudos</div><div class="section-copy">Segunda a domingo. O plano usa o edital ativo, o peso das matérias e seu desempenho registrado.</div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select class="select" id="agendaHours" style="width:auto;min-width:155px">
+            <option value="1">1h por dia</option>
+            <option value="2" selected>2h por dia</option>
+            <option value="3">3h por dia</option>
+            <option value="4">4h por dia</option>
+            <option value="5">5h por dia</option>
+            <option value="6">6h por dia</option>
+          </select>
+          <button class="btn btn-secondary" onclick="rebuildCurrentWeekPlan()">RECALCULAR SEMANA</button>
+        </div>
+      </div>
+      <div class="agenda-week-scroll" style="margin-top:16px"><div class="agenda-week" id="agendaWeekGrid"></div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="section-head"><div><div class="section-title">Como o ZONA distribuiu o edital</div><div class="section-copy">A quantidade de questões de cada matéria influencia a frequência no plano.</div></div></div>
+        <div class="agenda-subjects" id="agendaSubjects"></div>
+      </div>
+      <div class="card">
+        <div class="section-head"><div><div class="section-title">Lógica do plano</div><div class="section-copy">O algoritmo ajusta a semana conforme os dados disponíveis.</div></div></div>
+        <div class="stack">
+          <div class="mini-box"><div class="mini-label">1. Peso do edital</div><div class="mini-value">Mais questões = mais exposição.</div></div>
+          <div class="mini-box"><div class="mini-label">2. Desempenho</div><div class="mini-value">Matérias com menor acerto recebem reforço.</div></div>
+          <div class="mini-box"><div class="mini-label">3. Alternância</div><div class="mini-value">Teoria, questões e revisão se alternam.</div></div>
+          <div class="mini-box"><div class="mini-label">4. Gamificação</div><div class="mini-value">Check concluído = LIBS + progresso.</div></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="page" id="concursos">
@@ -298,11 +396,13 @@ body.zona-app-ready #app{display:block}
   var TIMER_KEY="ZONA_HUB_TIMER_V1";
 
   function safeJSON(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
-  var db=safeJSON(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[]};
+  var db=safeJSON(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[],studyPlans:[],libs:0};
   var session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
   if(!Array.isArray(db.contests))db.contests=[];
   if(!Array.isArray(db.questions))db.questions=[];
   if(!Array.isArray(db.sessions))db.sessions=[];
+  if(!Array.isArray(db.studyPlans))db.studyPlans=[];
+  if(!Number.isFinite(Number(db.libs)))db.libs=0;
   var currentUser=null;
   var selectedFile=null;
   var extracted=null;
@@ -366,7 +466,7 @@ body.zona-app-ready #app{display:block}
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
     document.getElementById(page).classList.add("active");
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
-    var names={home:"HOME",dashboard:"Dashboard",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
+    var names={home:"HOME",dashboard:"Dashboard",agenda:"Agenda de Estudos",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     document.getElementById("sidebar").classList.remove("open");
   }
@@ -404,7 +504,7 @@ body.zona-app-ready #app{display:block}
     return {total:total,correct:correct,acc:acc,volume:volume,consistency:consistency,coverage:coverage,index:index,q7:q7,q30:qs.filter(function(q){return new Date(q.date).getTime()>=d30}).reduce(function(a,q){return a+Number(q.total||0)},0),by:by}
   }
 
-  function renderAll(){refreshSelects();renderHome();renderDashboard();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
+  function renderAll(){refreshSelects();renderHome();renderDashboard();renderAgenda();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
   function renderHome(){
     var c=currentContest();document.getElementById("homeContest").textContent=c?c.name:"Nenhum concurso ativo";document.getElementById("homeContestMeta").textContent=c?(c.position||"Cargo não informado")+" • prova "+(c.date?fmtDate(c.date):"não informada"):"Adicione um edital para começar";
     var h=document.getElementById("homeQuick");h.innerHTML="";
@@ -540,6 +640,134 @@ body.zona-app-ready #app{display:block}
     saveDB();renderAll();notify("Registro restaurado","O mesmo registro voltou para os Ativos.");
   }
 
+
+  function mondayOf(d){
+    var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    var day=x.getDay();var diff=day===0?-6:1-day;
+    x.setDate(x.getDate()+diff);return x;
+  }
+  function isoLocalDate(d){
+    var p=function(n){return String(n).padStart(2,"0")};
+    return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());
+  }
+  function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
+  function weekKey(){return isoLocalDate(mondayOf(new Date()))}
+  function parseSubjectWeight(raw){
+    var s=String(raw||"").trim(),m=s.match(/^(.*?)(?:\s*[—–-]\s*|\s+)(\d{1,3})\s*(?:quest(?:ões|oes)?)?$/i);
+    if(m)return {name:m[1].trim(),weight:Number(m[2])||1};
+    return {name:s.replace(/\s*[—–-]\s*$/,"").trim(),weight:1};
+  }
+  function subjectPerformanceFor(name){
+    var qs=activeQuestions(),total=0,correct=0;
+    qs.forEach(function(q){
+      var a=String(q.subject||"").toLowerCase(),b=String(name||"").toLowerCase();
+      if(a===b||a.indexOf(b)>=0||b.indexOf(a)>=0){total+=Number(q.total||0);correct+=Number(q.correct||0)}
+    });
+    return total?correct/total*100:null;
+  }
+  function planSubjects(contest){
+    var d=contest&&contest.editalData||{},raw=Array.isArray(d.subjects)?d.subjects.slice():[];
+    if(!raw.length)raw=["Conteúdo geral do edital — 1"];
+    return raw.map(parseSubjectWeight).filter(function(x){return x.name}).map(function(x){
+      var acc=subjectPerformanceFor(x.name),weak=acc===null?1:Math.max(.55,1+(70-acc)/100);
+      x.score=x.weight*weak;x.accuracy=acc;return x;
+    }).sort(function(a,b){return b.score-a.score});
+  }
+  function weightedSubjectFor(list,index){
+    if(!list.length)return {name:"Conteúdo geral",weight:1};
+    var total=list.reduce(function(a,x){return a+x.score},0),target=((index%1000)+0.5)/1000*total,run=0;
+    for(var i=0;i<list.length;i++){run+=list[i].score;if(target<=run)return list[i]}
+    return list[list.length-1];
+  }
+  function taskTemplate(subject,slot,hours){
+    var mins=Math.max(20,Math.round((hours*60)/2/5)*5),type=slot%3;
+    if(type===0)return {title:"Teoria + resumo",meta:subject.name+" • "+mins+" min",reward:10,kind:"teoria"};
+    if(type===1)return {title:"Questões + correção",meta:subject.name+" • "+mins+" min",reward:12,kind:"questoes"};
+    return {title:"Revisão ativa",meta:subject.name+" • "+mins+" min",reward:10,kind:"revisao"};
+  }
+  function makeWeekTasks(contest,hours){
+    var list=planSubjects(contest),start=mondayOf(new Date()),tasks=[],days=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"],idx=0;
+    for(var day=0;day<7;day++){
+      var slots=hours>=4?3:2;
+      for(var slot=0;slot<slots;slot++){
+        var subject=weightedSubjectFor(list,idx*7+day+slot*2),t=taskTemplate(subject,slot,hours);
+        tasks.push({id:Date.now()+"-"+day+"-"+slot+"-"+idx,date:isoLocalDate(addDays(start,day)),day:days[day],slot:slot,title:t.title,subject:subject.name,meta:t.meta,reward:t.reward,kind:t.kind,done:false,libsClaimed:false});
+        idx++;
+      }
+    }
+    return {weekStart:isoLocalDate(start),createdAt:localDateTime(),hours:hours,tasks:tasks,dayBonusClaimed:{},weekBonusClaimed:false};
+  }
+  function createStudyPlanForContest(contest){
+    if(!contest)return null;
+    var hours=Number(document.getElementById("agendaHours")&&document.getElementById("agendaHours").value)||2;
+    var plan={id:Date.now()+"",contestId:contest.id,contestName:contest.name,createdAt:localDateTime(),weeks:[]};
+    plan.weeks.push(makeWeekTasks(contest,hours));db.studyPlans.push(plan);contest.studyPlanId=plan.id;return plan;
+  }
+  function activeStudyPlan(){
+    var c=currentContest();if(!c)return null;
+    var p=db.studyPlans.find(function(x){return x.contestId===c.id});
+    if(!p){p=createStudyPlanForContest(c);saveDB()}
+    return p;
+  }
+  function ensureCurrentWeekPlan(){
+    var c=currentContest();if(!c)return null;
+    var p=activeStudyPlan();if(!p)return null;
+    var key=weekKey(),w=p.weeks.find(function(x){return x.weekStart===key});
+    if(!w){w=makeWeekTasks(c,Number(document.getElementById("agendaHours")&&document.getElementById("agendaHours").value)||2);p.weeks.push(w);saveDB()}
+    return {plan:p,week:w,contest:c};
+  }
+  function agendaWeekText(start){
+    var a=new Date(start+"T00:00:00"),b=addDays(a,6);
+    return fmtDate(isoLocalDate(a))+" — "+fmtDate(isoLocalDate(b));
+  }
+  function renderAgenda(){
+    var grid=document.getElementById("agendaWeekGrid");if(!grid)return;
+    document.getElementById("libsBalance").textContent=Number(db.libs||0);
+    var c=currentContest();
+    if(!c){
+      document.getElementById("agendaTitle").textContent="Seu plano semanal";
+      document.getElementById("agendaCopy").textContent="Envie um edital e o ZONA transforma a distribuição de questões em uma semana de estudos organizada.";
+      document.getElementById("agendaWeekLabel").textContent="—";document.getElementById("agendaDone").textContent="0/0";document.getElementById("agendaProgress").textContent="0%";
+      grid.innerHTML='<div class="agenda-empty" style="grid-column:1/-1">Nenhum edital ativo. Importe um edital para gerar a agenda personalizada.</div>';document.getElementById("agendaSubjects").innerHTML='<div class="empty">A distribuição das matérias aparecerá aqui depois da análise do edital.</div>';return;
+    }
+    var data=ensureCurrentWeekPlan(),w=data.week,list=w.tasks||[],done=list.filter(function(t){return t.done}).length,total=list.length,pct=total?Math.round(done/total*100):0;
+    document.getElementById("agendaTitle").textContent=c.name;
+    document.getElementById("agendaCopy").textContent=(c.position||"Preparação")+" • plano calculado a partir do edital e do seu histórico de questões.";
+    document.getElementById("agendaWeekLabel").textContent=agendaWeekText(w.weekStart);
+    document.getElementById("agendaDone").textContent=done+"/"+total;
+    document.getElementById("agendaProgress").textContent=pct+"%";
+    var dayNames=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"],todayKey=today();
+    grid.innerHTML=dayNames.map(function(day,i){
+      var date=isoLocalDate(addDays(new Date(w.weekStart+"T00:00:00"),i)),tasks=list.filter(function(t){return t.date===date}),dDone=tasks.filter(function(t){return t.done}).length,dPct=tasks.length?Math.round(dDone/tasks.length*100):0;
+      return '<div class="agenda-day '+(date===todayKey?"today":"")+'"><div class="agenda-day-head"><div class="agenda-day-name">'+day+'</div><div class="agenda-day-date">'+fmtDate(date)+'</div><div class="agenda-day-progress"><span style="width:'+dPct+'%"></span></div></div><div class="agenda-tasks">'+(tasks.length?tasks.map(function(t){return '<label class="agenda-task '+(t.done?"done":"")+'"><div class="agenda-task-top"><input class="agenda-check" type="checkbox" data-task-id="'+esc(t.id)+'" '+(t.done?"checked":"")+'><div><div class="agenda-task-title">'+esc(t.title)+'</div><div class="agenda-task-meta">'+esc(t.subject)+" • "+esc(t.meta.split(" • ").pop()||"")+'</div><span class="agenda-task-reward">+"+Number(t.reward||10)+" LIBS</span></div></div></label>"}).join(""):'<div class="agenda-empty">Descanso / revisão livre</div>')+'</div></div>';
+    }).join("");
+    grid.querySelectorAll(".agenda-check").forEach(function(el){el.addEventListener("change",function(){toggleAgendaTask(el.dataset.taskId,el.checked)})});
+    var subs=planSubjects(c),max=subs.reduce(function(a,x){return Math.max(a,x.score)},0)||1;
+    document.getElementById("agendaSubjects").innerHTML=subs.map(function(s){var share=Math.round(s.score/max*100),label=s.accuracy===null?"Ainda sem registro":Math.round(s.accuracy)+"% de acerto";return '<div class="agenda-subject-row"><div><div class="agenda-subject-name">'+esc(s.name)+'</div><div class="tiny" style="margin-top:3px">'+esc(label)+'</div></div><div class="agenda-subject-bar"><span style="width:'+share+'%"></span></div><div class="agenda-subject-weight">'+Number(s.weight||1)+' questão'+(Number(s.weight||1)===1?"":"ões")+'</div></div>'}).join("");
+  }
+  function toggleAgendaTask(id,checked){
+    var data=ensureCurrentWeekPlan();if(!data)return;
+    var t=data.week.tasks.find(function(x){return x.id===id});if(!t)return;
+    if(checked&&!t.done){
+      t.done=true;t.doneAt=localDateTime();
+      if(!t.libsClaimed){db.libs+=Number(t.reward||10);t.libsClaimed=true}
+      var dayTasks=data.week.tasks.filter(function(x){return x.date===t.date});
+      if(dayTasks.length&&dayTasks.every(function(x){return x.done})&&!data.week.dayBonusClaimed[t.date]){
+        db.libs+=25;data.week.dayBonusClaimed[t.date]=true;notify("Dia concluído","+25 LIBS de bônus diário.");
+      }else notify("Tarefa concluída","+"+Number(t.reward||10)+" LIBS adicionadas.");
+      if(data.week.tasks.length&&data.week.tasks.every(function(x){return x.done})&&!data.week.weekBonusClaimed){
+        db.libs+=100;data.week.weekBonusClaimed=true;notify("Semana fechada","+100 LIBS de bônus semanal.");
+      }
+    }else if(!checked&&t.done){t.done=false}
+    saveDB();renderAgenda();renderHome();
+  }
+  window.rebuildCurrentWeekPlan=function(){
+    var c=currentContest();if(!c){notify("Sem edital","Importe um edital antes de recalcular a agenda.","error");return}
+    var p=activeStudyPlan(),key=weekKey(),old=p.weeks.find(function(x){return x.weekStart===key}),hours=Number(document.getElementById("agendaHours").value)||2;
+    if(old&&old.tasks.some(function(x){return x.done})){notify("Semana já iniciada","Para preservar seus checks, a semana não foi substituída.","error");return}
+    var nw=makeWeekTasks(c,hours);p.weeks=p.weeks.filter(function(x){return x.weekStart!==key});p.weeks.push(nw);saveDB();renderAgenda();notify("Agenda recalculada","O volume diário foi ajustado para "+hours+"h.");
+  }
+
   function renderPerformance(){var p=performanceData();["metricIndex","metricAccuracy","metricVolume","metricConsistency","metricCoverage"].forEach(function(id,i){var v=[p.index,Math.round(p.acc),p.total,Math.round(p.consistency),Math.round(p.coverage)][i];document.getElementById(id).textContent=(i===0||i===2)?v:(v+"%")});["metricIndexBar","metricAccuracyBar","metricVolumeBar","metricConsistencyBar","metricCoverageBar"].forEach(function(id,i){var v=[p.index,p.acc,p.volume,p.consistency,p.coverage][i];document.getElementById(id).style.width=Math.min(100,v)+"%"});document.getElementById("last7").textContent=p.q7+" questões";document.getElementById("last30").textContent=p.q30+" questões";document.getElementById("perfHours").textContent=(db.sessions.reduce(function(a,s){return a+s.minutes},0)/60).toFixed(1)+"h";var box=document.getElementById("subjectPerformance");var entries=Object.entries(p.by);if(!entries.length){box.innerHTML='<div class="empty">Registre questões para ver o desempenho por matéria.</div>';return}box.innerHTML=entries.sort(function(a,b){return b[1].total-a[1].total}).map(function(x){var acc=x[1].total?Math.round(x[1].correct/x[1].total*100):0;return '<div class="subject-row"><div class="subject-line"><strong>'+esc(x[0])+'</strong><strong>'+acc+'%</strong></div><div class="subject-stats">'+x[1].correct+' acertos em '+x[1].total+' questões</div><div class="subject-progress" style="margin-top:8px"><span style="width:'+acc+'%"></span></div></div>'}).join("")}
   function renderEditais(){var list=document.getElementById("editalList"),items=db.contests.filter(function(c){return c.importedFromEdital});if(!items.length){list.innerHTML='<div class="empty">Nenhum edital importado ainda.</div>';return}list.innerHTML=items.slice().reverse().map(function(c){return '<div class="card" style="margin-bottom:10px;background:#0c0c0c"><div class="active-name" style="font-size:17px">'+esc(c.name)+'</div><div class="tiny">'+esc(c.editalFileName||"PDF importado")+'</div><div class="chip-row" style="margin-top:10px">'+(c.editalData&&c.editalData.subjects||[]).map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+'</div></div>'}).join("")}
 
@@ -585,9 +813,29 @@ body.zona-app-ready #app{display:block}
     out.questionCount=(text.match(/(?:total de|ser[aá]o)\s*(\d{2,3})\s*quest[oõ]es/i)||[])[1]||"";
     out.name=(head.match(/(concurso p[uú]blico[^\n]{0,130})/i)||[])[1]||((head.match(/(processo seletivo[^\n]{0,130})/i)||[])[1])||"Concurso importado";
     out.institution=(head.match(/(prefeitura[^\n]{0,120})/i)||[])[1]||((head.match(/(universidade[^\n]{0,120})/i)||[])[1])||"";
+    out.subjects=extractSubjectsFromEdital(text);
+    if(!out.questionCount&&out.subjects.length)out.questionCount=String(out.subjects.reduce(function(a,x){return a+Number(parseSubjectWeight(x).weight||0)},0));
     var stageMap=[["Prova Objetiva",/prova objetiva/i],["TAF",/teste de aptid[aã]o f[ií]sica|\bTAF\b/i],["Avaliação Psicológica",/avalia[cç][aã]o psicol[oó]gica/i],["Perícia Médica",/per[ií]cia m[eé]dica/i],["Curso de Formação",/curso de forma[cç][aã]o/i],["Investigação Social",/investiga[cç][aã]o social/i]];out.stages=stageMap.filter(function(x){return x[1].test(text)}).map(function(x){return x[0]});
     var count=[out.name,out.position,out.registrationStart,out.registrationEnd,out.proofDate,out.questionCount].filter(Boolean).length;out.confidence=count>=5?"alta":count>=3?"moderada":"baixa";return out
   }
+  function extractSubjectsFromEdital(text){
+    var lines=String(text||"").split(/\n+/).map(function(x){return x.replace(/\s+/g," ").trim()}).filter(Boolean),found=[];
+    var known=[];subjectsCatalog.forEach(function(g){g[1].forEach(function(s){known.push(s)})});
+    function rxEscape(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\  function renderExtraction(d){")}
+    lines.forEach(function(line){
+      known.forEach(function(name){
+        if(line.toLowerCase().indexOf(name.toLowerCase())<0)return;
+        var re=new RegExp(rxEscape(name)+"[^\\d]{0,35}(\\d{1,3})(?:\\s*(?:quest(?:ões|oes)?)?)?$","i"),m=line.match(re);
+        if(!m){
+          var rev=line.match(/(?:^|\s)(\d{1,3})\s*(?:quest(?:ões|oes)?)?\s*[-–—:]?\s*$/i);
+          if(rev&&line.toLowerCase().indexOf(name.toLowerCase())>=0)m=rev;
+        }
+        if(m&&!found.some(function(x){return x.toLowerCase().indexOf(name.toLowerCase())===0}))found.push(name+" — "+Number(m[1]));
+      });
+    });
+    return found.slice(0,30);
+  }
+
   function renderExtraction(d){
     var cls=d.confidence==="alta"?"high":d.confidence==="moderada"?"mid":"low";
     var chips=(d.subjects||[]).map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("");
@@ -629,7 +877,14 @@ body.zona-app-ready #app{display:block}
   }
   window.processEditalOCR=processEditalOCR;
   window.saveExtractedContest=function(){
-    if(!extracted)return;var c={id:Date.now()+"",name:(document.getElementById("contestName").value.trim()||extracted.name),position:document.getElementById("contestPosition").value.trim()||extracted.position,date:document.getElementById("contestDate").value||normalizePdfDate(extracted.proofDate),progress:0,type:document.getElementById("contestType").value||"Concurso público",editalFileName:selectedFile?selectedFile.name:"",importedFromEdital:true,active:true,editalData:extracted};db.contests.forEach(function(x){x.active=false});db.contests.push(c);saveDB();refreshSelects();closeContestModal();renderAll();notify("Concurso criado",c.name+" agora alimenta o dashboard e a performance.")}
+    if(!extracted)return;
+    var c={id:Date.now()+"",name:(document.getElementById("contestName").value.trim()||extracted.name),position:document.getElementById("contestPosition").value.trim()||extracted.position,date:document.getElementById("contestDate").value||normalizePdfDate(extracted.proofDate),progress:0,type:document.getElementById("contestType").value||"Concurso público",editalFileName:selectedFile?selectedFile.name:"",importedFromEdital:true,active:true,editalData:extracted};
+    db.contests.forEach(function(x){x.active=false});
+    db.contests.push(c);
+    createStudyPlanForContest(c);
+    saveDB();refreshSelects();closeContestModal();renderAll();goTo("agenda");
+    notify("Concurso criado + plano gerado",c.name+" já tem uma semana personalizada de estudos.");
+  }
 
   function saveContest(){var name=document.getElementById("contestName").value.trim();if(!name){notify("Nome do concurso","Informe pelo menos o nome.","error");return}var c={id:Date.now()+"",name:name,position:document.getElementById("contestPosition").value.trim(),date:document.getElementById("contestDate").value,progress:Number(document.getElementById("contestProgressInput").value)||0,type:document.getElementById("contestType").value||"Concurso público",active:true,importedFromEdital:false};db.contests.forEach(function(x){x.active=false});db.contests.push(c);saveDB();closeContestModal();renderAll();notify("Concurso criado","O painel já está usando este concurso como ativo.")};window.saveContest=saveContest
 
