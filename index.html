@@ -582,7 +582,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   }
   window.goTo=goTo;
   document.querySelectorAll(".nav-btn").forEach(function(b){b.addEventListener("click",function(){goTo(b.dataset.page)})});
-  document.getElementById("mobileMenu").addEventListener("click",function(){document.getElementById("sidebar").classList.toggle("open")});
+  /* mobile menu handled by ZONA FX */
 
   function refreshSelects(){
     var contest=currentContest(), extras=[];
