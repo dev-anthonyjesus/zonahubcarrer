@@ -30,6 +30,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 .toast-wrap{position:fixed;right:18px;bottom:18px;width:min(360px,calc(100vw - 36px));z-index:1200;display:flex;flex-direction:column;gap:8px}.toast{display:flex;gap:10px;padding:13px;border:1px solid #303030;background:rgba(16,16,16,.96);backdrop-filter:blur(12px);border-radius:14px;box-shadow:0 20px 70px rgba(0,0,0,.5);animation:toastIn .2s ease}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:4px;flex:0 0 auto}.toast.error .dot{background:var(--orange)}.toast-title{font-size:10px;font-weight:950}.toast-copy{font-size:9px;color:#777;margin-top:2px;line-height:1.45}@keyframes toastIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 .premium-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.plan{border:1px solid var(--line);border-radius:16px;background:#0d0d0d;padding:16px}.plan.featured{border-color:#435a37;box-shadow:0 0 30px rgba(186,255,124,.05)}.plan-name{font-size:13px;font-weight:950}.plan-price{font-size:24px;font-weight:950;margin-top:7px}.plan-copy{font-size:9px;color:#777;line-height:1.55;margin-top:6px}.plan-list{margin:11px 0 0;padding:0;list-style:none}.plan-list li{font-size:9px;color:#aaa;padding:4px 0;border-top:1px solid #202020}.plan-list li:first-child{border-top:0}
 .account-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.social-edit{display:flex;gap:8px}.social-edit .input{flex:1}
+.notes-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;min-height:720px}.notes-sidebar{min-width:0}.note-list{display:flex;flex-direction:column;gap:6px;margin-top:12px;max-height:590px;overflow:auto}.note-list-item{border:1px solid #222;background:#0d0d0d;border-radius:11px;padding:11px;cursor:pointer}.note-list-item:hover,.note-list-item.active{border-color:#405334;background:#121712}.note-list-item strong{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.note-list-item small{display:block;color:#666;font-size:8px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.notes-editor-card{display:flex;flex-direction:column;min-width:0}.notes-editor-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.notes-title-input{display:block;width:min(620px,100%);border:0;outline:0;background:transparent;color:#fff;font-size:30px;font-weight:950;letter-spacing:-1.2px;padding:4px 0;margin:7px 0}.notes-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.note-toolbar{display:flex;gap:5px;flex-wrap:wrap;padding:10px 0;border-top:1px solid #222;border-bottom:1px solid #222;margin-top:16px}.note-tool{height:32px;min-width:32px;border:1px solid #282828;background:#101010;color:#ddd;border-radius:8px;font-size:11px;font-weight:900}.note-tool:hover{background:#1b1b1b;color:var(--green);border-color:#3c4d32}.note-format{width:125px;padding:7px 8px}.note-editor{flex:1;min-height:560px;padding:28px 8px 60px;font-size:14px;line-height:1.75;outline:0;color:#e9e9e9}.note-editor:empty:before{content:attr(data-placeholder);color:#555}.note-editor h1{font-size:32px;line-height:1.15;margin:24px 0 12px}.note-editor h2{font-size:25px;line-height:1.2;margin:22px 0 10px}.note-editor h3{font-size:19px;line-height:1.3;margin:18px 0 8px}.note-editor blockquote{border-left:3px solid var(--green);margin:16px 0;padding:8px 15px;color:#aaa;background:#0d120b}.note-editor pre{background:#080808;border:1px solid #252525;border-radius:10px;padding:14px;overflow:auto}.note-editor a{color:var(--green)}.note-editor mark{background:#fff08a;color:#111;padding:0 2px;border-radius:2px}.notes-footer{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #222;padding-top:10px;color:#555;font-size:8px}@media(max-width:900px){.notes-layout{grid-template-columns:1fr}.note-list{max-height:220px}.notes-editor-head{flex-direction:column}.notes-actions{justify-content:flex-start}.notes-title-input{font-size:25px}.note-editor{min-height:450px}}
 @media(max-width:1050px){.sidebar{width:225px}main{margin-left:225px;padding:25px}.hero{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}.news-grid{grid-template-columns:1fr 1fr}.metric-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:760px){
   .sidebar{width:min(86vw,330px);transform:translateX(-105%);transition:transform .23s ease;box-shadow:30px 0 80px rgba(0,0,0,.55)}.sidebar.open{transform:translateX(0)}main{margin-left:0;padding:15px 15px 70px}.mobile-menu{display:grid;place-items:center}.topbar{margin-bottom:20px}.socials{display:none}.account-role{display:none}.page-title{font-size:22px}.hero-title{font-size:38px}.stat-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.form-grid,.choice,.account-modal-grid{grid-template-columns:1fr}.card{padding:18px}.hero-main,.active-card{min-height:auto}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.modal-backdrop.open{align-items:flex-end;padding:0}.modal{max-height:94dvh;border-radius:23px 23px 0 0;padding:19px 16px calc(24px + env(safe-area-inset-bottom))}.extract-grid{grid-template-columns:1fr}.premium-plans{grid-template-columns:1fr}.clock-display{font-size:55px;letter-spacing:-2px}.toast-wrap{right:12px;bottom:12px;width:calc(100vw - 24px)}}
@@ -115,6 +116,7 @@ body.zona-app-ready #app{display:block}
     <button class="nav-btn home-glow active" data-page="home"><span class="nav-icon">⌂</span>HOME</button>
     <button class="nav-btn" data-page="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
     <button class="nav-btn" data-page="agenda"><span class="nav-icon">▦</span>Agenda de Estudos</button>
+    <button class="nav-btn" data-page="anotacoes"><span class="nav-icon">✎</span>Anotações</button>
     <button class="nav-btn" data-page="concursos"><span class="nav-icon">◉</span>Concursos</button>
     <button class="nav-btn" data-page="questoes"><span class="nav-icon">□</span>Questões</button>
     <button class="nav-btn" data-page="performance"><span class="nav-icon">↗</span>Performance</button>
@@ -238,6 +240,31 @@ body.zona-app-ready #app{display:block}
     </div>
   </section>
 
+  <section class="page" id="anotacoes">
+    <div class="notes-layout">
+      <aside class="card notes-sidebar">
+        <div class="section-head"><div><div class="section-title">Minhas páginas</div><div class="section-copy">Crie quantas páginas precisar.</div></div><button class="btn btn-primary" onclick="newNotePage()">+ PÁGINA</button></div>
+        <input class="input" id="noteSearch" placeholder="Buscar páginas..." oninput="renderNoteList()">
+        <div id="noteList" class="note-list"></div>
+      </aside>
+      <section class="card notes-editor-card">
+        <div class="notes-editor-head">
+          <div><div class="eyebrow">ZONA / NOTES</div><input class="notes-title-input" id="noteTitle" placeholder="Título da página" oninput="saveCurrentNoteTitle"><div class="tiny" id="noteUpdated">Página nova</div></div>
+          <div class="notes-actions"><button class="btn btn-secondary" onclick="downloadCurrentNote('html')">BAIXAR HTML</button><button class="btn btn-secondary" onclick="downloadCurrentNote('txt')">BAIXAR TXT</button><button class="btn btn-danger" onclick="deleteCurrentNote()">EXCLUIR PÁGINA</button></div>
+        </div>
+        <div class="note-toolbar">
+          <select class="select note-format" onchange="noteFormat(this.value);this.value='p'"><option value="p">Texto</option><option value="h1">Título 1</option><option value="h2">Título 2</option><option value="h3">Título 3</option></select>
+          <button class="note-tool" onclick="noteCommand('bold')" title="Negrito"><b>B</b></button><button class="note-tool" onclick="noteCommand('italic')" title="Itálico"><i>I</i></button><button class="note-tool" onclick="noteCommand('underline')" title="Sublinhado"><u>U</u></button><button class="note-tool" onclick="noteCommand('strikeThrough')" title="Riscado"><s>S</s></button>
+          <button class="note-tool" onclick="noteCommand('insertUnorderedList')" title="Lista">•</button><button class="note-tool" onclick="noteCommand('insertOrderedList')" title="Lista numerada">1.</button>
+          <button class="note-tool" onclick="noteCommand('justifyLeft')" title="Esquerda">≡</button><button class="note-tool" onclick="noteCommand('justifyCenter')" title="Centro">≡</button><button class="note-tool" onclick="noteCommand('justifyRight')" title="Direita">≡</button>
+          <button class="note-tool" onclick="noteHighlight()" title="Marca-texto">▰</button><button class="note-tool" onclick="noteCommand('removeFormat')" title="Limpar formatação">Tx</button><button class="note-tool" onclick="noteLink()" title="Inserir link">↗</button><button class="note-tool" onclick="noteCommand('undo')" title="Desfazer">↶</button><button class="note-tool" onclick="noteCommand('redo')" title="Refazer">↷</button>
+        </div>
+        <div id="noteEditor" class="note-editor" contenteditable="true" spellcheck="true" data-placeholder="Comece a escrever..."></div>
+        <div class="notes-footer"><span id="noteSaveStatus">Salvo automaticamente</span><span>Texto rico • páginas ilimitadas • armazenamento por conta</span></div>
+      </section>
+    </div>
+  </section>
+
   <section class="page" id="concursos">
     <div class="card">
       <div class="section-head"><div><div class="section-title">Concursos</div><div class="section-copy">Adicione por cadastro rápido ou importe um edital.</div></div><button class="btn btn-primary" onclick="openContestModal()">+ NOVO CONCURSO</button></div>
@@ -272,7 +299,7 @@ body.zona-app-ready #app{display:block}
           </div>
           <input class="input hidden" id="questionSourceOther" placeholder="Nome do site/app/simulado" />
         </div>
-        <div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button></div>
+        <div class="field" style="margin-top:12px;margin-bottom:0"><label>Anotação desta bateria</label><textarea class="input" id="questionNote" rows="4" placeholder="Ex.: errei por confundir competência legislativa; revisar art. 22..."></textarea></div><div style="margin-top:12px"><button class="btn btn-primary" type="submit">SALVAR RESULTADO</button></div>
       </form>
       <div class="question-history-bar">
         <div class="tiny">Cada registro guarda a data/hora em que foi lançado e a origem. Excluir apenas arquiva: o histórico nunca é apagado.</div>
@@ -390,20 +417,26 @@ body.zona-app-ready #app{display:block}
 (function(){
   if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"; }
 
-  var DB_KEY="ZONA_HUB_DATABASE_V2";
+  var BASE_DB_KEY="ZONA_HUB_DATABASE_V2";
   var AUTH_KEY="ZONA_HUB_AUTH_V1";
-  var SOCIAL_KEY="ZONA_HUB_SOCIALS_V1";
-  var TIMER_KEY="ZONA_HUB_TIMER_V1";
-
+  var BASE_SOCIAL_KEY="ZONA_HUB_SOCIALS_V1";
+  var BASE_TIMER_KEY="ZONA_HUB_TIMER_V1";
+  var DB_KEY=BASE_DB_KEY,SOCIAL_KEY=BASE_SOCIAL_KEY,TIMER_KEY=BASE_TIMER_KEY;
   function safeJSON(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
-  var db=safeJSON(localStorage.getItem(DB_KEY),null)||{contests:[],questions:[],sessions:[],studyPlans:[],libs:0};
+  function accountSlug(role){return role==="Administrador"?"admin":"visitante"}
+  function accountKey(base,role){return base+"_"+accountSlug(role)}
+  function blankDB(){return {contests:[],questions:[],sessions:[],studyPlans:[],libs:0,notes:[]}}
+  var bootAuth=safeJSON(localStorage.getItem(AUTH_KEY),null),initialRole=bootAuth&&bootAuth.role?bootAuth.role:"Administrador";
+  DB_KEY=accountKey(BASE_DB_KEY,initialRole);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,initialRole);TIMER_KEY=accountKey(BASE_TIMER_KEY,initialRole);
+  var legacyDB=safeJSON(localStorage.getItem(BASE_DB_KEY),null),db=safeJSON(localStorage.getItem(DB_KEY),null);
+  if(!db){db=(initialRole==="Administrador"&&legacyDB)?legacyDB:blankDB();localStorage.setItem(DB_KEY,JSON.stringify(db))}
   var session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
   if(!Array.isArray(db.contests))db.contests=[];
   if(!Array.isArray(db.questions))db.questions=[];
   if(!Array.isArray(db.sessions))db.sessions=[];
   if(!Array.isArray(db.studyPlans))db.studyPlans=[];
-  if(!Number.isFinite(Number(db.libs)))db.libs=0;
-  var currentUser=null;
+  if(!Number.isFinite(Number(db.libs)))db.libs=0;if(!Array.isArray(db.notes))db.notes=[];
+  var currentUser=bootAuth||null;
   var selectedFile=null;
   var extracted=null;
   var subjectsCatalog=[
@@ -419,6 +452,13 @@ body.zona-app-ready #app{display:block}
   ];
 
   function saveDB(){localStorage.setItem(DB_KEY,JSON.stringify(db))}
+  function switchAccountStorage(user){
+    currentUser=user;DB_KEY=accountKey(BASE_DB_KEY,user.role);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,user.role);TIMER_KEY=accountKey(BASE_TIMER_KEY,user.role);
+    var legacy=safeJSON(localStorage.getItem(BASE_DB_KEY),null),loaded=safeJSON(localStorage.getItem(DB_KEY),null);
+    if(!loaded){loaded=(user.role==="Administrador"&&legacy)?legacy:blankDB();localStorage.setItem(DB_KEY,JSON.stringify(loaded))}
+    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];if(!Array.isArray(db.notes))db.notes=[];if(!Number.isFinite(Number(db.libs)))db.libs=0;
+    session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
+  }
   function esc(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
   function fmtDate(v){ if(!v)return "—"; var p=v.split("-"); if(p.length===3)return p[2]+"/"+p[1]+"/"+p[0]; return v }
   function today(){return new Date().toISOString().slice(0,10)}
@@ -430,7 +470,7 @@ body.zona-app-ready #app{display:block}
 
   function showApp(){
     document.getElementById("loginScreen").style.display="none";document.getElementById("app").style.display="block";document.body.classList.add("zona-app-ready");
-    var u=safeJSON(localStorage.getItem(AUTH_KEY),null);if(!u||!u.role){localStorage.removeItem(AUTH_KEY);return}currentUser=u;
+    var u=safeJSON(localStorage.getItem(AUTH_KEY),null);if(!u||!u.role){localStorage.removeItem(AUTH_KEY);return}if(!currentUser||currentUser.role!==u.role)switchAccountStorage(u);currentUser=u;
     document.getElementById("accountName").textContent=u.role==="Administrador"?"Admin":"Visitante";
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
@@ -444,7 +484,7 @@ body.zona-app-ready #app{display:block}
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
     localStorage.setItem(AUTH_KEY,JSON.stringify(found));
     try{
-      showApp();
+      switchAccountStorage(found);showApp();
     }catch(err){
       console.error("ZONA login error",err);
       localStorage.removeItem(AUTH_KEY);
@@ -466,7 +506,7 @@ body.zona-app-ready #app{display:block}
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
     document.getElementById(page).classList.add("active");
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
-    var names={home:"HOME",dashboard:"Dashboard",agenda:"Agenda de Estudos",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
+    var names={home:"HOME",dashboard:"Dashboard",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     document.getElementById("sidebar").classList.remove("open");
   }
@@ -504,7 +544,7 @@ body.zona-app-ready #app{display:block}
     return {total:total,correct:correct,acc:acc,volume:volume,consistency:consistency,coverage:coverage,index:index,q7:q7,q30:qs.filter(function(q){return new Date(q.date).getTime()>=d30}).reduce(function(a,q){return a+Number(q.total||0)},0),by:by}
   }
 
-  function renderAll(){refreshSelects();renderHome();renderDashboard();renderAgenda();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
+  function renderAll(){refreshSelects();renderHome();renderDashboard();renderAgenda();renderNotes();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
   function renderHome(){
     var c=currentContest();document.getElementById("homeContest").textContent=c?c.name:"Nenhum concurso ativo";document.getElementById("homeContestMeta").textContent=c?(c.position||"Cargo não informado")+" • prova "+(c.date?fmtDate(c.date):"não informada"):"Adicione um edital para começar";
     var h=document.getElementById("homeQuick");h.innerHTML="";
@@ -566,14 +606,35 @@ body.zona-app-ready #app{display:block}
       total:t,
       correct:co,
       source:source,
+      note:(document.getElementById("questionNote").value||"").trim(),
+      notePageId:"",
       deleted:false,
       history:[{action:"created",at:now}]
     });
-    saveDB();e.target.reset();document.getElementById("questionSubjectCustom").classList.add("hidden");document.getElementById("questionSourceOther").classList.add("hidden");
+    saveDB();e.target.reset();document.getElementById("questionSubjectCustom").classList.add("hidden");document.getElementById("questionSourceOther").classList.add("hidden");document.getElementById("questionNote").value="";
     notify("Resultado salvo",t+" questões em "+s+" foram registradas.");
     renderAll();
   });
 
+
+  function ensureNotes(){if(!Array.isArray(db.notes))db.notes=[];if(!db.notes.length){db.notes.push({id:Date.now()+"",title:"Minha primeira página",content:"",createdAt:localDateTime(),updatedAt:localDateTime(),questionId:""});saveDB()}}
+  var currentNoteId=null;
+  function currentNote(){return db.notes.find(function(n){return n.id===currentNoteId})||null}
+  function renderNoteList(){var box=document.getElementById("noteList");if(!box)return;var q=(document.getElementById("noteSearch").value||"").toLowerCase();var list=db.notes.filter(function(n){return !q||String(n.title||"").toLowerCase().indexOf(q)>=0||String(n.content||"").toLowerCase().replace(/<[^>]+>/g," ").indexOf(q)>=0});if(!list.length){box.innerHTML='<div class="empty">Nenhuma página encontrada.</div>';return}box.innerHTML=list.slice().reverse().map(function(n){return '<div class="note-list-item '+(n.id===currentNoteId?"active":"")+'" data-note-id="'+esc(n.id)+'"><strong>'+esc(n.title||"Sem título")+'</strong><small>'+esc(n.questionId?"Vinculada a uma questão":"Página")+' • '+esc(fmtDateTime(n.updatedAt))+'</small></div>'}).join("");box.querySelectorAll("[data-note-id]").forEach(function(el){el.addEventListener("click",function(){openNotePage(el.dataset.noteId)})})}
+  function renderNotes(){ensureNotes();var n=currentNote();if(!n){currentNoteId=db.notes[db.notes.length-1].id;n=currentNote()}document.getElementById("noteTitle").value=n.title||"";document.getElementById("noteEditor").innerHTML=n.content||"";document.getElementById("noteUpdated").textContent="Atualizada em "+fmtDateTime(n.updatedAt);renderNoteList()}
+  function openNotePage(id){currentNoteId=id;renderNotes();goTo("anotacoes")}
+  function newNotePage(){var n={id:Date.now()+"",title:"Nova página",content:"",createdAt:localDateTime(),updatedAt:localDateTime(),questionId:""};db.notes.push(n);saveDB();currentNoteId=n.id;renderNotes();goTo("anotacoes");setTimeout(function(){document.getElementById("noteTitle").focus()},50)}
+  function saveCurrentNoteTitle(){var n=currentNote();if(!n)return;n.title=document.getElementById("noteTitle").value||"Sem título";n.updatedAt=localDateTime();saveDB();document.getElementById("noteUpdated").textContent="Salvando...";clearTimeout(window.noteListTimer);window.noteListTimer=setTimeout(function(){renderNoteList();var x=currentNote();if(x)document.getElementById("noteUpdated").textContent="Atualizada em "+fmtDateTime(x.updatedAt)},200)}
+  var noteSaveTimer=null;
+  function saveNoteEditor(){var n=currentNote();if(!n)return;n.content=document.getElementById("noteEditor").innerHTML;n.updatedAt=localDateTime();saveDB();document.getElementById("noteSaveStatus").textContent="Salvo automaticamente • "+fmtDateTime(n.updatedAt);clearTimeout(noteSaveTimer);noteSaveTimer=setTimeout(renderNoteList,350)}
+  function noteCommand(cmd,value){document.getElementById("noteEditor").focus();document.execCommand(cmd,false,value||null);saveNoteEditor()}
+  function noteFormat(tag){document.getElementById("noteEditor").focus();document.execCommand("formatBlock",false,tag);saveNoteEditor()}
+  function noteHighlight(){document.getElementById("noteEditor").focus();document.execCommand("hiliteColor",false,"#fff08a");saveNoteEditor()}
+  function noteLink(){var url=prompt("Cole o link:","https://");if(!url)return;document.getElementById("noteEditor").focus();document.execCommand("createLink",false,url);saveNoteEditor()}
+  function deleteCurrentNote(){var n=currentNote();if(!n)return;if(db.notes.length<=1){notify("Não dá para excluir","Mantenha pelo menos uma página de anotações.","error");return}if(!confirm("Excluir esta página de anotações?"))return;db.notes=db.notes.filter(function(x){return x.id!==n.id});currentNoteId=db.notes[db.notes.length-1].id;saveDB();renderNotes();notify("Página excluída","A página de anotações foi removida.")}
+  function downloadCurrentNote(type){var n=currentNote();if(!n)return;var title=n.title||"Anotação ZONA",safe=title.replace(/[^a-z0-9áéíóúãõç _-]/gi,"").trim()||"anotacao-zona";if(type==="html"){var html="<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>"+esc(title)+"</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;line-height:1.7;color:#222}mark{background:#fff08a}</style></head><body><h1>"+esc(title)+"</h1>"+(n.content||"")+"</body></html>";var blob=new Blob([html],{type:"text/html;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=safe+".html";a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},500)}else{var temp=document.createElement("div");temp.innerHTML=n.content||"";var txt=temp.innerText||temp.textContent||"";var blob2=new Blob([title+"\n\n"+txt],{type:"text/plain;charset=utf-8"}),a2=document.createElement("a");a2.href=URL.createObjectURL(blob2);a2.download=safe+".txt";a2.click();setTimeout(function(){URL.revokeObjectURL(a2.href)},500)}}
+  function openQuestionNote(id){var q=db.questions.find(function(x){return x.id===id});if(!q)return;if(!Array.isArray(db.notes))db.notes=[];var n=q.notePageId&&db.notes.find(function(x){return x.id===q.notePageId});if(!n){n={id:Date.now()+"",title:"Questão — "+q.subject,content:q.note?"<p>"+esc(q.note)+"</p>":"<p></p>",createdAt:localDateTime(),updatedAt:localDateTime(),questionId:q.id};db.notes.push(n);q.notePageId=n.id;saveDB()}currentNoteId=n.id;renderNotes();goTo("anotacoes")}
+  document.getElementById("noteEditor").addEventListener("input",function(){clearTimeout(noteSaveTimer);noteSaveTimer=setTimeout(saveNoteEditor,350)});document.getElementById("noteEditor").addEventListener("blur",saveNoteEditor);
   function renderQuestions(){
     var tb=document.getElementById("questionTable"),filter=document.getElementById("questionHistoryFilter").value;
     var list=db.questions.slice().reverse().filter(function(q){
@@ -596,7 +657,7 @@ body.zona-app-ready #app{display:block}
         '<td>'+Number(q.correct||0)+'</td>'+
         '<td>'+p+'%</td>'+
         '<td>'+status+'</td>'+
-        '<td><div style="display:flex;gap:6px;flex-wrap:wrap">'+actions+'</div></td>'+
+        '<td><div style="display:flex;gap:6px;flex-wrap:wrap">'+actions+'<button type="button" class="btn btn-secondary" data-action="note">NOTA</button></div></td>'+
       '</tr>';
     }).join("");
     tb.querySelectorAll("tr[data-question-id]").forEach(function(tr){
@@ -605,6 +666,7 @@ body.zona-app-ready #app{display:block}
       if(edit)edit.addEventListener("click",function(){editQuestion(id)});
       if(del)del.addEventListener("click",function(){deleteQuestion(id)});
       if(restore)restore.addEventListener("click",function(){restoreQuestion(id)});
+      var noteBtn=tr.querySelector('[data-action="note"]');if(noteBtn)noteBtn.addEventListener("click",function(){openQuestionNote(id)});
     });
   }
 
