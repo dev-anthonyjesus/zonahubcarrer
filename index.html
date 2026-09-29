@@ -727,23 +727,49 @@ body.zona-app-ready #app{display:block}
     if(!c){
       document.getElementById("agendaTitle").textContent="Seu plano semanal";
       document.getElementById("agendaCopy").textContent="Envie um edital e o ZONA transforma a distribuição de questões em uma semana de estudos organizada.";
-      document.getElementById("agendaWeekLabel").textContent="—";document.getElementById("agendaDone").textContent="0/0";document.getElementById("agendaProgress").textContent="0%";
-      grid.innerHTML='<div class="agenda-empty" style="grid-column:1/-1">Nenhum edital ativo. Importe um edital para gerar a agenda personalizada.</div>';document.getElementById("agendaSubjects").innerHTML='<div class="empty">A distribuição das matérias aparecerá aqui depois da análise do edital.</div>';return;
+      document.getElementById("agendaWeekLabel").textContent="—";
+      document.getElementById("agendaDone").textContent="0/0";
+      document.getElementById("agendaProgress").textContent="0%";
+      grid.innerHTML="<div class=\"agenda-empty\" style=\"grid-column:1/-1\">Nenhum edital ativo. Importe um edital para gerar a agenda personalizada.</div>";
+      document.getElementById("agendaSubjects").innerHTML="<div class=\"empty\">A distribuição das matérias aparecerá aqui depois da análise do edital.</div>";
+      return;
     }
-    var data=ensureCurrentWeekPlan(),w=data.week,list=w.tasks||[],done=list.filter(function(t){return t.done}).length,total=list.length,pct=total?Math.round(done/total*100):0;
+    var data=ensureCurrentWeekPlan(),w=data.week,list=w.tasks||[];
+    var done=list.filter(function(t){return t.done}).length,total=list.length,pct=total?Math.round(done/total*100):0;
     document.getElementById("agendaTitle").textContent=c.name;
     document.getElementById("agendaCopy").textContent=(c.position||"Preparação")+" • plano calculado a partir do edital e do seu histórico de questões.";
     document.getElementById("agendaWeekLabel").textContent=agendaWeekText(w.weekStart);
     document.getElementById("agendaDone").textContent=done+"/"+total;
     document.getElementById("agendaProgress").textContent=pct+"%";
-    var dayNames=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"],todayKey=today();
-    grid.innerHTML=dayNames.map(function(day,i){
-      var date=isoLocalDate(addDays(new Date(w.weekStart+"T00:00:00"),i)),tasks=list.filter(function(t){return t.date===date}),dDone=tasks.filter(function(t){return t.done}).length,dPct=tasks.length?Math.round(dDone/tasks.length*100):0;
-      return '<div class="agenda-day '+(date===todayKey?"today":"")+'"><div class="agenda-day-head"><div class="agenda-day-name">'+day+'</div><div class="agenda-day-date">'+fmtDate(date)+'</div><div class="agenda-day-progress"><span style="width:'+dPct+'%"></span></div></div><div class="agenda-tasks">'+(tasks.length?tasks.map(function(t){return '<label class="agenda-task '+(t.done?"done":"")+'"><div class="agenda-task-top"><input class="agenda-check" type="checkbox" data-task-id="'+esc(t.id)+'" '+(t.done?"checked":"")+'><div><div class="agenda-task-title">'+esc(t.title)+'</div><div class="agenda-task-meta">'+esc(t.subject)+" • "+esc(t.meta.split(" • ").pop()||"")+'</div><span class="agenda-task-reward">+"+Number(t.reward||10)+" LIBS</span></div></div></label>"}).join(""):'<div class="agenda-empty">Descanso / revisão livre</div>')+'</div></div>';
-    }).join("");
-    grid.querySelectorAll(".agenda-check").forEach(function(el){el.addEventListener("change",function(){toggleAgendaTask(el.dataset.taskId,el.checked)})});
+    var dayNames=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"],todayKey=today(),html="";
+    for(var i=0;i<dayNames.length;i++){
+      var date=isoLocalDate(addDays(new Date(w.weekStart+"T00:00:00"),i));
+      var tasks=list.filter(function(t){return t.date===date});
+      var dDone=tasks.filter(function(t){return t.done}).length;
+      var dPct=tasks.length?Math.round(dDone/tasks.length*100):0;
+      var taskHtml="";
+      if(tasks.length){
+        taskHtml=tasks.map(function(t){
+          var checked=t.done?" checked":"";
+          var doneClass=t.done?" done":"";
+          return "<label class=\"agenda-task"+doneClass+"\"><div class=\"agenda-task-top\"><input class=\"agenda-check\" type=\"checkbox\" data-task-id=\""+esc(t.id)+"\""+checked+"><div><div class=\"agenda-task-title\">"+esc(t.title)+"</div><div class=\"agenda-task-meta\">"+esc(t.subject)+" • "+esc(t.meta.split(" • ").pop()||"")+"</div><span class=\"agenda-task-reward\">+"+Number(t.reward||10)+" LIBS</span></div></div></label>";
+        }).join("");
+      }else{
+        taskHtml="<div class=\"agenda-empty\">Descanso / revisão livre</div>";
+      }
+      html+="<div class=\"agenda-day"+(date===todayKey?" today":"")+"\"><div class=\"agenda-day-head\"><div class=\"agenda-day-name\">"+dayNames[i]+"</div><div class=\"agenda-day-date\">"+fmtDate(date)+"</div><div class=\"agenda-day-progress\"><span style=\"width:"+dPct+"%\"></span></div></div><div class=\"agenda-tasks\">"+taskHtml+"</div></div>";
+    }
+    grid.innerHTML=html;
+    grid.querySelectorAll(".agenda-check").forEach(function(el){
+      el.addEventListener("change",function(){toggleAgendaTask(el.dataset.taskId,el.checked)});
+    });
     var subs=planSubjects(c),max=subs.reduce(function(a,x){return Math.max(a,x.score)},0)||1;
-    document.getElementById("agendaSubjects").innerHTML=subs.map(function(s){var share=Math.round(s.score/max*100),label=s.accuracy===null?"Ainda sem registro":Math.round(s.accuracy)+"% de acerto";return '<div class="agenda-subject-row"><div><div class="agenda-subject-name">'+esc(s.name)+'</div><div class="tiny" style="margin-top:3px">'+esc(label)+'</div></div><div class="agenda-subject-bar"><span style="width:'+share+'%"></span></div><div class="agenda-subject-weight">'+Number(s.weight||1)+' questão'+(Number(s.weight||1)===1?"":"ões")+'</div></div>'}).join("");
+    document.getElementById("agendaSubjects").innerHTML=subs.map(function(s){
+      var share=Math.round(s.score/max*100);
+      var label=s.accuracy===null?"Ainda sem registro":Math.round(s.accuracy)+"% de acerto";
+      var qty=Number(s.weight||1);
+      return "<div class=\"agenda-subject-row\"><div><div class=\"agenda-subject-name\">"+esc(s.name)+"</div><div class=\"tiny\" style=\"margin-top:3px\">"+esc(label)+"</div></div><div class=\"agenda-subject-bar\"><span style=\"width:"+share+"%\"></span></div><div class=\"agenda-subject-weight\">"+qty+" questão"+(qty===1?"":"ões")+"</div></div>";
+    }).join("");
   }
   function toggleAgendaTask(id,checked){
     var data=ensureCurrentWeekPlan();if(!data)return;
