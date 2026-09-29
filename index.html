@@ -8,7 +8,7 @@
 <meta name="description" content="ZONA HUB — seu centro de comando para concursos, estudos e carreira.">
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>\n<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 <style>
 :root{--bg:#050505;--panel:#0d0d0d;--card:#111;--line:#252525;--text:#f7f7f5;--muted:#858585;--muted2:#555;--green:#baff7c;--green2:#91d95d;--orange:#ff5722;--red:#ff6b55;--yellow:#e8c866;--r:20px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 0%,rgba(186,255,124,.06),transparent 27%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
@@ -91,6 +91,75 @@ body.zona-app-ready #app{display:block}
 .recorded-meta{font-size:9px;line-height:1.35;color:#aaa}
 .recorded-meta small{display:block;color:#5f5f5f;font-size:8px;margin-top:2px}
 @media(max-width:760px){.question-source-grid{grid-template-columns:1fr}}
+
+/* ZONA FX / MOBILE POLISH v07 */
+:root{--glow:rgba(186,255,124,.18);--gold:#e8c866}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 18% 15%,rgba(186,255,124,.045),transparent 22%),radial-gradient(circle at 82% 72%,rgba(255,87,34,.025),transparent 25%);animation:zonaAmbient 12s ease-in-out infinite alternate}
+@keyframes zonaAmbient{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.035)}}
+.logo-area img,.login-brand img{filter:drop-shadow(0 0 0 rgba(186,255,124,0));animation:zonaLogoPulse 4s ease-in-out infinite}
+@keyframes zonaLogoPulse{0%,100%{filter:drop-shadow(0 0 0 rgba(186,255,124,0))}50%{filter:drop-shadow(0 0 14px rgba(186,255,124,.16))}}
+.card,.stat,.news-card,.mini-box,.metric,.subject-row,.agenda-day,.agenda-subject-row,.notes-editor-card,.notes-sidebar{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.card:hover,.stat:hover,.news-card:hover,.metric:hover{transform:translateY(-2px);border-color:#303a2b;box-shadow:0 14px 45px rgba(0,0,0,.18)}
+.btn{position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(0,0,0,.22)}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn:after{content:"";position:absolute;inset:-80% auto auto -20%;width:35%;height:260%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);transform:translateX(-180%) rotate(18deg);transition:transform .55s ease;pointer-events:none}
+.btn:hover:after{transform:translateX(480%) rotate(18deg)}
+.nav-btn{position:relative;overflow:hidden}
+.nav-btn .nav-icon{display:inline-grid;place-items:center;width:18px;height:18px;flex:0 0 18px}
+.nav-btn svg{width:16px;height:16px;stroke-width:2}
+.nav-btn.active svg{filter:drop-shadow(0 0 7px rgba(186,255,124,.28))}
+.libs-badge{position:relative;overflow:visible;box-shadow:0 0 0 rgba(186,255,124,0);transition:box-shadow .25s ease,transform .2s ease}
+.libs-badge.pulse{animation:libsPulse .55s ease}
+@keyframes libsPulse{0%{transform:scale(1);box-shadow:0 0 0 rgba(186,255,124,0)}45%{transform:scale(1.08);box-shadow:0 0 30px rgba(186,255,124,.18)}100%{transform:scale(1);box-shadow:0 0 0 rgba(186,255,124,0)}}
+.libs-fx{position:fixed;z-index:1300;pointer-events:none;inset:0;overflow:hidden}
+.libs-coin{position:absolute;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:2px solid #f4d97c;background:radial-gradient(circle at 35% 30%,#fff0a5,#c7a83d 68%,#6d571c);color:#241d08;font-size:11px;font-weight:1000;box-shadow:0 0 18px rgba(232,200,102,.24);animation:coinFly 900ms cubic-bezier(.2,.8,.25,1) forwards}
+@keyframes coinFly{0%{opacity:0;transform:translate(0,8px) scale(.35) rotateY(0)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.9) rotateY(720deg) rotateZ(var(--rz))}}
+.libs-float{position:absolute;color:var(--green);font-size:12px;font-weight:1000;text-shadow:0 0 14px rgba(186,255,124,.28);animation:libsFloat 900ms ease-out forwards}
+@keyframes libsFloat{0%{opacity:0;transform:translateY(8px) scale(.8)}15%{opacity:1}100%{opacity:0;transform:translateY(-72px) scale(1.08)}}
+.zona-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.22);transform:scale(0);animation:ripple .55s ease-out forwards;pointer-events:none}
+@keyframes ripple{to{transform:scale(3.5);opacity:0}}
+.mobile-overlay{display:none}
+@media(max-width:760px){
+  body.menu-open{overflow:hidden}
+  .mobile-overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,.58);backdrop-filter:blur(3px);z-index:290;opacity:0;pointer-events:none;transition:opacity .23s ease}
+  body.menu-open .mobile-overlay{opacity:1;pointer-events:auto}
+  .sidebar{z-index:310;padding-top:max(18px,env(safe-area-inset-top));padding-bottom:calc(22px + env(safe-area-inset-bottom));}
+  main{padding:calc(12px + env(safe-area-inset-top)) 13px calc(78px + env(safe-area-inset-bottom))}
+  .topbar{align-items:center;gap:8px}
+  .top-left{flex:1;min-width:0}
+  .page-head{overflow:hidden}
+  .page-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-right{flex:0 0 auto}
+  .account{max-width:142px;padding:6px}
+  .account-name{max-width:78px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mobile-menu{width:40px;height:40px;flex:0 0 40px}
+  .hero-actions{gap:7px}
+  .hero-actions .btn{min-height:45px}
+  .section-head{flex-wrap:wrap}
+  .section-head>.btn{width:100%}
+  .agenda-toolbar{flex-wrap:wrap}
+  .agenda-toolbar>.btn{width:100%}
+  .notes-actions{width:100%}
+  .notes-actions .btn{flex:1 1 calc(50% - 7px)}
+  .note-toolbar{position:sticky;top:0;z-index:8;background:rgba(10,10,10,.94);backdrop-filter:blur(12px);border-radius:10px;padding:8px;margin-top:10px}
+  .note-editor{padding:22px 4px 80px}
+}
+@media(max-width:430px){
+  .topbar{margin-bottom:14px}
+  .page-title{font-size:18px}
+  .eyebrow{font-size:8px}
+  .account{max-width:108px}
+  .account-name{max-width:58px}
+  .hero-title{font-size:31px}
+  .card{border-radius:17px;padding:16px}
+  .btn{font-size:10px;padding:11px 12px}
+  .libs-badge{padding:7px 9px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
 </style>
 </head>
 <body>
@@ -128,6 +197,7 @@ body.zona-app-ready #app{display:block}
     <div class="premium-card" id="premiumButton"><div class="premium-label">Upgrade</div><div class="premium-title">SEJA PREMIUM</div><div class="premium-copy">Mais recursos. Mais zona.</div></div>
   </div>
 </aside>
+<div class="mobile-overlay" id="mobileOverlay"></div>
 
 <main>
   <header class="topbar">
@@ -838,13 +908,13 @@ body.zona-app-ready #app{display:block}
     var t=data.week.tasks.find(function(x){return x.id===id});if(!t)return;
     if(checked&&!t.done){
       t.done=true;t.doneAt=localDateTime();
-      if(!t.libsClaimed){db.libs+=Number(t.reward||10);t.libsClaimed=true}
+      if(!t.libsClaimed){var earned=Number(t.reward||10);db.libs+=earned;t.libsClaimed=true;setTimeout(function(){burstLibs(earned)},40)}
       var dayTasks=data.week.tasks.filter(function(x){return x.date===t.date});
       if(dayTasks.length&&dayTasks.every(function(x){return x.done})&&!data.week.dayBonusClaimed[t.date]){
-        db.libs+=25;data.week.dayBonusClaimed[t.date]=true;notify("Dia concluído","+25 LIBS de bônus diário.");
+        db.libs+=25;data.week.dayBonusClaimed[t.date]=true;setTimeout(function(){burstLibs(25)},80);notify("Dia concluído","+25 LIBS de bônus diário.");
       }else notify("Tarefa concluída","+"+Number(t.reward||10)+" LIBS adicionadas.");
       if(data.week.tasks.length&&data.week.tasks.every(function(x){return x.done})&&!data.week.weekBonusClaimed){
-        db.libs+=100;data.week.weekBonusClaimed=true;notify("Semana fechada","+100 LIBS de bônus semanal.");
+        db.libs+=100;data.week.weekBonusClaimed=true;setTimeout(function(){burstLibs(100)},140);notify("Semana fechada","+100 LIBS de bônus semanal.");
       }
     }else if(!checked&&t.done){t.done=false}
     saveDB();renderAgenda();renderHome();
@@ -991,6 +1061,54 @@ body.zona-app-ready #app{display:block}
     }catch(e){grid.innerHTML=fallbackNews.map(function(n){return '<article class="news-card"><span class="news-tag">'+n.tag+'</span><div class="news-title">'+esc(n.title)+'</div><div class="news-meta">'+esc(n.meta)+'</div><a class="news-link" href="'+n.url+'" target="_blank" rel="noopener">ABRIR FONTE →</a></article>'}).join("")}
   }
   window.loadNews=loadNews;
+
+  /* ZONA FX */
+  function initZonaIcons(){
+    var map={home:"house",dashboard:"layout-dashboard",agenda:"calendar-days",anotacoes:"notebook-pen",concursos:"trophy",questoes:"circle-help",performance:"chart-no-axes-combined",editais:"file-text",clock:"timer"};
+    document.querySelectorAll(".nav-btn[data-page]").forEach(function(b){
+      var icon=map[b.dataset.page];var slot=b.querySelector(".nav-icon");
+      if(icon&&slot){slot.innerHTML='<i data-lucide="'+icon+'"></i>'}
+    });
+    var mm=document.getElementById("mobileMenu");if(mm)mm.innerHTML='<i data-lucide="menu"></i>';
+    if(window.lucide&&lucide.createIcons)lucide.createIcons({attrs:{width:16,height:16,strokeWidth:2}});
+  }
+  function closeMobileMenu(){
+    document.getElementById("sidebar").classList.remove("open");
+    document.body.classList.remove("menu-open");
+  }
+  function openMobileMenu(){
+    document.getElementById("sidebar").classList.add("open");
+    document.body.classList.add("menu-open");
+  }
+  function setupZonaMobile(){
+    var mm=document.getElementById("mobileMenu"),ov=document.getElementById("mobileOverlay");
+    if(mm)mm.addEventListener("click",function(){document.getElementById("sidebar").classList.contains("open")?closeMobileMenu():openMobileMenu()});
+    if(ov)ov.addEventListener("click",closeMobileMenu);
+    document.querySelectorAll(".nav-btn").forEach(function(b){b.addEventListener("click",function(){if(window.innerWidth<=760)closeMobileMenu()})});
+  }
+  function burstLibs(amount){
+    var badge=document.querySelector(".libs-badge"),wrap=document.getElementById("libsFx");if(!badge||!wrap)return;
+    var r=badge.getBoundingClientRect();badge.classList.remove("pulse");void badge.offsetWidth;badge.classList.add("pulse");
+    var count=Math.min(9,Math.max(3,Math.ceil(Number(amount||10)/5)));
+    for(var i=0;i<count;i++){
+      var coin=document.createElement("span");coin.className="libs-coin";coin.textContent="L";
+      coin.style.left=(r.left+r.width/2+(Math.random()*26-13))+"px";
+      coin.style.top=(r.top+r.height/2+(Math.random()*10-5))+"px";
+      coin.style.setProperty("--dx",(Math.random()*150-75)+"px");
+      coin.style.setProperty("--dy",(-55-Math.random()*90)+"px");
+      coin.style.setProperty("--rz",(Math.random()*120-60)+"deg");
+      wrap.appendChild(coin);setTimeout(function(){this.remove()},950);
+    }
+    var txt=document.createElement("span");txt.className="libs-float";txt.textContent="+"+Number(amount||0)+" LIBS";txt.style.left=(r.left+r.width/2-24)+"px";txt.style.top=(r.top-4)+"px";wrap.appendChild(txt);setTimeout(function(){txt.remove()},950);
+  }
+  function zonaRipple(e){
+    var b=e.currentTarget;if(!b||b.disabled)return;var rect=b.getBoundingClientRect(),s=Math.max(rect.width,rect.height),r=document.createElement("span");r.className="zona-ripple";r.style.width=s+"px";r.style.height=s+"px";r.style.left=(e.clientX-rect.left-s/2)+"px";r.style.top=(e.clientY-rect.top-s/2)+"px";b.appendChild(r);setTimeout(function(){r.remove()},600);
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    initZonaIcons();setupZonaMobile();
+    document.querySelectorAll(".btn,.nav-btn,.mobile-menu,.note-tool").forEach(function(b){b.addEventListener("click",zonaRipple)});
+  });
+
 })();
 </script>
 </body>
