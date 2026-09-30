@@ -37,6 +37,7 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 @media(max-width:430px){.stat-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.active-name{font-size:20px}.hero-title{font-size:33px}}
 
 /* ZONA v08 — Minha Zona / agenda pessoal */
+.socials.zona-home-only{display:flex}
 .top-libs{display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid #35472a;background:#10180d;border-radius:10px;color:var(--green);font-size:9px;font-weight:900}
 .top-libs strong{font-size:14px}
 .plan-pill{display:inline-flex;align-items:center;height:34px;padding:0 9px;border:1px solid #282828;background:#0d0d0d;border-radius:10px;color:#aaa;font-size:8px;font-weight:950;letter-spacing:.7px}
@@ -261,7 +262,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
       <div class="page-head"><div class="eyebrow">ZONA / CAREER</div><div class="page-title" id="pageTitle">HOME</div></div>
     </div>
     <div class="top-right">
-      <div class="socials"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div><div class="top-libs" id="topLibs"><span>LIBS</span><strong id="topLibsValue">0</strong></div><div class="plan-pill" id="topPlan">FREE</div>
+      <div class="socials zona-home-only"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div><div class="top-libs" id="topLibs"><span>LIBS</span><strong id="topLibsValue">0</strong></div><div class="plan-pill" id="topPlan">FREE</div>
       <div class="account" id="accountButton"><div class="avatar" id="avatar">A</div><div><div class="account-name" id="accountName">Admin</div><div class="account-role" id="accountRole">Administrador</div></div></div>
     </div>
   </header>
@@ -699,6 +700,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
     var names={home:"HOME",dashboard:"Minha Zona",minha-zona:"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
+    var socialBox=document.querySelector(".socials");if(socialBox)socialBox.classList.toggle("zona-home-only",page==="home");
     document.getElementById("sidebar").classList.remove("open");
   }
   window.goTo=goTo;
