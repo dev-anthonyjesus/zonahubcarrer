@@ -700,7 +700,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();try{renderAll()}catch(renderErr){console.error("ZONA render error",renderErr);notify("Painel aberto","Alguns dados antigos foram preservados, mas uma seção precisou ser ignorada.","error")}goTo("home");updateLeagueUI();if(!db.league)setTimeout(openLeaguePicker,300);loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
+    refreshSelects();try{renderAll()}catch(renderErr){console.error("ZONA render error",renderErr);notify("Painel aberto","Alguns dados antigos foram preservados, mas uma seção precisou ser ignorada.","error")}goTo("home");updateLeagueUI();setTimeout(openLeaguePicker,300);loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -709,7 +709,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     if(!found){notify("Acesso negado","Confira usuário e senha.","error");return}
     localStorage.setItem(AUTH_KEY,JSON.stringify(found));
     try{
-      switchAccountStorage(found);showApp();
+      switchAccountStorage(found);
+      db.league="";
+      saveDB();
+      showApp();
     }catch(err){
       console.error("ZONA login error",err);
       localStorage.removeItem(AUTH_KEY);
@@ -718,14 +721,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
       notify("Não foi possível abrir o painel","A sessão foi reiniciada. Tente entrar novamente.","error");
     }
   });
-  // Keep the signed-in demo session across page reloads.
-  var savedAuth=safeJSON(localStorage.getItem(AUTH_KEY),null);
-  if(savedAuth&&savedAuth.role){
-    try{showApp()}catch(err){console.error("ZONA startup",err);localStorage.removeItem(AUTH_KEY);document.getElementById("loginScreen").style.display="flex";document.getElementById("app").style.display="none"}
-  }else{
-    document.getElementById("loginScreen").style.display="flex";
-    document.getElementById("app").style.display="none";
-  }
+  // Cada abertura do link começa uma nova sessão: login e escolha de liga são obrigatórios.
+  localStorage.removeItem(AUTH_KEY);
+  document.getElementById("loginScreen").style.display="flex";
+  document.getElementById("app").style.display="none";
 
   function goTo(page){
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
