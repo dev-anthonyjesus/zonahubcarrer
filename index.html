@@ -648,7 +648,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     currentUser=user;DB_KEY=accountKey(BASE_DB_KEY,user.role);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,user.role);TIMER_KEY=accountKey(BASE_TIMER_KEY,user.role);
     var legacy=safeJSON(localStorage.getItem(BASE_DB_KEY),null),loaded=safeJSON(localStorage.getItem(DB_KEY),null);
     if(!loaded){loaded=(user.role==="Administrador"&&legacy)?legacy:blankDB();localStorage.setItem(DB_KEY,JSON.stringify(loaded))}
-    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};if(!Number.isFinite(Number(db.libs)))db.libs=0;
+    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];db.studyPlans.forEach(function(p){if(!Array.isArray(p.weeks))p.weeks=[]});if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};if(!Number.isFinite(Number(db.libs)))db.libs=0;
     session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
   }
   function esc(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
@@ -667,7 +667,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();renderAll();goTo("home");loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
+    refreshSelects();try{renderAll()}catch(renderErr){console.error("ZONA render error",renderErr);notify("Painel aberto","Alguns dados antigos foram preservados, mas uma seção precisou ser ignorada.","error")}goTo("home");loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -1085,6 +1085,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   function ensureCurrentWeekPlan(){
     var c=currentContest();if(!c)return null;
     var p=activeStudyPlan();if(!p)return null;
+    if(!Array.isArray(p.weeks))p.weeks=[];
     var key=weekKey(),w=p.weeks.find(function(x){return x.weekStart===key});
     if(!w){w=makeWeekTasks(c,Number(document.getElementById("agendaHours")&&document.getElementById("agendaHours").value)||2);p.weeks.push(w);saveDB()}
     return {plan:p,week:w,contest:c};
