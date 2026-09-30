@@ -35,6 +35,61 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 @media(max-width:760px){
   .sidebar{width:min(86vw,330px);transform:translateX(-105%);transition:transform .23s ease;box-shadow:30px 0 80px rgba(0,0,0,.55)}.sidebar.open{transform:translateX(0)}main{margin-left:0;padding:15px 15px 70px}.mobile-menu{display:grid;place-items:center}.topbar{margin-bottom:20px}.socials{display:none}.account-role{display:none}.page-title{font-size:22px}.hero-title{font-size:38px}.stat-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.form-grid,.choice,.account-modal-grid{grid-template-columns:1fr}.card{padding:18px}.hero-main,.active-card{min-height:auto}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.modal-backdrop.open{align-items:flex-end;padding:0}.modal{max-height:94dvh;border-radius:23px 23px 0 0;padding:19px 16px calc(24px + env(safe-area-inset-bottom))}.extract-grid{grid-template-columns:1fr}.premium-plans{grid-template-columns:1fr}.clock-display{font-size:55px;letter-spacing:-2px}.toast-wrap{right:12px;bottom:12px;width:calc(100vw - 24px)}}
 @media(max-width:430px){.stat-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.active-name{font-size:20px}.hero-title{font-size:33px}}
+
+/* ZONA v08 — Minha Zona / agenda pessoal */
+.top-libs{display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid #35472a;background:#10180d;border-radius:10px;color:var(--green);font-size:9px;font-weight:900}
+.top-libs strong{font-size:14px}
+.plan-pill{display:inline-flex;align-items:center;height:34px;padding:0 9px;border:1px solid #282828;background:#0d0d0d;border-radius:10px;color:#aaa;font-size:8px;font-weight:950;letter-spacing:.7px}
+.zona-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.zona-title{font-size:46px;margin:10px 0 8px}
+.zona-head-actions{display:flex;gap:8px;flex-wrap:wrap}
+.zona-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.zona-kpi{padding:16px}
+.zona-kpi-main{display:flex;align-items:baseline;gap:8px;margin-top:7px}
+.zona-kpi-main strong{font-size:23px;font-weight:950;letter-spacing:-.8px}
+.zona-kpi-main span{font-size:9px;color:#666}
+.zona-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:16px;margin-top:16px}
+.zona-calendar-card,.zona-manager-card{min-width:0}
+.zona-date-nav{display:flex;align-items:center;gap:5px}
+.icon-btn{width:34px;height:34px;border:1px solid var(--line);background:#111;color:#fff;border-radius:10px;font-size:18px}
+.zona-date-label{font-size:18px;font-weight:950;letter-spacing:-.5px;margin-bottom:9px}
+.zona-legend{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.zona-legend-item{font-size:8px;font-weight:900;border-radius:99px;padding:5px 8px;border:1px solid #2a2a2a;color:#aaa;background:#101010}
+.zona-legend-item.task{border-color:#35472a;color:var(--green)}.zona-legend-item.event{border-color:#343a55;color:#9eb8ff}.zona-legend-item.meal{border-color:#554a24;color:#e8c866}.zona-legend-item.sleep{border-color:#3d3355;color:#b9a4ff}.zona-legend-item.exercise{border-color:#513323;color:#ff9b68}.zona-legend-item.study{border-color:#355147;color:#8fe3c0}
+.zona-timeline-scroll{height:650px;overflow:auto;border:1px solid #222;border-radius:14px;background:#0a0a0a}
+.zona-timeline{position:relative;min-width:580px;height:1440px;margin-left:54px;border-left:1px solid #242424}
+.zona-hour{position:absolute;left:0;right:0;height:60px;border-top:1px solid #181818}
+.zona-hour-label{position:absolute;left:-51px;top:-7px;color:#666;font-size:8px;font-variant-numeric:tabular-nums}
+.zona-now-line{position:absolute;left:-7px;right:0;height:1px;background:#ff5f56;z-index:20;box-shadow:0 0 8px rgba(255,95,86,.35)}
+.zona-now-dot{position:absolute;left:-5px;top:-4px;width:9px;height:9px;border-radius:50%;background:#ff5f56}
+.zona-block{position:absolute;left:10px;right:12px;min-height:28px;border:1px solid #34472b;border-radius:9px;padding:7px 9px;background:#111a0d;overflow:hidden;z-index:10}
+.zona-block-title{font-size:10px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zona-block-meta{font-size:8px;color:#777;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zona-block.task{border-color:#34472b;background:linear-gradient(90deg,#111a0d,#0d120c)}.zona-block.event{border-color:#303b5a;background:#101525}.zona-block.meal{border-color:#574b22;background:#17140a}.zona-block.sleep{border-color:#413558;background:#15101d}.zona-block.exercise{border-color:#593723;background:#1b110c}.zona-block.study{border-color:#315244;background:#0d1915}
+.zona-block.done{opacity:.48}.zona-block.done .zona-block-title{text-decoration:line-through}
+.zona-block-action{position:absolute;right:7px;top:6px;border:0;background:rgba(0,0,0,.25);color:#aaa;border-radius:6px;font-size:9px}
+.zona-manager-card{overflow:hidden}
+.zona-form-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.zona-smart-strip{display:flex;flex-wrap:wrap;gap:5px;margin:16px 0 9px;padding-top:13px;border-top:1px solid #222}
+.zona-filter{cursor:pointer}.zona-filter.active{color:var(--green);border-color:#35472a;background:#11190d}
+.zona-task-list{display:flex;flex-direction:column;gap:7px;max-height:510px;overflow:auto}
+.zona-task-item{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:9px;align-items:start;padding:10px;border:1px solid #222;background:#0d0d0d;border-radius:12px}
+.zona-task-item:hover{border-color:#383838}
+.zona-task-check{width:18px;height:18px;accent-color:var(--green);margin-top:2px}
+.zona-task-title{font-size:10px;font-weight:900;line-height:1.35}
+.zona-task-item.done .zona-task-title{text-decoration:line-through;color:#666}
+.zona-task-meta{font-size:8px;color:#666;margin-top:3px;line-height:1.45}
+.zona-task-priority{font-size:8px;font-weight:950;border-radius:99px;padding:4px 6px;border:1px solid #2a2a2a;color:#777}
+.zona-task-priority.p1{color:#ff9b85;border-color:#4c281f;background:#21130f}.zona-task-priority.p2{color:#e8c866;border-color:#4b4121;background:#19160b}.zona-task-priority.p3{color:#a8c4ff;border-color:#28344e;background:#101522}
+.zona-task-actions{display:flex;gap:4px;margin-top:5px}.zona-task-actions button{border:0;background:transparent;color:#555;font-size:8px;padding:2px}.zona-task-actions button:hover{color:#fff}
+.zona-study-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.zona-study-card{border:1px solid #222;background:#0d0d0d;border-radius:12px;padding:12px}.zona-study-card strong{display:block;font-size:10px}.zona-study-card span{display:block;font-size:8px;color:#666;margin-top:4px}
+.zona-empty{padding:18px;border:1px dashed #292929;border-radius:12px;color:#666;font-size:9px;text-align:center}
+.zona-contest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.zona-contest-box{border:1px solid #222;background:#0d0d0d;border-radius:12px;padding:10px}.zona-contest-box .mini-label{font-size:7px}.zona-contest-box .mini-value{font-size:10px}
+@media(max-width:1050px){.zona-grid{grid-template-columns:1fr}.zona-kpis{grid-template-columns:repeat(2,1fr)}.zona-contest-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.top-libs{height:32px;padding:0 8px}.plan-pill{display:none}.zona-head{align-items:flex-start;flex-direction:column}.zona-title{font-size:37px}.zona-head-actions{width:100%}.zona-head-actions .btn{flex:1}.zona-kpis{grid-template-columns:1fr 1fr}.zona-kpi-main{display:block}.zona-kpi-main span{display:block;margin-top:2px}.zona-timeline-scroll{height:590px}.zona-grid{gap:12px}.zona-study-preview{grid-template-columns:1fr}.zona-contest-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.zona-kpis{grid-template-columns:1fr}.zona-contest-grid{grid-template-columns:1fr}}
+
 .agenda-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr);gap:14px}
 .agenda-hero{position:relative;overflow:hidden}
 .agenda-hero:after{content:"";position:absolute;width:280px;height:280px;right:-100px;top:-150px;border-radius:50%;background:var(--green);opacity:.06;filter:blur(30px)}
@@ -183,7 +238,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   <div class="logo-area"><img src="logo.png" alt="ZONA"><div><div class="brand-name">ZONA HUB</div><div class="brand-sub">Personal command center</div></div></div>
   <nav class="nav">
     <button class="nav-btn home-glow active" data-page="home"><span class="nav-icon">⌂</span>HOME</button>
-    <button class="nav-btn" data-page="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
+    <button class="nav-btn" data-page="minha-zona"><span class="nav-icon">◈</span>Minha Zona</button>
     <button class="nav-btn" data-page="agenda"><span class="nav-icon">▦</span>Agenda de Estudos</button>
     <button class="nav-btn" data-page="anotacoes"><span class="nav-icon">✎</span>Anotações</button>
     <button class="nav-btn" data-page="concursos"><span class="nav-icon">◉</span>Concursos</button>
@@ -206,7 +261,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
       <div class="page-head"><div class="eyebrow">ZONA / CAREER</div><div class="page-title" id="pageTitle">HOME</div></div>
     </div>
     <div class="top-right">
-      <div class="socials"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div>
+      <div class="socials"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div><div class="top-libs" id="topLibs"><span>LIBS</span><strong id="topLibsValue">0</strong></div><div class="plan-pill" id="topPlan">FREE</div>
       <div class="account" id="accountButton"><div class="avatar" id="avatar">A</div><div><div class="account-name" id="accountName">Admin</div><div class="account-role" id="accountRole">Administrador</div></div></div>
     </div>
   </header>
@@ -217,7 +272,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
         <div class="eyebrow">ZONA HUB</div>
         <div class="hero-title">Sua carreira entra em modo zona.</div>
         <div class="hero-copy">Um centro de comando para acompanhar concursos, questões, desempenho, cronogramas e rotina de preparação sem depender de cinco planilhas diferentes.</div>
-        <div class="hero-actions"><button class="btn btn-primary" onclick="goTo('dashboard')">ABRIR DASHBOARD</button><button class="btn btn-secondary" onclick="openContestModal()">+ NOVO CONCURSO</button></div>
+        <div class="hero-actions"><button class="btn btn-primary" onclick="goTo('minha-zona')">ABRIR DASHBOARD</button><button class="btn btn-secondary" onclick="openContestModal()">+ NOVO CONCURSO</button></div>
       </div>
       <div class="card active-card">
         <div><div class="eyebrow">Agora</div><div class="active-name" id="homeContest">Nenhum concurso ativo</div><div class="active-meta" id="homeContestMeta">Adicione um edital para começar.</div><div class="mini-grid" id="homeQuick"></div></div>
@@ -236,23 +291,89 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     </div>
   </section>
 
-  <section class="page" id="dashboard">
-    <div class="hero">
-      <div class="card hero-main">
-        <div class="eyebrow">CONCURSO ATIVO</div>
-        <div class="hero-title" id="dashContestTitle">Nenhum concurso</div>
-        <div class="hero-copy" id="dashContestCopy">Quando você importar um edital, o ZONA vai preencher o painel com as informações identificadas.</div>
-        <div class="mini-grid" id="dashInfoGrid"></div>
-      </div>
-      <div class="card active-card">
-        <div><div class="eyebrow">Progresso</div><div class="active-name" id="dashProgressValue">0%</div><div class="progress" style="margin-top:14px"><div id="dashProgressBar" style="width:0%"></div></div><div class="tiny" style="margin-top:8px" id="dashProgressMeta">Use o painel de concursos para atualizar o progresso.</div></div>
-        <div class="stack"><button class="btn btn-primary" onclick="goTo('clock')">INICIAR ESTUDO</button><button class="btn btn-secondary" onclick="openContestModal()">GERENCIAR CONCURSO</button></div>
-      </div>
+  <section class="page" id="minha-zona">
+  <div class="zona-head">
+    <div>
+      <div class="eyebrow">ZONA / PESSOAL</div>
+      <div class="hero-title zona-title">Minha Zona</div>
+      <div class="hero-copy">Seu painel diário: compromissos, tarefas, rotina, estudos e aquilo que precisa acontecer hoje.</div>
     </div>
-    <div class="card" style="margin-top:16px"><div class="section-head"><div><div class="section-title">Tudo que o ZONA sabe do edital</div><div class="section-copy">Campos preenchidos automaticamente e exibidos aqui quando disponíveis.</div></div></div><div id="dashDetails"></div></div>
+    <div class="zona-head-actions">
+      <button class="btn btn-secondary" type="button" onclick="requestZonaNotifications()">ATIVAR NOTIFICAÇÕES</button>
+      <button class="btn btn-primary" type="button" onclick="focusZonaQuickAdd()">+ ADICIONAR</button>
+    </div>
+  </div>
+
+  <div class="zona-kpis">
+    <div class="card zona-kpi"><div class="mini-label">Hoje</div><div class="zona-kpi-main"><strong id="zonaTodayDone">0/0</strong><span id="zonaTodayLabel">tarefas concluídas</span></div></div>
+    <div class="card zona-kpi"><div class="mini-label">Próximo</div><div class="zona-kpi-main"><strong id="zonaNextTime">—</strong><span id="zonaNextTitle">Nada agendado</span></div></div>
+    <div class="card zona-kpi"><div class="mini-label">LIBS</div><div class="zona-kpi-main"><strong id="zonaLibs">0</strong><span>saldo atual</span></div></div>
+    <div class="card zona-kpi"><div class="mini-label">Liga</div><div class="zona-kpi-main"><strong id="zonaLeague">FREE</strong><span>seu plano</span></div></div>
+  </div>
+
+  <div class="zona-grid">
+    <section class="card zona-calendar-card">
+      <div class="section-head">
+        <div><div class="section-title">Agenda pessoal</div><div class="section-copy">Tarefas, eventos e blocos de rotina em uma linha do tempo.</div></div>
+        <div class="zona-date-nav">
+          <button class="icon-btn" type="button" onclick="zonaShiftDate(-1)">‹</button>
+          <button class="btn btn-secondary" type="button" onclick="zonaTodayView()">Hoje</button>
+          <button class="icon-btn" type="button" onclick="zonaShiftDate(1)">›</button>
+        </div>
+      </div>
+      <div class="zona-date-label" id="zonaDateLabel">Hoje</div>
+      <div class="zona-legend">
+        <span class="zona-legend-item task">Tarefa</span><span class="zona-legend-item event">Evento</span><span class="zona-legend-item meal">Refeição</span><span class="zona-legend-item sleep">Sono</span><span class="zona-legend-item exercise">Exercício</span><span class="zona-legend-item study">Estudo</span>
+      </div>
+      <div class="zona-timeline-scroll"><div class="zona-timeline" id="zonaTimeline"></div></div>
+    </section>
+
+    <section class="card zona-manager-card">
+      <div class="section-head"><div><div class="section-title">Gerenciador inteligente</div><div class="section-copy">Capture rápido ou detalhe como nos principais gerenciadores de tarefas.</div></div></div>
+      <form id="zonaTaskForm">
+        <div class="field"><label>O que precisa acontecer?</label><input class="input" id="zonaTaskTitle" placeholder="Ex.: reunião às 14h, estudar Constitucional..." required></div>
+        <div class="form-grid">
+          <div class="select-wrap"><select class="select" id="zonaTaskType"><option value="task">Tarefa</option><option value="event">Evento</option><option value="meal">Refeição</option><option value="sleep">Sono</option><option value="exercise">Exercício</option></select></div>
+          <div class="select-wrap"><select class="select" id="zonaTaskPriority"><option value="4">Sem prioridade</option><option value="1">P1 • urgente</option><option value="2">P2 • alta</option><option value="3">P3 • média</option></select></div>
+          <input class="input" id="zonaTaskDate" type="date">
+          <input class="input" id="zonaTaskCategory" placeholder="Categoria / etiqueta">
+          <input class="input" id="zonaTaskStart" type="time" aria-label="Horário inicial">
+          <input class="input" id="zonaTaskEnd" type="time" aria-label="Horário final">
+          <div class="select-wrap"><select class="select" id="zonaTaskReminder"><option value="0">Sem lembrete</option><option value="5">5 min antes</option><option value="10">10 min antes</option><option value="15">15 min antes</option><option value="30">30 min antes</option><option value="60">1h antes</option></select></div>
+          <div class="select-wrap"><select class="select" id="zonaTaskRepeat"><option value="none">Não repetir</option><option value="daily">Todos os dias</option><option value="weekdays">Dias úteis</option><option value="weekly">Toda semana</option><option value="monthly">Todo mês</option></select></div>
+        </div>
+        <div class="field" style="margin-top:10px"><label>Detalhes / notas</label><textarea class="input" id="zonaTaskNotes" rows="3" placeholder="Links, contexto, passos ou observações..."></textarea></div>
+        <div class="zona-form-actions"><button class="btn btn-primary" type="submit">ADICIONAR À MINHA ZONA</button><button class="btn btn-secondary" type="button" onclick="focusZonaQuickAdd()">LIMPAR</button></div>
+      </form>
+
+      <div class="zona-smart-strip">
+        <button class="chip zona-filter active" type="button" data-zona-filter="all">Tudo</button>
+        <button class="chip zona-filter" type="button" data-zona-filter="open">Pendentes</button>
+        <button class="chip zona-filter" type="button" data-zona-filter="important">Prioridade</button>
+        <button class="chip zona-filter" type="button" data-zona-filter="task">Tarefas</button>
+        <button class="chip zona-filter" type="button" data-zona-filter="routine">Rotina</button>
+      </div>
+      <div id="zonaTaskList" class="zona-task-list"></div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:16px">
+    <div class="section-head"><div><div class="section-title">Agenda de estudos inteligente</div><div class="section-copy">O plano de estudos continua separado da rotina pessoal e usa o edital, peso das matérias e desempenho registrado.</div></div><button class="btn btn-secondary" type="button" onclick="goTo('agenda')">ABRIR AGENDA DE ESTUDOS</button></div>
+    <div class="zona-study-preview" id="zonaStudyPreview"></div>
   </section>
 
-  <section class="page" id="agenda">
+  <section class="card" style="margin-top:16px">
+    <div class="section-head"><div><div class="section-title">Concurso ativo</div><div class="section-copy">As informações do edital ficam aqui, sem ocupar o espaço principal da sua rotina.</div></div><button class="btn btn-secondary" type="button" onclick="goTo('concursos')">GERENCIAR</button></div>
+    <div id="zonaContestInfo"></div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <div class="section-head"><div><div class="section-title">Tudo que o ZONA sabe do edital</div><div class="section-copy">Dados estruturados pelo ZONA a partir do edital ativo.</div></div></div>
+    <div id="zonaEditalDetails"></div>
+  </section>
+</section>
+
+<section class="page" id="agenda">
     <div class="agenda-head">
       <div class="card agenda-hero">
         <div class="eyebrow">AGENDA INTELIGENTE</div>
@@ -495,7 +616,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   function safeJSON(raw,fallback){try{return JSON.parse(raw)}catch(e){return fallback}}
   function accountSlug(role){return role==="Administrador"?"admin":"visitante"}
   function accountKey(base,role){return base+"_"+accountSlug(role)}
-  function blankDB(){return {contests:[],questions:[],sessions:[],studyPlans:[],libs:0,notes:[]}}
+  function blankDB(){return {contests:[],questions:[],sessions:[],studyPlans:[],libs:0,notes:[],tasks:[],routines:[],plannerSettings:{}}}
   var bootAuth=safeJSON(localStorage.getItem(AUTH_KEY),null),initialRole=bootAuth&&bootAuth.role?bootAuth.role:"Administrador";
   DB_KEY=accountKey(BASE_DB_KEY,initialRole);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,initialRole);TIMER_KEY=accountKey(BASE_TIMER_KEY,initialRole);
   var legacyDB=safeJSON(localStorage.getItem(BASE_DB_KEY),null),db=safeJSON(localStorage.getItem(DB_KEY),null);
@@ -505,7 +626,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   if(!Array.isArray(db.questions))db.questions=[];
   if(!Array.isArray(db.sessions))db.sessions=[];
   if(!Array.isArray(db.studyPlans))db.studyPlans=[];
-  if(!Number.isFinite(Number(db.libs)))db.libs=0;if(!Array.isArray(db.notes))db.notes=[];
+  if(!Number.isFinite(Number(db.libs)))db.libs=0;if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};
   var currentUser=bootAuth||null;
   var selectedFile=null;
   var extracted=null;
@@ -526,7 +647,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     currentUser=user;DB_KEY=accountKey(BASE_DB_KEY,user.role);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,user.role);TIMER_KEY=accountKey(BASE_TIMER_KEY,user.role);
     var legacy=safeJSON(localStorage.getItem(BASE_DB_KEY),null),loaded=safeJSON(localStorage.getItem(DB_KEY),null);
     if(!loaded){loaded=(user.role==="Administrador"&&legacy)?legacy:blankDB();localStorage.setItem(DB_KEY,JSON.stringify(loaded))}
-    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];if(!Array.isArray(db.notes))db.notes=[];if(!Number.isFinite(Number(db.libs)))db.libs=0;
+    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};if(!Number.isFinite(Number(db.libs)))db.libs=0;
     session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
   }
   function esc(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
@@ -576,7 +697,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
     document.getElementById(page).classList.add("active");
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
-    var names={home:"HOME",dashboard:"Dashboard",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
+    var names={home:"HOME",dashboard:"Minha Zona",minha-zona:"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     document.getElementById("sidebar").classList.remove("open");
   }
@@ -614,22 +735,139 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     return {total:total,correct:correct,acc:acc,volume:volume,consistency:consistency,coverage:coverage,index:index,q7:q7,q30:qs.filter(function(q){return new Date(q.date).getTime()>=d30}).reduce(function(a,q){return a+Number(q.total||0)},0),by:by}
   }
 
-  function renderAll(){refreshSelects();renderHome();renderDashboard();renderAgenda();renderNotes();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
+  function renderAll(){refreshSelects();renderHome();renderMinhaZona();renderAgenda();renderNotes();renderContests();renderQuestions();renderPerformance();renderEditais();updateClock()}
   function renderHome(){
     var c=currentContest();document.getElementById("homeContest").textContent=c?c.name:"Nenhum concurso ativo";document.getElementById("homeContestMeta").textContent=c?(c.position||"Cargo não informado")+" • prova "+(c.date?fmtDate(c.date):"não informada"):"Adicione um edital para começar";
     var h=document.getElementById("homeQuick");h.innerHTML="";
     if(c&&c.editalData){var d=c.editalData; [["Banca",d.bank],["Vagas",d.vacancies],["Questões",d.questionCount],["Inscrições",d.registrationStart&&d.registrationEnd?d.registrationStart+" → "+d.registrationEnd:"—"]].forEach(function(x){h.innerHTML+='<div class="mini-box"><div class="mini-label">'+esc(x[0])+'</div><div class="mini-value">'+esc(x[1]||"—")+'</div></div>'})}
     var p=performanceData();document.getElementById("homeQuestions").textContent=p.total;document.getElementById("homeAccuracy").textContent=Math.round(p.acc)+"%";var mins=db.sessions.reduce(function(a,s){return a+Number(s.minutes||0)},0);document.getElementById("homeHours").textContent=(mins/60).toFixed(1)+"h";document.getElementById("homeIndex").textContent=p.index;
   }
-  function renderDashboard(){
-    var c=currentContest(),title=document.getElementById("dashContestTitle"),copy=document.getElementById("dashContestCopy"),info=document.getElementById("dashInfoGrid"),details=document.getElementById("dashDetails");
-    if(!c){title.textContent="Nenhum concurso";copy.textContent="Importe um edital ou faça um cadastro rápido. O painel vai se transformar conforme os dados entrarem.";info.innerHTML="";details.innerHTML='<div class="empty">Ainda não há dados de concurso para mostrar.</div>';document.getElementById("dashProgressValue").textContent="0%";document.getElementById("dashProgressBar").style.width="0%";return}
-    title.textContent=c.name;copy.textContent=(c.position||"Cargo não informado")+" • "+(c.type||"Preparação")+" • "+(c.editalData&&c.editalData.bank?c.editalData.bank:"");
-    var d=c.editalData||{};var items=[["Edital",d.editalNumber||"—"],["Órgão",d.institution||"—"],["Banca",d.bank||"—"],["Cargo",c.position||d.position||"—"],["Vagas",d.vacancies||"—"],["Taxa",d.fee||"—"],["Inscrições",d.registrationStart&&d.registrationEnd?d.registrationStart+" → "+d.registrationEnd:"—"],["Prova",d.proofDate?(d.proofDate+" • "+(d.proofTime||"")):"—"],["Questões",d.questionCount||"—"],["Mínimo",d.minimumApproval||"—"]];
-    info.innerHTML=items.map(function(x){return '<div class="mini-box"><div class="mini-label">'+esc(x[0])+'</div><div class="mini-value">'+esc(x[1])+'</div></div>'}).join("");
-    var pr=Math.max(0,Math.min(100,Number(c.progress||0)));document.getElementById("dashProgressValue").textContent=pr+"%";document.getElementById("dashProgressBar").style.width=pr+"%";document.getElementById("dashProgressMeta").textContent=d.proofDate?"Prova em "+d.proofDate:"Data não informada";
-    var out="";if(d.subjects&&d.subjects.length){out+='<div class="extract-section"><div class="extract-section-title">Estrutura da prova</div><div class="chip-row">'+d.subjects.map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+"</div></div>"}if(d.stages&&d.stages.length){out+='<div class="extract-section"><div class="extract-section-title">Etapas</div><div class="chip-row">'+d.stages.map(function(s){return '<span class="chip">'+esc(s)+'</span>'}).join("")+"</div></div>"}if(d.timeline&&d.timeline.length){out+='<div class="extract-section"><div class="extract-section-title">Cronograma</div><div class="timeline">'+d.timeline.map(function(x){return '<div class="timeline-row"><span>'+esc(x[0])+'</span><strong>'+esc(x[1])+'</strong></div>'}).join("")+"</div></div>"}details.innerHTML=out||'<div class="empty">O cadastro rápido ainda não tem dados estruturados.</div>';
+  var zonaPlannerDate=zonaToday(),zonaTaskFilter="all";
+
+  function zonaToday(){return isoLocalDate(new Date())}
+  function zonaDateObj(v){return new Date(v+"T00:00:00")}
+  function zonaPrettyDate(v){if(v===zonaToday())return "Hoje";return new Date(v+"T00:00:00").toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long"})}
+  function zonaTypeLabel(t){return {task:"Tarefa",event:"Evento",meal:"Refeição",sleep:"Sono",exercise:"Exercício",study:"Estudo"}[t]||"Tarefa"}
+  function zonaTypeClass(t){return t==="meal"||t==="sleep"||t==="exercise"||t==="event"||t==="study"?t:"task"}
+  function zonaTimeToMin(v){if(!v)return 0;var p=v.split(":");return Number(p[0]||0)*60+Number(p[1]||0)}
+  function zonaMinToTime(m){m=Math.max(0,Math.min(1439,m));return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0")}
+  function zonaApplies(item,date){
+    var base=item.date||item.startDate;if(!base||date<base)return false;
+    var rep=item.repeat||"none",a=zonaDateObj(base),b=zonaDateObj(date),days=Math.round((b-a)/86400000);
+    if(rep==="none")return date===base;
+    if(rep==="daily")return true;
+    if(rep==="weekdays")return b.getDay()!==0&&b.getDay()!==6;
+    if(rep==="weekly")return days%7===0;
+    if(rep==="monthly")return a.getDate()===b.getDate();
+    return date===base;
   }
+  function zonaOccurrenceDone(item,date){return Array.isArray(item.completedDates)?item.completedDates.indexOf(date)>=0:!!item.done}
+  function zonaSetOccurrenceDone(item,date,done){
+    if(item.repeat&&item.repeat!=="none"){if(!Array.isArray(item.completedDates))item.completedDates=[];var i=item.completedDates.indexOf(date);if(done&&i<0)item.completedDates.push(date);if(!done&&i>=0)item.completedDates.splice(i,1)}
+    else item.done=done;
+  }
+  function renderTopLibs(){var n=Number(db.libs||0),el=document.getElementById("topLibsValue");if(el)el.textContent=n;var z=document.getElementById("zonaLibs");if(z)z.textContent=n;var zz=document.getElementById("libsBalance");if(zz)zz.textContent=n}
+  function renderMinhaZona(){
+    renderTopLibs();
+    var league=document.getElementById("zonaLeague");if(league)league.textContent="FREE";
+    renderZonaDay();renderZonaTaskList();renderZonaStudyPreview();renderZonaContestInfo();
+  }
+  function renderZonaDay(){
+    var box=document.getElementById("zonaTimeline");if(!box)return;
+    var date=zonaPlannerDate,now=new Date(),todayKey=zonaToday();
+    document.getElementById("zonaDateLabel").textContent=zonaPrettyDate(date);
+    var html="";
+    for(var h=0;h<24;h++)html+='<div class="zona-hour" style="top:'+(h*60)+'px"><span class="zona-hour-label">'+String(h).padStart(2,"0")+':00</span></div>';
+    var items=[];
+    db.tasks.concat(db.routines||[]).forEach(function(x){if(!x.archived&&zonaApplies(x,date))items.push(x)});
+    var c=currentContest();
+    if(c&&date===todayKey){var plan=ensureCurrentWeekPlan();if(plan&&plan.week){plan.week.tasks.forEach(function(t){if(t.date===date)items.push({id:"study-"+t.id,title:t.title,type:"study",date:t.date,startTime:t.startTime||("".padStart(2,"0")+"00"),endTime:t.endTime||"",subject:t.subject,meta:t.meta,done:!!t.done,studyTaskId:t.id})})}}
+    items.sort(function(a,b){return zonaTimeToMin(a.startTime)-zonaTimeToMin(b.startTime)});
+    items.forEach(function(x,idx){
+      var st=zonaTimeToMin(x.startTime||"08:00"),en=x.endTime?zonaTimeToMin(x.endTime):Math.min(1439,st+45),height=Math.max(28,en-st),done=zonaOccurrenceDone(x,date),cls=zonaTypeClass(x.type),meta=(x.startTime||"")+ (x.endTime?" — "+x.endTime:"")+(x.category?" • "+x.category:"")+(x.subject?" • "+x.subject:"");
+      var action=x.type==="study"?"":'<button class="zona-block-action" type="button" data-zona-delete="'+esc(x.id)+'">×</button>';
+      html+='<div class="zona-block '+cls+(done?" done":"")+'" style="top:'+st+'px;height:'+height+'px" title="'+esc(x.notes||"")+'"><div class="zona-block-title">'+esc(x.title)+'</div><div class="zona-block-meta">'+esc(meta)+'</div>'+action+'</div>';
+    });
+    if(date===todayKey){var mins=now.getHours()*60+now.getMinutes()+now.getSeconds()/60;html+='<div class="zona-now-line" style="top:'+mins+'px"><span class="zona-now-dot"></span></div>'}
+    if(!items.length)html+='<div class="zona-empty" style="position:absolute;left:10px;right:12px;top:170px">Nada agendado neste dia. Use o gerenciador ao lado para criar tarefas, eventos ou blocos de rotina.</div>';
+    box.innerHTML=html;
+    box.querySelectorAll("[data-zona-delete]").forEach(function(btn){btn.addEventListener("click",function(){deleteZonaItem(btn.dataset.zonaDelete)})});
+  }
+  function renderZonaTaskList(){
+    var box=document.getElementById("zonaTaskList");if(!box)return;
+    var date=zonaPlannerDate,list=db.tasks.filter(function(x){return !x.archived&&zonaApplies(x,date)});
+    if(zonaTaskFilter==="open")list=list.filter(function(x){return !zonaOccurrenceDone(x,date)});
+    if(zonaTaskFilter==="important")list=list.filter(function(x){return Number(x.priority||4)<4});
+    if(zonaTaskFilter==="task")list=list.filter(function(x){return x.type==="task"});
+    if(zonaTaskFilter==="routine")list=list.filter(function(x){return ["meal","sleep","exercise","event"].indexOf(x.type)>=0});
+    list.sort(function(a,b){var p=(Number(a.priority||4)-Number(b.priority||4));return p||zonaTimeToMin(a.startTime)-zonaTimeToMin(b.startTime)});
+    if(!list.length){box.innerHTML='<div class="zona-empty">Nenhum item neste filtro.</div>';return}
+    box.innerHTML=list.map(function(x){
+      var done=zonaOccurrenceDone(x,date),p=Number(x.priority||4),pclass=p<4?" p"+p:"",rep=x.repeat&&x.repeat!=="none"?" • ↻ "+({daily:"diário",weekdays:"dias úteis",weekly:"semanal",monthly:"mensal"}[x.repeat]||"recorrente"):"";
+      return '<div class="zona-task-item '+(done?"done":"")+'"><input class="zona-task-check" type="checkbox" '+(done?"checked":"")+' data-zona-check="'+esc(x.id)+'" '+(["meal","sleep","exercise","event"].indexOf(x.type)>=0?"disabled":"")+'><div><div class="zona-task-title">'+esc(x.title)+'</div><div class="zona-task-meta">'+zonaTypeLabel(x.type)+' • '+esc(x.startTime||"sem horário")+(x.endTime?" — "+esc(x.endTime):"")+rep+(x.category?" • "+esc(x.category):"")+'</div><div class="zona-task-actions"><button type="button" data-zona-edit="'+esc(x.id)+'">editar</button><button type="button" data-zona-delete="'+esc(x.id)+'">arquivar</button></div></div><span class="zona-task-priority'+pclass+'">'+(p===1?"P1":p===2?"P2":p===3?"P3":"—")+'</span></div>';
+    }).join("");
+    box.querySelectorAll("[data-zona-check]").forEach(function(el){el.addEventListener("change",function(){toggleZonaItem(el.dataset.zonaCheck,el.checked)})});
+    box.querySelectorAll("[data-zona-delete]").forEach(function(el){el.addEventListener("click",function(){deleteZonaItem(el.dataset.zonaDelete)})});
+    box.querySelectorAll("[data-zona-edit]").forEach(function(el){el.addEventListener("click",function(){editZonaItem(el.dataset.zonaEdit)})});
+  }
+  function renderZonaStudyPreview(){
+    var box=document.getElementById("zonaStudyPreview");if(!box)return;
+    var data=ensureCurrentWeekPlan(),list=data&&data.week?data.week.tasks.filter(function(t){return t.date===zonaPlannerDate}).slice(0,6):[];
+    if(!list.length){box.innerHTML='<div class="zona-empty" style="grid-column:1/-1">Nenhum bloco de estudo para '+esc(zonaPrettyDate(zonaPlannerDate))+'. Abra a Agenda de Estudos para configurar o plano.</div>';return}
+    box.innerHTML=list.map(function(t){return '<div class="zona-study-card"><strong>'+esc(t.title)+'</strong><span>'+esc(t.subject)+' • '+(t.done?"Concluído":"Pendente")+' • +'+Number(t.reward||10)+' LIBS</span></div>'}).join("");
+  }
+  function renderZonaContestInfo(){
+    var c=currentContest(),info=document.getElementById("zonaContestInfo"),details=document.getElementById("zonaEditalDetails");if(!info||!details)return;
+    if(!c){info.innerHTML='<div class="zona-empty">Nenhum concurso ativo. Importe um edital ou ative um concurso existente.</div>';details.innerHTML='<div class="zona-empty">Os dados do edital aparecerão aqui quando houver um concurso ativo.</div>';return}
+    var d=c.editalData||{},items=[["Concurso",c.name],["Cargo",c.position||d.position||"—"],["Edital",d.editalNumber||"—"],["Órgão",d.institution||"—"],["Banca",d.bank||"—"],["Vagas",d.vacancies||"—"],["Taxa",d.fee||"—"],["Prova",d.proofDate?(d.proofDate+" • "+(d.proofTime||"")):"—"]];
+    info.innerHTML='<div class="zona-contest-grid">'+items.map(function(x){return '<div class="zona-contest-box"><div class="mini-label">'+esc(x[0])+'</div><div class="mini-value">'+esc(x[1])+'</div></div>'}).join("")+'</div>';
+    var out="";if(d.subjects&&d.subjects.length)out+='<div class="extract-section"><div class="extract-section-title">Estrutura da prova</div><div class="chip-row">'+d.subjects.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join("")+'</div></div>';
+    if(d.stages&&d.stages.length)out+='<div class="extract-section"><div class="extract-section-title">Etapas</div><div class="chip-row">'+d.stages.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join("")+'</div></div>';
+    if(d.timeline&&d.timeline.length)out+='<div class="extract-section"><div class="extract-section-title">Cronograma</div><div class="timeline">'+d.timeline.map(function(x){return '<div class="timeline-row"><span>'+esc(x[0])+'</span><strong>'+esc(x[1])+'</strong></div>'}).join("")+'</div></div>';
+    details.innerHTML=out||'<div class="zona-empty">O edital ativo ainda não possui dados estruturados além do cadastro básico.</div>';
+  }
+  function addZonaItem(e){
+    e.preventDefault();
+    var title=(document.getElementById("zonaTaskTitle").value||"").trim(),type=document.getElementById("zonaTaskType").value,date=document.getElementById("zonaTaskDate").value||zonaToday(),start=document.getElementById("zonaTaskStart").value,end=document.getElementById("zonaTaskEnd").value,priority=Number(document.getElementById("zonaTaskPriority").value||4),category=(document.getElementById("zonaTaskCategory").value||"").trim(),reminder=Number(document.getElementById("zonaTaskReminder").value||0),repeat=document.getElementById("zonaTaskRepeat").value,notes=(document.getElementById("zonaTaskNotes").value||"").trim();
+    if(!title){notify("Faltou o título","Descreva o que precisa acontecer.","error");return}
+    if(end&&start&&zonaTimeToMin(end)<=zonaTimeToMin(start)){notify("Horário inválido","O término precisa ser depois do início.","error");return}
+    var item={id:"z-"+Date.now(),title:title,type:type,date:date,startTime:start||"",endTime:end||"",priority:priority,category:category,reminder:reminder,repeat:repeat,notes:notes,done:false,completedDates:[],createdAt:localDateTime(),remindedDates:[]};
+    db.tasks.push(item);saveDB();zonaPlannerDate=date;renderMinhaZona();notify("Adicionado à Minha Zona",title);
+    if(type==="meal")notify("Rotina registrada","Refeições aparecem em amarelo e não entram como tarefa.");
+    document.getElementById("zonaTaskForm").reset();document.getElementById("zonaTaskDate").value=zonaPlannerDate;
+  }
+  function toggleZonaItem(id,checked){
+    var item=db.tasks.find(function(x){return x.id===id});if(!item)return;
+    zonaSetOccurrenceDone(item,zonaPlannerDate,checked);saveDB();renderMinhaZona();if(checked)notify("Tarefa concluída",item.title);
+  }
+  function deleteZonaItem(id){var item=db.tasks.find(function(x){return x.id===id});if(!item)return;if(!confirm("Arquivar este item? Ele continuará salvo no histórico."))return;item.archived=true;item.archivedAt=localDateTime();saveDB();renderMinhaZona();notify("Item arquivado","O registro continua preservado no banco local.")}
+  function editZonaItem(id){
+    var item=db.tasks.find(function(x){return x.id===id});if(!item)return;
+    var title=prompt("Título:",item.title);if(title===null)return;title=title.trim();if(!title)return;
+    var start=prompt("Horário inicial (HH:MM):",item.startTime||"");if(start===null)return;
+    var end=prompt("Horário final (HH:MM):",item.endTime||"");if(end===null)return;
+    item.title=title;item.startTime=start;item.endTime=end;item.updatedAt=localDateTime();saveDB();renderMinhaZona();notify("Item atualizado",title);
+  }
+  function zonaShiftDate(n){zonaPlannerDate=isoLocalDate(addDays(zonaDateObj(zonaPlannerDate),n));renderMinhaZona()}
+  function zonaTodayView(){zonaPlannerDate=zonaToday();renderMinhaZona()}
+  function focusZonaQuickAdd(){var el=document.getElementById("zonaTaskTitle");if(!el)return;el.focus();el.scrollIntoView({behavior:"smooth",block:"center"})}
+  function requestZonaNotifications(){
+    if(!("Notification" in window)){notify("Notificações indisponíveis","Este navegador não oferece notificações do sistema.","error");return}
+    Notification.requestPermission().then(function(p){if(p==="granted")notify("Notificações ativas","O ZONA poderá avisar sobre lembretes enquanto esta página estiver aberta.");else notify("Notificações não ativadas","Você pode permitir nas configurações do navegador.","error")});
+  }
+  function checkZonaReminders(){
+    if(!("Notification" in window)||Notification.permission!=="granted")return;
+    var now=new Date(),date=zonaToday(),min=now.getHours()*60+now.getMinutes();
+    db.tasks.forEach(function(x){if(x.archived||!zonaApplies(x,date)||!x.reminder||!x.startTime)return;var target=zonaTimeToMin(x.startTime)-Number(x.reminder);if(target===min){if(!Array.isArray(x.remindedDates))x.remindedDates=[];if(x.remindedDates.indexOf(date+"@"+target)<0){new Notification("ZONA • "+zonaTypeLabel(x.type),{body:x.title+" • "+x.startTime,tag:x.id+"-"+date});x.remindedDates.push(date+"@"+target);saveDB();}}});
+  }
+  window.zonaNotificationInterval=window.zonaNotificationInterval||setInterval(checkZonaReminders,30000);
+
+  document.getElementById("zonaTaskForm").addEventListener("submit",addZonaItem);
+  document.querySelectorAll(".zona-filter").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".zona-filter").forEach(function(x){x.classList.remove("active")});b.classList.add("active");zonaTaskFilter=b.dataset.zonaFilter;renderMinhaZona()})});
+  document.getElementById("zonaTaskDate").value=zonaPlannerDate;
+
+  function renderDashboard(){return renderMinhaZona()}
+  
   function renderContests(){
     var list=document.getElementById("contestList");if(!db.contests.length){list.innerHTML='<div class="empty">Nenhum concurso cadastrado.</div>';return}
     list.innerHTML=db.contests.slice().reverse().map(function(c){return '<div class="card" style="margin-bottom:10px;background:#0c0c0c"><div class="section-head"><div><span class="tag">'+(c.active?"ATIVO":"INATIVO")+'</span><div class="active-name">'+esc(c.name)+'</div><div class="tiny">'+esc(c.position||"Cargo não informado")+' • '+esc(c.type||"")+'</div></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn '+(c.active?"btn-primary":"btn-secondary")+'" onclick="setActiveContest(\''+c.id+'\')">'+(c.active?"ATIVO":"ATIVAR")+'</button></div></div><div class="mini-grid"><div class="mini-box"><div class="mini-label">Prova</div><div class="mini-value">'+esc(c.editalData&&c.editalData.proofDate?c.editalData.proofDate:(c.date?fmtDate(c.date):"—"))+'</div></div><div class="mini-box"><div class="mini-label">Vagas</div><div class="mini-value">'+esc(c.editalData&&c.editalData.vacancies?c.editalData.vacancies:"—")+'</div></div><div class="mini-box"><div class="mini-label">Progresso</div><div class="mini-value">'+Number(c.progress||0)+'%</div></div><div class="mini-box"><div class="mini-label">Edital</div><div class="mini-value">'+esc(c.editalFileName||"Cadastro rápido")+'</div></div></div></div>'}).join("");
@@ -906,18 +1144,24 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   function toggleAgendaTask(id,checked){
     var data=ensureCurrentWeekPlan();if(!data)return;
     var t=data.week.tasks.find(function(x){return x.id===id});if(!t)return;
+    var dayTasks=data.week.tasks.filter(function(x){return x.date===t.date});
     if(checked&&!t.done){
       t.done=true;t.doneAt=localDateTime();
-      if(!t.libsClaimed){var earned=Number(t.reward||10);db.libs+=earned;t.libsClaimed=true;setTimeout(function(){burstLibs(earned)},40)}
-      var dayTasks=data.week.tasks.filter(function(x){return x.date===t.date});
+      if(!t.libsClaimed){var earned=Number(t.reward||10);db.libs=Math.max(0,Number(db.libs||0)+earned);t.libsClaimed=true;setTimeout(function(){burstLibs(earned)},40)}
       if(dayTasks.length&&dayTasks.every(function(x){return x.done})&&!data.week.dayBonusClaimed[t.date]){
-        db.libs+=25;data.week.dayBonusClaimed[t.date]=true;setTimeout(function(){burstLibs(25)},80);notify("Dia concluído","+25 LIBS de bônus diário.");
+        db.libs=Math.max(0,Number(db.libs||0)+25);data.week.dayBonusClaimed[t.date]=true;setTimeout(function(){burstLibs(25)},80);notify("Dia concluído","+25 LIBS de bônus diário.");
       }else notify("Tarefa concluída","+"+Number(t.reward||10)+" LIBS adicionadas.");
       if(data.week.tasks.length&&data.week.tasks.every(function(x){return x.done})&&!data.week.weekBonusClaimed){
-        db.libs+=100;data.week.weekBonusClaimed=true;setTimeout(function(){burstLibs(100)},140);notify("Semana fechada","+100 LIBS de bônus semanal.");
+        db.libs=Math.max(0,Number(db.libs||0)+100);data.week.weekBonusClaimed=true;setTimeout(function(){burstLibs(100)},140);notify("Semana fechada","+100 LIBS de bônus semanal.");
       }
-    }else if(!checked&&t.done){t.done=false}
-    saveDB();renderAgenda();renderHome();
+    }else if(!checked&&t.done){
+      t.done=false;
+      if(t.libsClaimed){db.libs=Math.max(0,Number(db.libs||0)-Number(t.reward||10));t.libsClaimed=false}
+      if(data.week.dayBonusClaimed[t.date]&&!dayTasks.every(function(x){return x.done})){db.libs=Math.max(0,Number(db.libs||0)-25);data.week.dayBonusClaimed[t.date]=false}
+      if(data.week.weekBonusClaimed&&!data.week.tasks.every(function(x){return x.done})){db.libs=Math.max(0,Number(db.libs||0)-100);data.week.weekBonusClaimed=false}
+      notify("Tarefa desmarcada","As LIBS recebidas por esta conclusão foram retiradas.");
+    }
+    saveDB();renderAgenda();renderMinhaZona();
   }
   window.rebuildCurrentWeekPlan=function(){
     var c=currentContest();if(!c){notify("Sem edital","Importe um edital antes de recalcular a agenda.","error");return}
