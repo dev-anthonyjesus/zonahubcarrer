@@ -698,7 +698,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
     document.getElementById(page).classList.add("active");
     document.querySelectorAll(".nav-btn").forEach(function(b){b.classList.toggle("active",b.dataset.page===page)});
-    var names={home:"HOME",dashboard:"Minha Zona",minha-zona:"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
+    var names={home:"HOME",dashboard:"Minha Zona","minha-zona":"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     var socialBox=document.querySelector(".socials");if(socialBox)socialBox.classList.toggle("zona-home-only",page==="home");
     var libsBox=document.getElementById("topLibs"),planBox=document.getElementById("topPlan");if(libsBox)libsBox.style.display=page==="home"?"none":"flex";if(planBox)planBox.style.display=page==="home"?"none":"inline-flex";
