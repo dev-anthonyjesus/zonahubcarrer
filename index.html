@@ -39,7 +39,11 @@ main{margin-left:260px;padding:28px 36px 60px;min-width:0}.topbar{display:flex;a
 /* ZONA v08 — Minha Zona / agenda pessoal */
 .socials.zona-home-only{display:flex}
 .top-libs{display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid #35472a;background:#10180d;border-radius:10px;color:var(--green);font-size:9px;font-weight:900}
-.top-libs strong{font-size:14px}
+.league-pill{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 10px;border:1px solid #303030;background:#101010;border-radius:10px;color:#eee;font-size:8px;font-weight:950;letter-spacing:.7px;cursor:pointer}
+.league-pill:hover{border-color:#4b4b4b;background:#151515}
+.league-pill-icon{width:15px;height:15px;display:grid;place-items:center;color:var(--green)}
+.league-pill-icon svg{width:15px;height:15px}
+.top-libs strong{font-size:14px}.league-modal{width:min(860px,100%)}.league-choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.league-choice{position:relative;overflow:hidden;text-align:left;border:1px solid #292929;border-radius:20px;background:#0c0c0c;color:#fff;padding:22px;min-height:210px;cursor:pointer;transition:.2s}.league-choice:after{content:"";position:absolute;width:180px;height:180px;right:-80px;bottom:-90px;border-radius:50%;opacity:.07;filter:blur(8px);background:var(--green)}.league-choice:hover{transform:translateY(-3px);border-color:#4a4a4a;background:#111}.league-choice .league-art{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;background:#171717;border:1px solid #303030;color:var(--green);margin-bottom:35px}.league-choice .league-art svg{width:30px;height:30px}.league-choice-name{display:block;font-size:14px;font-weight:950;letter-spacing:.3px}.league-choice-copy{display:block;font-size:9px;color:#777;line-height:1.5;margin-top:6px}.league-choice.calango .league-art{color:#baff7c}.league-choice.vizao .league-art{color:#fff}.league-choice.croma .league-art{color:#ffb16a}@media(max-width:760px){.league-choice-grid{grid-template-columns:1fr}.league-choice{min-height:145px}.league-choice .league-art{margin-bottom:20px}}
 .plan-pill{display:inline-flex;align-items:center;height:34px;padding:0 9px;border:1px solid #282828;background:#0d0d0d;border-radius:10px;color:#aaa;font-size:8px;font-weight:950;letter-spacing:.7px}
 .zona-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
 .zona-title{font-size:46px;margin:10px 0 8px}
@@ -262,7 +266,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
       <div class="page-head"><div class="eyebrow">ZONA / CAREER</div><div class="page-title" id="pageTitle">HOME</div></div>
     </div>
     <div class="top-right">
-      <div class="socials zona-home-only"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div><div class="top-libs" id="topLibs"><span>LIBS</span><strong id="topLibsValue">0</strong></div><div class="plan-pill" id="topPlan">FREE</div>
+      <div class="socials zona-home-only"><a class="social-link" href="#" onclick="socialPlaceholder(event,'Instagram')">Instagram</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'LinkedIn')">LinkedIn</a><a class="social-link" href="#" onclick="socialPlaceholder(event,'YouTube')">YouTube</a></div><div class="top-libs" id="topLibs"><span>LIBS</span><strong id="topLibsValue">0</strong></div><button class="league-pill" id="topLeague" style="display:none" onclick="openLeaguePicker()"><span class="league-pill-icon" id="topLeagueIcon"></span><span id="topLeagueName">LIGA</span></button><div class="plan-pill" id="topPlan">FREE</div>
       <div class="account" id="accountButton"><div class="avatar" id="avatar">A</div><div><div class="account-name" id="accountName">Admin</div><div class="account-role" id="accountRole">Administrador</div></div></div>
     </div>
   </header>
@@ -549,6 +553,35 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 </main>
 </div>
 
+<div class="modal-backdrop" id="leaguePickerBackdrop">
+  <div class="modal league-modal">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">ZONA / LIGAS</div>
+        <div class="modal-title">Escolha sua liga</div>
+        <div class="tiny" style="margin-top:5px">Sua liga acompanha seu perfil e aparece ao lado das suas LIBS.</div>
+      </div>
+    </div>
+    <div class="league-choice-grid">
+      <button class="league-choice calango" onclick="selectLeague('calango')">
+        <span class="league-art"><i data-lucide="lizard"></i></span>
+        <span class="league-choice-name">LIGA CALANGO</span>
+        <span class="league-choice-copy">Movimento, resistência e comunidade.</span>
+      </button>
+      <button class="league-choice vizao" onclick="selectLeague('vizao')">
+        <span class="league-art"><i data-lucide="eye"></i></span>
+        <span class="league-choice-name">LIGA VIZÃO</span>
+        <span class="league-choice-copy">Foco, percepção e estratégia.</span>
+      </button>
+      <button class="league-choice croma" onclick="selectLeague('croma')">
+        <span class="league-art"><i data-lucide="palette"></i></span>
+        <span class="league-choice-name">LIGA CROMA</span>
+        <span class="league-choice-copy">Adaptação, transformação e evolução.</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="contestModalBackdrop">
   <div class="modal">
     <div class="modal-head"><div><div class="modal-title">Novo concurso</div><div class="tiny" style="margin-top:4px">Escolha a forma mais rápida de alimentar o ZONA.</div></div><button class="close" onclick="closeContestModal()">×</button></div>
@@ -648,7 +681,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     currentUser=user;DB_KEY=accountKey(BASE_DB_KEY,user.role);SOCIAL_KEY=accountKey(BASE_SOCIAL_KEY,user.role);TIMER_KEY=accountKey(BASE_TIMER_KEY,user.role);
     var legacy=safeJSON(localStorage.getItem(BASE_DB_KEY),null),loaded=safeJSON(localStorage.getItem(DB_KEY),null);
     if(!loaded){loaded=(user.role==="Administrador"&&legacy)?legacy:blankDB();localStorage.setItem(DB_KEY,JSON.stringify(loaded))}
-    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];db.studyPlans.forEach(function(p){if(!Array.isArray(p.weeks))p.weeks=[]});if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};if(!Number.isFinite(Number(db.libs)))db.libs=0;
+    db=loaded;if(!Array.isArray(db.contests))db.contests=[];if(!Array.isArray(db.questions))db.questions=[];if(!Array.isArray(db.sessions))db.sessions=[];if(!Array.isArray(db.studyPlans))db.studyPlans=[];db.studyPlans.forEach(function(p){if(!Array.isArray(p.weeks))p.weeks=[]});if(!Array.isArray(db.notes))db.notes=[];if(!Array.isArray(db.tasks))db.tasks=[];if(!Array.isArray(db.routines))db.routines=[];if(!db.plannerSettings||typeof db.plannerSettings!=="object")db.plannerSettings={};if(!Number.isFinite(Number(db.libs)))db.libs=0;if(!db.league)db.league="";
     session=safeJSON(localStorage.getItem(TIMER_KEY),null)||{running:false,startAt:0,elapsed:0,subject:""};
   }
   function esc(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
@@ -667,7 +700,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();try{renderAll()}catch(renderErr){console.error("ZONA render error",renderErr);notify("Painel aberto","Alguns dados antigos foram preservados, mas uma seção precisou ser ignorada.","error")}goTo("home");loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
+    refreshSelects();try{renderAll()}catch(renderErr){console.error("ZONA render error",renderErr);notify("Painel aberto","Alguns dados antigos foram preservados, mas uma seção precisou ser ignorada.","error")}goTo("home");updateLeagueUI();if(!db.league)setTimeout(openLeaguePicker,300);loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -701,7 +734,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     var names={home:"HOME",dashboard:"Minha Zona","minha-zona":"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     var socialBox=document.querySelector(".socials");if(socialBox)socialBox.classList.toggle("zona-home-only",page==="home");
-    var libsBox=document.getElementById("topLibs"),planBox=document.getElementById("topPlan");if(libsBox)libsBox.style.display=page==="home"?"none":"flex";if(planBox)planBox.style.display=page==="home"?"none":"inline-flex";
+    var libsBox=document.getElementById("topLibs"),leagueBox=document.getElementById("topLeague"),planBox=document.getElementById("topPlan");if(libsBox)libsBox.style.display=page==="home"?"none":"flex";if(leagueBox)leagueBox.style.display=page==="home"||!db.league?"none":"inline-flex";if(planBox)planBox.style.display=page==="home"?"none":"inline-flex";
     document.getElementById("sidebar").classList.remove("open");
   }
   window.goTo=goTo;
@@ -1311,6 +1344,34 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   window.loadNews=loadNews;
 
   /* ZONA FX */
+  var LEAGUES={
+    calango:{name:"LIGA CALANGO",icon:"lizard",className:"calango"},
+    vizao:{name:"LIGA VIZÃO",icon:"eye",className:"vizao"},
+    croma:{name:"LIGA CROMA",icon:"palette",className:"croma"}
+  };
+  function updateLeagueUI(){
+    var key=db&&db.league,info=LEAGUES[key],box=document.getElementById("topLeague"),name=document.getElementById("topLeagueName"),icon=document.getElementById("topLeagueIcon");
+    if(!box||!name||!icon)return;
+    if(!info){box.style.display="none";return}
+    box.style.display=document.querySelector(".page.active")&&document.querySelector(".page.active").id!=="home"?"inline-flex":"none";
+    name.textContent=info.name;
+    icon.innerHTML='<i data-lucide="'+info.icon+'"></i>';
+    if(window.lucide&&lucide.createIcons)lucide.createIcons({attrs:{width:15,height:15,strokeWidth:2}});
+  }
+  function openLeaguePicker(){
+    var b=document.getElementById("leaguePickerBackdrop");if(!b)return;
+    b.classList.add("open");
+    if(window.lucide&&lucide.createIcons)lucide.createIcons({attrs:{width:28,height:28,strokeWidth:1.8}});
+  }
+  window.openLeaguePicker=openLeaguePicker;
+  function closeLeaguePicker(){var b=document.getElementById("leaguePickerBackdrop");if(b)b.classList.remove("open")}
+  function selectLeague(key){
+    if(!LEAGUES[key])return;
+    db.league=key;saveDB();updateLeagueUI();closeLeaguePicker();notify("Liga definida",LEAGUES[key].name+" agora faz parte do seu perfil.");
+  }
+  window.selectLeague=selectLeague;
+  window.updateLeagueUI=updateLeagueUI;
+
   function initZonaIcons(){
     var map={home:"house",dashboard:"layout-dashboard",agenda:"calendar-days",anotacoes:"notebook-pen",concursos:"trophy",questoes:"circle-help",performance:"chart-no-axes-combined",editais:"file-text",clock:"timer"};
     document.querySelectorAll(".nav-btn[data-page]").forEach(function(b){
