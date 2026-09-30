@@ -667,7 +667,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     document.getElementById("accountRole").textContent=u.role;
     document.getElementById("avatar").textContent=(u.role==="Administrador"?"A":"V");
     document.getElementById("accountProfileText").textContent=u.role;
-    refreshSelects();renderAll();loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
+    refreshSelects();renderAll();goTo("home");loadNews();clearInterval(window.zonaClockInterval);window.zonaClockInterval=setInterval(updateClock,500);
   }
 
   document.getElementById("loginForm").addEventListener("submit",function(e){
@@ -701,6 +701,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
     var names={home:"HOME",dashboard:"Minha Zona",minha-zona:"Minha Zona",agenda:"Agenda de Estudos",anotacoes:"Anotações",concursos:"Concursos",questoes:"Questões",performance:"Performance",editais:"Editais",clock:"To Punch the Clock"};
     document.getElementById("pageTitle").textContent=names[page];
     var socialBox=document.querySelector(".socials");if(socialBox)socialBox.classList.toggle("zona-home-only",page==="home");
+    var libsBox=document.getElementById("topLibs"),planBox=document.getElementById("topPlan");if(libsBox)libsBox.style.display=page==="home"?"none":"flex";if(planBox)planBox.style.display=page==="home"?"none":"inline-flex";
     document.getElementById("sidebar").classList.remove("open");
   }
   window.goTo=goTo;
