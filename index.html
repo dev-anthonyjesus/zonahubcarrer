@@ -220,6 +220,30 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
 
+
+/* Universo ZONA — personagens e identidade da comunidade */
+.mascots-section{margin-top:28px;padding:clamp(22px,4vw,42px);border:1px solid #272d22;border-radius:34px 24px 38px 26px;background:radial-gradient(ellipse at 12% 0%,#baff7c12,transparent 42%),linear-gradient(145deg,#0c0e0b,#080908);overflow:hidden;position:relative}
+.mascots-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:25px}
+.mascots-heading h2{font-size:clamp(35px,5vw,58px);line-height:.92;letter-spacing:-2px;margin:10px 0 0;font-weight:950}
+.mascots-heading h2 span{color:var(--green)}
+.mascots-heading>p{max-width:300px;color:var(--muted);font-size:13px;line-height:1.65;margin:0 0 3px}
+.mascots-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mascot-card{min-width:0;position:relative;overflow:hidden;border-radius:28px 20px 32px 22px;background:#121410;border:1px solid #ffffff12;transition:transform .25s,border-color .25s}
+.mascot-card:hover{transform:translateY(-5px) rotate(-.5deg);border-color:#baff7c66}
+.mascot-art{height:245px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.mascot-art:before{content:"";position:absolute;width:210px;height:210px;border-radius:43% 57% 62% 38%;background:var(--blob);opacity:.95;transform:rotate(-14deg)}
+.mascot-zeca{--blob:#baff7c}.mascot-liu{--blob:#f0c4c5}.mascot-koda{--blob:#8c805e}
+.mascot-art img{position:relative;z-index:1;width:78%;height:94%;object-fit:contain;filter:drop-shadow(0 12px 12px #0004)}
+.mascot-zeca .mascot-art img{width:70%;height:82%}
+.mascot-liu .mascot-art img{width:72%;height:96%}
+.mascot-info{padding:0 21px 23px}
+.mascot-role{color:var(--green);font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+.mascot-liu .mascot-role{color:#f0b7bd}.mascot-koda .mascot-role{color:#c5b88f}
+.mascot-info h3{font-size:29px;font-weight:950;letter-spacing:-1px;margin:7px 0}
+.mascot-info p{font-size:12px;line-height:1.6;color:#a5a69f;min-height:38px;margin:0 0 18px}
+.mascot-tag{display:inline-flex;border:1px solid #ffffff24;border-radius:999px;padding:7px 10px;font:9px ui-monospace,monospace;letter-spacing:.7px;color:#e5e8df}
+@media(max-width:800px){.mascots-section{padding:22px 16px;border-radius:26px 20px 30px 22px}.mascots-heading{display:block}.mascots-heading>p{margin-top:14px}.mascots-grid{grid-template-columns:1fr;gap:12px}.mascot-card{display:grid;grid-template-columns:42% 1fr;align-items:center}.mascot-art{height:210px}.mascot-art:before{width:155px;height:155px}.mascot-art img{width:95%;height:92%}.mascot-zeca .mascot-art img,.mascot-liu .mascot-art img{width:88%}.mascot-info{padding:18px 14px 18px 0}.mascot-info h3{font-size:25px}.mascot-info p{min-height:0;margin-bottom:13px}}
+
 </style>
 </head>
 <body>
@@ -290,6 +314,26 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
       <div class="stat"><div class="stat-label">Horas</div><div class="stat-value" id="homeHours">0.0h</div></div>
       <div class="stat"><div class="stat-label">Índice</div><div class="stat-value" id="homeIndex">0</div></div>
     </div>
+    <section class="mascots-section" aria-labelledby="mascotsTitle">
+      <div class="mascots-heading">
+        <div><div class="eyebrow">UNIVERSO ZONA</div><h2 id="mascotsTitle">Seu corre.<br><span>Sua turma.</span></h2></div>
+        <p>Três personalidades, uma mesma missão: transformar disciplina em movimento.</p>
+      </div>
+      <div class="mascots-grid">
+        <article class="mascot-card mascot-zeca">
+          <div class="mascot-art"><img src="assets/zeca.svg" alt="Zeca, o calango estiloso"></div>
+          <div class="mascot-info"><span class="mascot-role">O parceiro de corre</span><h3>Zeca</h3><p>Estratégia, atitude e olho no próximo passo.</p><span class="mascot-tag">#VAI PRA CIMA</span></div>
+        </article>
+        <article class="mascot-card mascot-liu">
+          <div class="mascot-art"><img src="assets/liu.svg" alt="Liu, a lagartixinha fofa"></div>
+          <div class="mascot-info"><span class="mascot-role">A energia leve</span><h3>Liu</h3><p>Pequenos passos também levam longe. Vai no seu ritmo.</p><span class="mascot-tag">#NOSEUTEMPO</span></div>
+        </article>
+        <article class="mascot-card mascot-koda">
+          <div class="mascot-art"><img src="assets/koda.svg" alt="Koda, o dragão-de-komodo maromba"></div>
+          <div class="mascot-info"><span class="mascot-role">O coach da tropa</span><h3>Koda</h3><p>Constância, força e treino sem desculpa — mas com descanso.</p><span class="mascot-tag">#CONSTÂNCIA</span></div>
+        </article>
+      </div>
+    </section>
     <div class="card" style="margin-top:16px">
       <div class="section-head"><div><div class="section-title">Radar de concursos</div><div class="section-copy">Notícias e movimentações recentes. A fonte pode variar; abra a matéria para conferir o conteúdo completo.</div></div><button class="btn btn-secondary" onclick="loadNews()">ATUALIZAR RADAR</button></div>
       <div class="news-grid" id="newsGrid"><div class="empty">Carregando radar...</div></div>
